@@ -12,11 +12,13 @@ const fontSans = FontSans({
 
 const fontMono = FontMono({
   subsets: ["latin"],
+  weight: ["400", "500", "700"], 
   variable: "--font-mono",
 })
 
+
 export const metadata = {
-  title: "Isaiah Ozadhe | Software Engineer | Python Developer | Typescript Developer",
+  title: "Isaiah Ozadhe | Software Engineer | Python Developer | Javascript Developer | Typescript Developer",
   description:
     "Portfolio of Isaiah Ozadhe, a Software Engineer specializing in Python, JavaScript/TypeScript, Microservices, and modern technologies.",
 }
