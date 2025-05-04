@@ -7,13 +7,23 @@ import { Button } from "@/components/ui/button"
 import { Download, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const roles = ["Full-Stack Developer", "Python Expert", "React Developer"]
+const roles = [
+  "Python Expert",
+  "TypeScript Developer",
+  "JavaScript Engineer",
+  "Backend Specialist",
+  "Microservices Engineer",
+  "Full-Stack Developer",
+  "API Architect",
+  "Problem Solver"
+];
+
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
-  const [delta, setDelta] = useState(200)
+  const [delta, setDelta] = useState(20)
 
   useEffect(() => {
     let timer: NodeJS.Timeout
@@ -23,12 +33,10 @@ export default function Hero() {
       // Pause at full word
       timer = setTimeout(() => {
         setIsDeleting(true)
-        setDelta(100)
       }, 2000)
     } else if (isDeleting && displayText === "") {
       // Move to next word
       setIsDeleting(false)
-      setDelta(200)
       setRoleIndex((prev) => (prev + 1) % roles.length)
     } else {
       timer = setTimeout(() => {
@@ -113,19 +121,19 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center z-10 fade-in-up">
         <div className="mb-6 inline-block">
-          <span className="px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+          <span className="px-4 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
             Software Engineer
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 relative">
+        <h1 className="text-3xl md:text-5xl font-bold mb-4 relative">
           Hi, I'm <span className="purple-gold-gradient animate-pulse-glow">Isaiah Ozadhe</span>
         </h1>
 
-        <h2 className="text-2xl md:text-4xl font-bold mb-6 code-bracket">Building modern web applications</h2>
+        <h2 className="text-xl md:text-3xl font-bold mb-6 code-bracket">Building modern solutions</h2>
 
         <div className="h-8 mb-8 font-mono">
-          <p className="text-xl md:text-2xl">
+          <p className="text-lg md:text-xl">
             <span className="text-gradient-gold-purple">&gt; </span>
             <span>{displayText}</span>
             <span
@@ -138,7 +146,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <p className="text-lg md:text-xl max-w-2xl mb-10 text-muted-foreground">
+        <p className="text-md md:text-lg max-w-2xl mb-10 text-muted-foreground">
           I specialize in Python, JavaScript/TypeScript, and modern web frameworks to create scalable, efficient, and
           user-friendly applications.
         </p>
@@ -146,7 +154,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
             size="lg"
-            className="btn-gradient-primary group relative overflow-hidden"
+            className="btn-gradient-primary group relative overflow-hidden text-sm"
             onClick={() => {
               const projectsSection = document.getElementById("projects")
               if (projectsSection) {
@@ -167,7 +175,7 @@ export default function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="group relative overflow-hidden border-gold hover:border-primary/60"
+            className="group relative overflow-hidden border-gold hover:border-primary/60 text-sm"
             onClick={() => window.open("/resume.pdf", "_blank")}
           >
             <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
