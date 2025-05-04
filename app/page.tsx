@@ -6,6 +6,7 @@ import About from "@/components/about"
 import Projects from "@/components/projects"
 import Skills from "@/components/skills"
 import Blog from "@/components/blog"
+import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 
@@ -64,6 +65,10 @@ export default function Home() {
           <div className="container mx-auto">
             <Blog />
           </div>
+        </section>
+
+        <section id="contact" className="py-20">
+          <Contact />
         </section>
       </main>
       <Footer />
