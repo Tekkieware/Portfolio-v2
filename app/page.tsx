@@ -5,6 +5,7 @@ import Hero from "@/components/hero"
 import About from "@/components/about"
 import Projects from "@/components/projects"
 import Skills from "@/components/skills"
+import Blog from "@/components/blog"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 
@@ -56,6 +57,12 @@ export default function Home() {
         <section id="projects" className="clip-path-slant bg-muted/50 py-20 relative">
           <div className="container mx-auto">
             <Projects />
+          </div>
+        </section>
+
+        <section id="blog" className="clip-path-slant-reverse bg-muted/50 py-20 relative">
+          <div className="container mx-auto">
+            <Blog />
           </div>
         </section>
       </main>
