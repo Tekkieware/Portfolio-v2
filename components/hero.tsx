@@ -127,7 +127,7 @@ export default function Hero() {
         </div>
 
         <h1 className="text-3xl md:text-5xl font-bold mb-4 relative">
-          Hi, I'm <span className="purple-gold-gradient animate-pulse-glow">Isaiah Ozadhe</span>
+          Hi, I'm <span className="purple-gold-gradient animate-pulse-glow px-3 rounded-sm">Isaiah Ozadhe</span>
         </h1>
 
         <h2 className="text-xl md:text-3xl font-bold mb-6 code-bracket">Building modern solutions</h2>
@@ -147,8 +147,7 @@ export default function Hero() {
         </div>
 
         <p className="text-md md:text-lg max-w-2xl mb-10 text-muted-foreground">
-          I specialize in Python, JavaScript/TypeScript, and modern web frameworks to create scalable, efficient, and
-          user-friendly applications.
+        I specialize in building reliable, easy-to-use softwares that solves real-world problems using Python, JavaScript, and TypeScript.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">

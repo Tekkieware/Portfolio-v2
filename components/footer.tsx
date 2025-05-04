@@ -4,15 +4,14 @@ import type React from "react"
 
 import { Button } from "@/components/ui/button"
 import { ArrowUp, Github, Linkedin, Mail } from "lucide-react"
+import Logo from "./logo"
 
 export default function Footer() {
-  // Function to handle smooth scrolling with offset for fixed header
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault()
     const section = document.getElementById(sectionId)
 
     if (section) {
-      // Get the height of the navbar to offset the scroll
       const navbarHeight = document.querySelector("header")?.offsetHeight || 0
       const sectionTop = section.offsetTop - navbarHeight
 
@@ -20,15 +19,12 @@ export default function Footer() {
         top: sectionTop,
         behavior: "smooth",
       })
-
-      // Update URL hash without scrolling (prevents double scroll)
       window.history.pushState(null, "", `#${sectionId}`)
     }
   }
 
   return (
     <footer className="bg-muted/30 py-12 mt-20 relative overflow-hidden">
-      {/* Background decorative elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="blob blob-primary blob-1 opacity-10"></div>
       <div className="blob blob-secondary blob-2 opacity-10"></div>
@@ -41,36 +37,7 @@ export default function Footer() {
               onClick={(e) => scrollToSection(e, "home")}
               className="text-xl font-bold tracking-wider flex items-center"
             >
-              {/* Reverted I.O.O. logo */}
-              <div className="flex justify-center min-h-full gap-0.5">
-                <div className="flex flex-col items-center">
-                  {/* Two dots atop the "i" with alternating colors */}
-                  <div className="flex mb-0.5">
-                    <div className="w-2 h-2 rounded-full bg-gold mr-0.5"></div>
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
-                  </div>
-
-                  {/* Rectangle body of the "i" with two color blocks */}
-                  <div className="flex w-5 h-7">
-                    <div className="w-1/2 h-full bg-primary rounded-l-sm"></div>
-                    <div className="w-1/2 h-full bg-gold rounded-r-sm"></div>
-                  </div>
-                </div>
-                <div className="mt-1 flex gap-0.5">
-                  <h1
-                    className="font-black text-3xl text-transparent bg-[linear-gradient(110deg,_hsl(var(--primary))_45%,_hsl(var(--gold))_45%,_hsl(var(--gold))_55%,_hsl(var(--primary))_55%)] bg-clip-text"
-                    style={{ fontWeight: 900, fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    O
-                  </h1>
-                  <h1
-                    className="font-black text-3xl text-transparent bg-[linear-gradient(110deg,_hsl(var(--gold))_45%,_hsl(var(--primary))_45%,_hsl(var(--primary))_55%,_hsl(var(--gold))_55%)] bg-clip-text"
-                    style={{ fontWeight: 900, fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    O
-                  </h1>
-                </div>
-              </div>
+              <Logo />
             </a>
             <p className="text-muted-foreground mt-2 text-sm max-w-md">
               Software Engineer specializing in Python, JavaScript/TypeScript, and modern web technologies.

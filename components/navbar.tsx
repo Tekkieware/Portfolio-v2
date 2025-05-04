@@ -4,6 +4,7 @@ import type React from "react"
 import { useState, useEffect, useCallback } from "react"
 import { ModeToggle } from "./mode-toggle"
 import { cn } from "@/lib/utils"
+import Logo from "./logo"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -19,13 +20,11 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
-  // Function to handle smooth scrolling with offset for fixed header
   const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, sectionId: string) => {
     e.preventDefault()
     const section = document.getElementById(sectionId)
 
     if (section) {
-      // Get the height of the navbar to offset the scroll
       const navbarHeight = document.querySelector("header")?.offsetHeight || 0
       const sectionTop = section.offsetTop - navbarHeight
 
@@ -33,14 +32,8 @@ export default function Navbar() {
         top: sectionTop,
         behavior: "smooth",
       })
-
-      // Close mobile menu if open
       setMobileMenuOpen(false)
-
-      // Update URL hash without scrolling (prevents double scroll)
       window.history.pushState(null, "", `#${sectionId}`)
-
-      // Set active section
       setActiveSection(sectionId)
     }
   }, [])
@@ -48,12 +41,8 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
-
-      // Determine active section based on scroll position
       const sections = navLinks.map((link) => link.href.substring(1))
       const scrollPosition = window.scrollY + window.innerHeight / 2
-
-      // Find the section that takes up most of the viewport
       let currentSection = sections[0]
       let maxVisibleHeight = 0
 
@@ -61,7 +50,6 @@ export default function Navbar() {
         const section = document.getElementById(sectionId)
         if (section) {
           const rect = section.getBoundingClientRect()
-          // Calculate how much of the section is visible in the viewport
           const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
 
           if (visibleHeight > maxVisibleHeight && visibleHeight > 0) {
@@ -77,13 +65,11 @@ export default function Navbar() {
     }
 
     window.addEventListener("scroll", handleScroll)
-    // Initial call to set correct state
     handleScroll()
 
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Handle initial hash in URL
   useEffect(() => {
     const hash = window.location.hash.substring(1)
     if (hash) {
@@ -91,8 +77,6 @@ export default function Navbar() {
       if (section) {
         const navbarHeight = document.querySelector("header")?.offsetHeight || 0
         const sectionTop = section.offsetTop - navbarHeight
-
-        // Small delay to ensure DOM is fully loaded
         setTimeout(() => {
           window.scrollTo({
             top: sectionTop,
@@ -104,7 +88,6 @@ export default function Navbar() {
     }
   }, [])
 
-  // Prevent body scrolling when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden"
@@ -131,25 +114,8 @@ export default function Navbar() {
             onClick={(e) => scrollToSection(e, "home")}
             className="text-xl font-bold tracking-wider flex items-center"
           >
-            {/* Reverted I.O.O. logo */}
-            <div className="flex justify-center min-h-full gap-0.5">
-              <div className="flex flex-col items-center">
-                {/* Two dots atop the "i" with alternating colors */}
-                <div className="flex mb-0.5">
-                  <div className="w-2 h-2 rounded-full bg-gold mr-0.5"></div>
-                  <div className="w-2 h-2 rounded-full bg-primary"></div>
-                </div>
-
-                {/* Rectangle body of the "i" with two color blocks */}
-                <div className="flex w-5 h-6">
-                  <div className="w-1/2 h-full bg-primary rounded-l-sm"></div>
-                  <div className="w-1/2 h-full bg-gold rounded-r-sm"></div>
-                </div>
-              </div>
-            </div>
+            <Logo />
           </a>
-
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -169,8 +135,6 @@ export default function Navbar() {
             ))}
             <ModeToggle />
           </nav>
-
-          {/* Mobile Menu Button - Fixed position to ensure visibility */}
           <div className="flex items-center md:hidden">
             <ModeToggle />
             <button
@@ -179,21 +143,16 @@ export default function Navbar() {
               className="relative w-10 h-10 ml-2 flex items-center justify-center focus:outline-none group"
             >
               <div className="relative flex flex-col justify-center items-center w-6 h-6">
-                {/* Top line */}
                 <span
                   className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${
                     mobileMenuOpen ? "w-7 translate-y-1.5 rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
                   }`}
                 ></span>
-
-                {/* Middle line */}
                 <span
                   className={`hamburger-line my-1 transition-all duration-300 ease-in-out ${
                     mobileMenuOpen ? "w-0 opacity-0 scale-0" : "w-6 opacity-100 scale-100 bg-gray-900 dark:bg-gray-100"
                   }`}
                 ></span>
-
-                {/* Bottom line */}
                 <span
                   className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${
                     mobileMenuOpen ? "w-7 -translate-y-1.5 -rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
@@ -205,8 +164,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
       <div
         className={cn(
           "fixed inset-0 z-40 md:hidden transition-all duration-300 ease-in-out",
@@ -218,7 +175,6 @@ export default function Navbar() {
           onClick={() => setMobileMenuOpen(false)}
         ></div>
 
-        {/* Add a dedicated close button that's always visible when menu is open */}
         {mobileMenuOpen && (
           <button
             onClick={() => setMobileMenuOpen(false)}
