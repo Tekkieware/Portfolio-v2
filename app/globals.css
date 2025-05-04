@@ -1,0 +1,1322 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 271 70% 39%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 271 70% 39%;
+
+    --radius: 0.5rem;
+
+    --chart-1: 271 70% 39%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 142 76% 36%;
+    --chart-4: 48 96% 53%;
+    --chart-5: 0 84% 60%;
+
+    /* Additional colors */
+    --gold: 45 100% 50%;
+    --teal: 180 100% 30%;
+    --coral: 16 100% 66%;
+    --lavender: 270 76% 70%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 9.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 9.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 271 70% 39%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 271 70% 39%;
+
+    --chart-1: 271 70% 59%;
+    --chart-2: 217 91% 70%;
+    --chart-3: 142 76% 46%;
+    --chart-4: 48 96% 63%;
+    --chart-5: 0 84% 70%;
+
+    /* Additional colors - brighter in dark mode */
+    --gold: 45 100% 60%;
+    --teal: 180 100% 40%;
+    --coral: 16 100% 76%;
+    --lavender: 270 76% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Add custom border width for the logo */
+.border-3 {
+  border-width: 3px;
+}
+
+.bg-grid-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.dark .bg-grid-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(91, 33, 182, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(91, 33, 182, 0.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+/* Slow pulse animation for photo ring */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(91, 33, 182, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(91, 33, 182, 0);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(91, 33, 182, 0.5);
+}
+
+/* Purple and gold gradient text */
+.purple-gold-gradient {
+  background: linear-gradient(to right, hsl(271, 70%, 39%), hsl(var(--gold)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Teal accent gradient */
+.teal-accent-gradient {
+  background: linear-gradient(to right, hsl(var(--teal)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Coral accent gradient */
+.coral-accent-gradient {
+  background: linear-gradient(to right, hsl(var(--coral)), hsl(var(--gold)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Lavender accent gradient */
+.lavender-accent-gradient {
+  background: linear-gradient(to right, hsl(var(--lavender)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius);
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(271, 70%, 39%), hsl(271, 70%, 49%)) border-box;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.gradient-border:hover {
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(271, 70%, 49%), hsl(271, 70%, 39%)) border-box;
+}
+
+/* Gold accent border */
+.gold-border {
+  position: relative;
+  border-radius: var(--radius);
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--gold)), hsl(var(--primary))) border-box;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.gold-border:hover {
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--primary)), hsl(var(--gold))) border-box;
+}
+
+/* Teal accent border */
+.teal-border {
+  position: relative;
+  border-radius: var(--radius);
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--teal)), hsl(var(--primary))) border-box;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.teal-border:hover {
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--primary)), hsl(var(--teal))) border-box;
+}
+
+/* Coral accent border */
+.coral-border {
+  position: relative;
+  border-radius: var(--radius);
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--coral)), hsl(var(--gold))) border-box;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.coral-border:hover {
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--gold)), hsl(var(--coral))) border-box;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, hsl(271, 70%, 39%), hsl(271, 70%, 49%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(18, 18, 18, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light .glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Add these glass effect enhancements */
+.glass-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark .glass-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 32px rgba(91, 33, 182, 0.15);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(91, 33, 182, 0.15) 0%, rgba(18, 18, 18, 0) 70%);
+}
+
+.light .hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(91, 33, 182, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Gold accent gradient */
+.gold-gradient {
+  background: radial-gradient(circle at 50% 50%, hsla(var(--gold), 0.15) 0%, rgba(18, 18, 18, 0) 70%);
+}
+
+.light .gold-gradient {
+  background: radial-gradient(circle at 50% 50%, hsla(var(--gold), 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Teal accent gradient */
+.teal-gradient {
+  background: radial-gradient(circle at 50% 50%, hsla(var(--teal), 0.15) 0%, rgba(18, 18, 18, 0) 70%);
+}
+
+.light .teal-gradient {
+  background: radial-gradient(circle at 50% 50%, hsla(var(--teal), 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.section-divider {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    transparent 25%,
+    var(--background) 25%,
+    var(--background) 50%,
+    transparent 50%,
+    transparent 75%,
+    var(--background) 75%
+  );
+  background-size: 40px 40px;
+}
+
+/* Enhanced section divider */
+.modern-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, hsl(var(--primary)), hsl(var(--primary)), transparent);
+  margin: 2rem 0;
+  position: relative;
+}
+
+.modern-divider::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: hsl(var(--primary));
+  border-radius: 50%;
+}
+
+/* Gold accent divider */
+.gold-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, hsl(var(--gold)), hsl(var(--gold)), transparent);
+  margin: 2rem 0;
+  position: relative;
+}
+
+.gold-divider::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: hsl(var(--gold));
+  border-radius: 50%;
+}
+
+/* Teal accent divider */
+.teal-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, hsl(var(--teal)), hsl(var(--teal)), transparent);
+  margin: 2rem 0;
+  position: relative;
+}
+
+.teal-divider::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: hsl(var(--teal));
+  border-radius: 50%;
+}
+
+.code-bracket::before {
+  content: "{";
+  font-family: monospace;
+  color: var(--primary);
+  margin-right: 0.5rem;
+}
+
+.code-bracket::after {
+  content: "}";
+  font-family: monospace;
+  color: var(--primary);
+  margin-left: 0.5rem;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.blob-primary {
+  background-color: hsl(var(--primary));
+}
+
+.blob-secondary {
+  background-color: hsl(var(--secondary));
+}
+
+/* Gold blob */
+.blob-gold {
+  background-color: hsl(var(--gold));
+}
+
+/* Teal blob */
+.blob-teal {
+  background-color: hsl(var(--teal));
+}
+
+/* Coral blob */
+.blob-coral {
+  background-color: hsl(var(--coral));
+}
+
+/* Lavender blob */
+.blob-lavender {
+  background-color: hsl(var(--lavender));
+}
+
+.blob-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+}
+
+.blob-2 {
+  width: 250px;
+  height: 250px;
+  bottom: 20%;
+  right: 10%;
+}
+
+.blob-3 {
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: hsl(var(--muted));
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.terminal-dot-red {
+  background-color: #ff5f56;
+}
+
+.terminal-dot-yellow {
+  background-color: #ffbd2e;
+}
+
+.terminal-dot-green {
+  background-color: #27c93f;
+}
+
+.terminal-body {
+  background-color: hsl(var(--card));
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  padding: 1rem;
+  font-family: monospace;
+}
+
+.terminal-line {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.terminal-prompt {
+  color: hsl(var(--primary));
+  margin-right: 0.5rem;
+}
+
+.terminal-text {
+  color: hsl(var(--foreground));
+}
+
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.light .card-hover-effect:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card-hover-effect:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.skill-icon {
+  transition: all 0.3s ease;
+}
+
+.skill-icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(91, 33, 182, 0.5));
+}
+
+/* Gold skill icon */
+.skill-icon-gold:hover {
+  filter: drop-shadow(0 0 8px hsla(var(--gold), 0.5));
+}
+
+/* Teal skill icon */
+.skill-icon-teal:hover {
+  filter: drop-shadow(0 0 8px hsla(var(--teal), 0.5));
+}
+
+/* Coral skill icon */
+.skill-icon-coral:hover {
+  filter: drop-shadow(0 0 8px hsla(var(--coral), 0.5));
+}
+
+.animated-border {
+  position: relative;
+}
+
+.animated-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, hsl(271, 70%, 39%), hsl(271, 70%, 49%));
+  transition: width 0.3s ease;
+}
+
+.animated-border:hover::after {
+  width: 100%;
+}
+
+/* Gold animated border */
+.animated-border-gold::after {
+  background: linear-gradient(to right, hsl(var(--gold)), hsl(var(--primary)));
+}
+
+/* Teal animated border */
+.animated-border-teal::after {
+  background: linear-gradient(to right, hsl(var(--teal)), hsl(var(--primary)));
+}
+
+/* Coral animated border */
+.animated-border-coral::after {
+  background: linear-gradient(to right, hsl(var(--coral)), hsl(var(--gold)));
+}
+
+/* Fix for slanted sections on mobile */
+@media (max-width: 768px) {
+  .clip-path-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  }
+
+  .clip-path-slant-reverse {
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@media (max-width: 640px) {
+  .clip-path-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+  }
+
+  .clip-path-slant-reverse {
+    clip-path: polygon(0 3%, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Add these scroll animation classes to the end of the file */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.appear {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Staggered delay classes */
+.delay-100 {
+  transition-delay: 0.1s;
+}
+.delay-200 {
+  transition-delay: 0.2s;
+}
+.delay-300 {
+  transition-delay: 0.3s;
+}
+.delay-400 {
+  transition-delay: 0.4s;
+}
+.delay-500 {
+  transition-delay: 0.5s;
+}
+
+/* Add these styles at the end of the file for the hamburger menu animation */
+.hamburger-line {
+  @apply h-0.5 rounded-full transition-all transform;
+}
+
+/* Add these animations for the mobile menu items */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s forwards ease-out;
+}
+
+.animate-slide-out {
+  animation: slideOut 0.3s forwards ease-in;
+}
+
+.mobile-menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-menu-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to right, rgba(91, 33, 182, 0.1), transparent);
+  transition: height 0.3s ease;
+  z-index: -1;
+}
+
+.mobile-menu-item:hover::after {
+  height: 100%;
+}
+
+/* Add a subtle bounce effect to the hamburger icon */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+button:active .hamburger-line {
+  animation: bounce 0.3s;
+}
+
+/* Add these new animation classes at the end of your globals.css file */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-up.appear {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.zoom-in.appear {
+  animation: zoomIn 0.6s ease-out forwards;
+}
+
+/* Add these animations from the new theme */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-slide-in-from-left {
+  animation: slide-in-from-left 0.5s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Enhanced section headers */
+.section-header {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.section-header::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, hsl(var(--primary)), transparent);
+  border-radius: 2px;
+}
+
+/* Improved dividers */
+.content-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, hsl(var(--primary)), transparent);
+  margin: 2rem 0;
+  opacity: 0.5;
+}
+
+/* Enhanced progress bars */
+.animated-progress {
+  height: 0.5rem;
+  background-color: hsl(var(--secondary));
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.animated-progress-bar {
+  height: 100%;
+  background-color: hsl(var(--primary));
+  border-radius: 0.25rem;
+  transition: width 1s ease-in-out;
+}
+
+.animated-progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Add these button gradient styles */
+.btn-gradient-primary {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary)));
+}
+
+.btn-gradient-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--gold)));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.btn-gradient-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-gradient-gold {
+  background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold) / 0.8));
+  color: hsl(var(--background));
+  border: none;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-gold:hover {
+  background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold)));
+}
+
+.btn-gradient-gold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--primary)));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.btn-gradient-gold:hover::before {
+  opacity: 1;
+}
+
+.btn-gradient-teal {
+  background: linear-gradient(135deg, hsl(var(--teal)), hsl(var(--teal) / 0.8));
+  color: hsl(var(--background));
+  border: none;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-teal:hover {
+  background: linear-gradient(135deg, hsl(var(--teal)), hsl(var(--teal)));
+}
+
+.btn-gradient-teal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, hsl(var(--teal)), hsl(var(--primary)));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.btn-gradient-teal:hover::before {
+  opacity: 1;
+}
+
+.btn-gradient-coral {
+  background: linear-gradient(135deg, hsl(var(--coral)), hsl(var(--coral) / 0.8));
+  color: hsl(var(--background));
+  border: none;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-coral:hover {
+  background: linear-gradient(135deg, hsl(var(--coral)), hsl(var(--coral)));
+}
+
+.btn-gradient-coral::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, hsl(var(--coral)), hsl(var(--gold)));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.btn-gradient-coral:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced badge styles */
+.badge-gradient-primary {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));
+  color: hsl(var(--primary-foreground));
+  border: none;
+}
+
+.badge-gradient-gold {
+  background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold) / 0.8));
+  color: hsl(var(--background));
+  border: none;
+}
+
+.badge-gradient-teal {
+  background: linear-gradient(135deg, hsl(var(--teal)), hsl(var(--teal) / 0.8));
+  color: hsl(var(--background));
+  border: none;
+}
+
+.badge-gradient-coral {
+  background: linear-gradient(135deg, hsl(var(--coral)), hsl(var(--coral) / 0.8));
+  color: hsl(var(--background));
+  border: none;
+}
+
+.badge-gradient-lavender {
+  background: linear-gradient(135deg, hsl(var(--lavender)), hsl(var(--lavender) / 0.8));
+  color: hsl(var(--background));
+  border: none;
+}
+
+/* Gradient backgrounds for sections */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--primary) / 0.02));
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(135deg, hsl(var(--gold) / 0.05), hsl(var(--gold) / 0.02));
+}
+
+.bg-gradient-teal {
+  background: linear-gradient(135deg, hsl(var(--teal) / 0.05), hsl(var(--teal) / 0.02));
+}
+
+.bg-gradient-coral {
+  background: linear-gradient(135deg, hsl(var(--coral) / 0.05), hsl(var(--coral) / 0.02));
+}
+
+.bg-gradient-lavender {
+  background: linear-gradient(135deg, hsl(var(--lavender) / 0.05), hsl(var(--lavender) / 0.02));
+}
+
+.bg-gradient-mixed {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--gold) / 0.05));
+}
+
+/* Enhanced card styles */
+.card-gradient-header {
+  border-bottom: 1px solid transparent;
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--primary)), hsl(var(--gold))) border-box;
+}
+
+.card-gradient-header-teal {
+  border-bottom: 1px solid transparent;
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--teal)), hsl(var(--primary))) border-box;
+}
+
+.card-gradient-header-coral {
+  border-bottom: 1px solid transparent;
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to right, hsl(var(--coral)), hsl(var(--gold))) border-box;
+}
+
+/* Enhanced progress bars */
+.progress-gradient-primary {
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+}
+
+.progress-gradient-gold {
+  background: linear-gradient(to right, hsl(var(--gold)), hsl(var(--gold) / 0.7));
+}
+
+.progress-gradient-teal {
+  background: linear-gradient(to right, hsl(var(--teal)), hsl(var(--teal) / 0.7));
+}
+
+.progress-gradient-coral {
+  background: linear-gradient(to right, hsl(var(--coral)), hsl(var(--coral) / 0.7));
+}
+
+.progress-gradient-mixed {
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--gold)));
+}
+
+/* Tab styles */
+.tab-gradient-active {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--primary) / 0.05));
+  border-bottom: 2px solid hsl(var(--primary));
+}
+
+.tab-gradient-gold-active {
+  background: linear-gradient(135deg, hsl(var(--gold) / 0.1), hsl(var(--gold) / 0.05));
+  border-bottom: 2px solid hsl(var(--gold));
+}
+
+.tab-gradient-teal-active {
+  background: linear-gradient(135deg, hsl(var(--teal) / 0.1), hsl(var(--teal) / 0.05));
+  border-bottom: 2px solid hsl(var(--teal));
+}
+
+/* Gradient text variations */
+.text-gradient-gold-purple {
+  background: linear-gradient(to right, hsl(var(--gold)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-teal-purple {
+  background: linear-gradient(to right, hsl(var(--teal)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-coral-gold {
+  background: linear-gradient(to right, hsl(var(--coral)), hsl(var(--gold)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-lavender-primary {
+  background: linear-gradient(to right, hsl(var(--lavender)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animated gradient backgrounds */
+.animated-gradient-bg {
+  background: linear-gradient(
+    270deg,
+    hsl(var(--primary) / 0.1),
+    hsl(var(--gold) / 0.1),
+    hsl(var(--teal) / 0.1),
+    hsl(var(--primary) / 0.1)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Gradient borders with animation */
+.animated-gradient-border {
+  position: relative;
+  border-radius: var(--radius);
+  background: var(--card);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.animated-gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(270deg, hsl(var(--primary)), hsl(var(--gold)), hsl(var(--teal)), hsl(var(--primary)));
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  z-index: -1;
+  border-radius: calc(var(--radius) + 2px);
+}
+
+.animated-gradient-border > * {
+  position: relative;
+  z-index: 1;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+
+/* Add these utility classes for the project carousel */
+.bg-gold {
+  background-color: hsl(var(--gold));
+}
+
+.bg-teal {
+  background-color: hsl(var(--teal));
+}
+
+.bg-coral {
+  background-color: hsl(var(--coral));
+}
+
+.bg-lavender {
+  background-color: hsl(var(--lavender));
+}
+
+.text-gold {
+  color: hsl(var(--gold));
+}
+
+.text-teal {
+  color: hsl(var(--teal));
+}
+
+.text-coral {
+  color: hsl(var(--coral));
+}
+
+.text-lavender {
+  color: hsl(var(--lavender));
+}
+
+.border-gold {
+  border-color: hsl(var(--gold));
+}
+
+.border-teal {
+  border-color: hsl(var(--teal));
+}
+
+.border-coral {
+  border-color: hsl(var(--coral));
+}
+
+.border-lavender {
+  border-color: hsl(var(--lavender));
+}
+
+/* Add these styles to the end of your globals.css file */
+
+/* Enhanced typography */
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.leading-relaxed {
+  line-height: 1.8;
+}
+
+/* Timeline enhancements */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  z-index: 10;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--gold)));
+  transform: translateX(-50%);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+@keyframes float-button {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float-button {
+  animation: float-button 3s ease-in-out infinite;
+}
+
+/* Add these styles for the logo gradients */
+.logo-o-gradient-1 {
+  border: 2.5px solid transparent;
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to bottom right, hsl(var(--primary)), hsl(var(--gold))) border-box;
+}
+
+.logo-o-gradient-2 {
+  border: 2.5px solid transparent;
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(to bottom left, hsl(var(--primary)), hsl(var(--gold))) border-box;
+}
