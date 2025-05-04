@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import Hero from "@/components/hero"
 import About from "@/components/about"
+import Skills from "@/components/skills"
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 
@@ -45,6 +46,10 @@ export default function Home() {
 
         <section id="about" className="py-20">
           <About />
+        </section>
+
+        <section id="skills" className="py-20">
+          <Skills />
         </section>
       </main>
       <Footer />
