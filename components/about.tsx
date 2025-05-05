@@ -301,7 +301,7 @@ export default function About() {
             style={{ transitionDelay: `${1200 + index * 100}ms` }}
           >
             {/* Timeline dot */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10"></div>
+            <div className="absolute left-0 -top-1 md:top-2 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10"></div>
 
             {/* Content */}
             <div className={cn("ml-6 md:ml-0 md:w-[calc(50%-20px)]", index % 2 === 0 ? "md:mr-10" : "md:ml-10")}>
