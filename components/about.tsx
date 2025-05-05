@@ -126,7 +126,7 @@ export default function About() {
           <div className="flex flex-wrap gap-4 mb-6">
             <Button
               variant="outline"
-              className="group relative overflow-hidden border-primary/30 hover:border-primary/60"
+              className="group relative overflow-hidden border-primary/30 hover:border-primary/60 flex-1"
               onClick={() => window.open("/resume.pdf", "_blank")}
             >
               <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
@@ -135,7 +135,7 @@ export default function About() {
             </Button>
 
             <Button
-              className="bg-primary hover:bg-primary/90 group relative overflow-hidden"
+              className="bg-primary hover:bg-primary/90 group relative overflow-hidden flex-1"
               onClick={() => {
                 const contactSection = document.getElementById("contact")
                 if (contactSection) {

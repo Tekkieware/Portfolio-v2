@@ -371,7 +371,7 @@ export default function Projects() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous project"
-                className="flex gap-2 items-center px-4 py-2 rounded-full bg-gold text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:bg-primary/90 hover:shadow-lg disabled:opacity-50"
+                className="flex gap-2 items-center px-4 py-2 rounded-full bg-gold text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:bg-gold/70 hover:shadow-lg disabled:opacity-50"
                 disabled={isTransitioning}
               >
                 <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full mr-1 -ml-1 gap-1">
