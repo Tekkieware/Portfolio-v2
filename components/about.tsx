@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils"
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+
+  // Handle scroll animations and visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -31,6 +33,7 @@ export default function About() {
     }
   }, [])
 
+  // Career timeline data
   const careerSteps = [
     {
       title: "Senior Developer",
@@ -66,10 +69,12 @@ export default function About() {
           <span className="purple-gold-gradient">About Me</span>
         </h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100">
-          I'm a passionate software engineer with over 7 years of experience building web applications, microservices,
+          I'm a passionate software engineer with over 3 years of experience building web applications, microservices,
           and mobile apps.
         </p>
       </div>
+
+      {/* Profile section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
         <div className="flex justify-center fade-in-right delay-100">
           <div className="relative">
@@ -81,9 +86,10 @@ export default function About() {
               />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-background rounded-full p-3 shadow-lg glass-card">
-              <Badge className="text-sm px-3 py-1 bg-primary hover:bg-primary">7+ Years</Badge>
+              <Badge className="text-sm px-3 py-1 bg-primary hover:bg-primary">3+ Years</Badge>
             </div>
 
+            {/* Decorative elements */}
             <div
               className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-secondary/20 animate-float"
               style={{ animationDelay: "-1s" }}
@@ -102,7 +108,7 @@ export default function About() {
         <div className="fade-in-left delay-200">
           <h3
             className={cn(
-              "text-2xl font-bold mb-4 teal-accent-gradient inline-block",
+              "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
               "transition-all duration-1000 delay-700",
             )}
@@ -184,16 +190,18 @@ export default function About() {
       <div className="gold-divider my-12 fade-in-up"></div>
 
       <h3
-        className={cn(
-          "text-2xl font-bold mb-4 teal-accent-gradient inline-block",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-          "transition-all duration-1000 delay-700",
-        )}
-      >
-        My Expertise
-      </h3>
+            className={cn(
+              "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
+              "transition-all duration-1000 delay-700",
+            )}
+          >
+             My Expertise
+          </h3>
 
+      {/* Expertise cards with glassmorphic styling */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        {/* Card 1 */}
         <Card
           className={cn(
             "overflow-hidden card-hover-effect gradient-border glass-card backdrop-blur-sm bg-background/30 dark:bg-gray-900/30 border border-primary/20 group",
@@ -214,6 +222,8 @@ export default function About() {
             </p>
           </CardContent>
         </Card>
+
+        {/* Card 2 */}
         <Card
           className={cn(
             "overflow-hidden card-hover-effect gold-border glass-card backdrop-blur-sm bg-background/30 dark:bg-gray-900/30 border border-gold/20 group",
@@ -236,6 +246,8 @@ export default function About() {
             </p>
           </CardContent>
         </Card>
+
+        {/* Card 3 */}
         <Card
           className={cn(
             "overflow-hidden card-hover-effect teal-border glass-card backdrop-blur-sm bg-background/30 dark:bg-gray-900/30 border border-teal/20 group",
@@ -263,15 +275,20 @@ export default function About() {
 
       <h3
             className={cn(
-              "text-2xl font-bold mb-4 teal-accent-gradient inline-block",
+              "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
               "transition-all duration-1000 delay-700",
             )}
           >
              Professional Journey
           </h3>
+
+      {/* Timeline */}
       <div className="relative mb-16">
+        {/* Timeline line */}
         <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-gold/50 to-teal/50"></div>
+
+        {/* Timeline steps */}
         {careerSteps.map((step, index) => (
           <div
             key={index}
@@ -283,7 +300,10 @@ export default function About() {
             )}
             style={{ transitionDelay: `${1200 + index * 100}ms` }}
           >
+            {/* Timeline dot */}
             <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10"></div>
+
+            {/* Content */}
             <div className={cn("ml-6 md:ml-0 md:w-[calc(50%-20px)]", index % 2 === 0 ? "md:mr-10" : "md:ml-10")}>
               <div className="glass-card p-6 rounded-lg border border-primary/20 backdrop-blur-sm bg-background/30 dark:bg-gray-900/30 hover:border-primary/40 transition-colors duration-300">
                 <div className="flex justify-between items-center mb-2">

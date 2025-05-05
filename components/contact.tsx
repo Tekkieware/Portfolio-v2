@@ -46,11 +46,15 @@ export default function Contact() {
         <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up purple-gold-gradient">Get In Touch</h2>
       </div>
       <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto fade-in-up delay-100">
-      Feel free to reach out if you're looking for a software engineer, have a question, or just want to connect.
-        </p>
+        Feel free to reach out if you're looking for a software engineer, have a question, or just want to connect.
+      </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div className="fade-in-right delay-100">
-          <h3 className="text-2xl font-bold mb-6 gradient-text inline-block">Contact Information</h3>
+          <h3
+            className="text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header"
+          >
+            Contact Information
+          </h3>
           <div className="space-y-6">
             <Card className="card-hover-effect gradient-border fade-in-up delay-150 animated-gradient-border">
               <CardContent className="flex items-center p-6">
@@ -113,7 +117,11 @@ export default function Contact() {
         </div>
 
         <div className="fade-in-left delay-100">
-          <h3 className="text-2xl font-bold mb-6 gradient-text inline-block">Send Me a Message</h3>
+        <h3
+            className="text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header"
+          >
+            Send Me a Message
+          </h3>
           <form onSubmit={handleSubmit} className="space-y-6 p-6 rounded-lg border border-primary/20 bg-card/50">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
