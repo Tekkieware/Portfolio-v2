@@ -49,7 +49,6 @@ export default function Hero() {
     return () => clearTimeout(timer)
   }, [displayText, isDeleting, roleIndex, delta])
 
-  // Function to scroll to about section
   const scrollToAbout = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     const aboutSection = document.getElementById("about")
@@ -62,23 +61,18 @@ export default function Hero() {
         top: sectionTop,
         behavior: "smooth",
       })
-
-      // Update URL hash without scrolling
       window.history.pushState(null, "", "#about")
     }
   }
 
   return (
     <div className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden">
-      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="hero-gradient absolute inset-0"></div>
         <div className="blob blob-primary blob-1 animate-float"></div>
         <div className="blob blob-gold blob-2 animate-float" style={{ animationDelay: "-2s" }}></div>
       </div>
-
-      {/* Decorative elements */}
       <div className="absolute top-20 left-10 hidden lg:block fade-in-left delay-300">
         <div className="terminal-header">
           <div className="terminal-dot terminal-dot-red"></div>
@@ -163,7 +157,6 @@ export default function Hero() {
                   top: sectionTop,
                   behavior: "smooth",
                 })
-                // Update URL hash
                 window.history.pushState(null, "", "#projects")
               }
             }}
@@ -182,8 +175,6 @@ export default function Hero() {
             <span className="absolute inset-0 w-full h-full bg-gold/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
           </Button>
         </div>
-
-        {/* Make this div clickable to scroll to about section */}
         <div
           className="mt-16 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
           onClick={scrollToAbout}

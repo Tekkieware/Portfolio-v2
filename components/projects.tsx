@@ -19,7 +19,7 @@ const projects = [
     github: "https://github.com",
     demo: "https://example.com",
     category: "🌐 Web App",
-    color: "primary", // purple
+    color: "primary",
   },
   {
     title: "Task Management App",

@@ -26,8 +26,6 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulate form submission
     setTimeout(() => {
       console.log("Form submitted:", formData)
       setIsSubmitting(false)
@@ -37,13 +35,11 @@ export default function Contact() {
         subject: "",
         message: "",
       })
-      // Here you would typically send the data to your backend
     }, 1500)
   }
 
   return (
     <div className="container mx-auto px-4 relative">
-      {/* Background decorative elements */}
       <div className="blob blob-primary blob-3 opacity-20"></div>
 
       <div className="flex w-full justify-center">

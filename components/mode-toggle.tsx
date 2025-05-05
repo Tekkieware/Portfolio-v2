@@ -8,13 +8,9 @@ import { useEffect, useState } from "react"
 export function ModeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-
-  // Avoid hydration mismatch
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  // Force dark mode on initial load
   useEffect(() => {
     if (mounted && !theme) {
       setTheme("dark")
