@@ -307,60 +307,62 @@ export default function Projects() {
       <div className="relative mb-16">
         {/* Enhanced Navigation buttons with frosted glass effect - positioned at bottom on mobile */}
         {isMobile ? (
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-4 mt-8 pt-4 z-20">
+          <div className="absolute bottom-12 left-0 right-0 flex justify-center items-center gap-4 mt-8 pt-4 z-20">
             <button
               onClick={handlePrev}
               aria-label="Previous project"
-              className="flex items-center px-4 py-2 rounded-full bg-primary text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:shadow-lg disabled:opacity-50"
+              className="flex items-center px-4 py-2 rounded-full bg-gold text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:shadow-lg disabled:opacity-50"
               disabled={isTransitioning}
             >
-              <div className="flex items-center justify-center w-6 h-6 bg-white rounded-full -ml-1 mr-1">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full mr-1 -ml-1 gap-1">
+                  
+                  <svg className=" bg-gold rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
-                    d="M11 17L6 12L11 7"
-                    stroke="hsl(var(--primary))"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M18 17L13 12L18 7"
-                    stroke="hsl(var(--primary))"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              PREV
+                      d="M11 17L6 12L11 7"
+                      stroke="#fff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M18 17L13 12L18 7"
+                      stroke="#fff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                </div>
+                PREV
             </button>
 
             <button
               onClick={handleNext}
               aria-label="Next project"
-              className="flex items-center px-4 py-2 rounded-full bg-gold text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:shadow-lg disabled:opacity-50"
-              style={{ backgroundColor: "hsl(var(--gold))", color: "#000" }}
+              className="flex items-center px-4 py-2 rounded-full bg-primary text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:shadow-lg disabled:opacity-50"
               disabled={isTransitioning}
             >
               NEXT
-              <div className="flex items-center justify-center w-6 h-6 bg-white rounded-full ml-1 -mr-1">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M13 7L18 12L13 17"
-                    stroke="hsl(var(--gold))"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M6 7L11 12L6 17"
-                    stroke="hsl(var(--gold))"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+                <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full ml-1 -mr-1 gap-1">
+                  <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                  <svg className=" bg-primary rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M13 7L18 12L13 17"
+                      stroke="#fff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M6 7L11 12L6 17"
+                      stroke="#fff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
             </button>
           </div>
         ) : (
@@ -369,55 +371,54 @@ export default function Projects() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous project"
-                className="flex items-center px-4 py-2 rounded-full bg-primary text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:bg-primary/90 hover:shadow-lg disabled:opacity-50"
+                className="flex gap-2 items-center px-4 py-2 rounded-full bg-gold text-white font-bold shadow-md border border-gray-200 transition-all duration-500 hover:bg-primary/90 hover:shadow-lg disabled:opacity-50"
                 disabled={isTransitioning}
               >
-                <div className="flex items-center justify-center w-6 h-6 bg-white rounded-full -ml-1 mr-1">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
+                <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full mr-1 -ml-1 gap-1">
+                  
+                  <svg className=" bg-gold rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
                       d="M11 17L6 12L11 7"
-                      stroke="hsl(var(--primary))"
+                      stroke="#fff"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                     <path
                       d="M18 17L13 12L18 7"
-                      stroke="hsl(var(--primary))"
+                      stroke="#fff"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
+                  <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects.length}</p>
                 </div>
                 PREV
               </button>
-              <div className="text-xs text-center mt-2 text-muted-foreground">
-                {activeIndex + 1} / {projects.length}
-              </div>
             </div>
 
             <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20">
               <button
                 onClick={handleNext}
                 aria-label="Next project"
-                className="flex items-center px-4 py-2 rounded-full shadow-md border border-gray-200 transition-all duration-500 hover:bg-gold/90 hover:shadow-lg disabled:opacity-50"
-                style={{ backgroundColor: "hsl(var(--gold))", color: "#000" }}
+                className="flex gap-2 items-center px-4 text-sm py-2 text-white rounded-full font-bold shadow-md border border-gray-200 transition-all duration-500 bg-primary hover:bg-primary/70 hover:shadow-lg disabled:opacity-50"
                 disabled={isTransitioning}
               >
                 NEXT
-                <div className="flex items-center justify-center w-6 h-6 bg-white rounded-full ml-1 -mr-1">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full ml-1 -mr-1 gap-1">
+                  <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                  <svg className=" bg-primary rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M13 7L18 12L13 17"
-                      stroke="hsl(var(--gold))"
+                      stroke="#fff"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                     <path
                       d="M6 7L11 12L6 17"
-                      stroke="hsl(var(--gold))"
+                      stroke="#fff"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -425,9 +426,6 @@ export default function Projects() {
                   </svg>
                 </div>
               </button>
-              <div className="text-xs text-center mt-2 text-muted-foreground">
-                {activeIndex + 1} / {projects.length}
-              </div>
             </div>
           </>
         )}
@@ -663,14 +661,14 @@ export default function Projects() {
         </div>
 
         {/* Pagination dots - added more bottom margin on mobile */}
-        <div className={`flex justify-center gap-2 ${isMobile ? "mt-6 mb-20" : "mt-6"}`}>
+        <div className={`flex justify-center gap-2 ${isMobile ? "mt-20 pb-6" : "mt-6"}`}>
           {projects.map((project, index) => (
             <button
               key={index}
               className={cn(
                 "w-2 h-2 rounded-full transition-all relative group",
                 index === activeIndex
-                  ? "bg-primary w-6"
+                  ? `bg-${project.color} w-6`
                   : "bg-gray-400 dark:bg-gray-600 hover:bg-gray-500 dark:hover:bg-gray-500",
               )}
               onClick={() => {
