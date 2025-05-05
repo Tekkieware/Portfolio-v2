@@ -127,7 +127,7 @@ export default function Skills() {
       <div className="blob blob-primary blob-3 opacity-20"></div>
 
       <div className="flex flex-col items-center mb-16">
-        <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up">Skills</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up purple-gold-gradient">Skills</h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100">
           My technical expertise spans across various programming languages, frameworks, and tools for building modern
           web and mobile applications.

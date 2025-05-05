@@ -46,14 +46,9 @@ export default function Blog() {
   return (
     <div className="container mx-auto px-4">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16">
-        <h2 className="text-3xl font-bold mb-4 md:mb-0 relative inline-block fade-in-up">
-          Latest Articles
-          <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary rounded-full"></span>
-        </h2>
-        <Button variant="outline" className="self-start md:self-auto fade-in-left">
-          View All Articles
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+      <div className="flex w-full justify-center">
+        <h2 className="text-3xl font-bold text-center relative inline-block section-header fade-in-up purple-gold-gradient">Latest Articles</h2>
+      </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -57,7 +57,6 @@ export default function About() {
 
   return (
     <div ref={sectionRef} className="container mx-auto px-4 relative overflow-hidden">
-      {/* Background elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 -z-10"></div>
       <div className="blob blob-primary blob-1 opacity-10 -z-10"></div>
       <div className="blob blob-gold blob-2 opacity-10 -z-10"></div>
@@ -65,8 +64,6 @@ export default function About() {
         className="blob blob-teal"
         style={{ width: "180px", height: "180px", top: "30%", right: "15%", opacity: "0.1", zIndex: "-10" }}
       ></div>
-
-      {/* Section header - Keeping this from v47 */}
       <div className="flex flex-col items-center mb-16">
         <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up">
           <span className="purple-gold-gradient">About Me</span>
@@ -109,7 +106,13 @@ export default function About() {
         </div>
 
         <div className="fade-in-left delay-200">
-          <h3 className="text-2xl font-bold mb-4 purple-gold-gradient inline-block">
+          <h3
+            className={cn(
+              "text-2xl font-bold mb-4 teal-accent-gradient inline-block",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
+              "transition-all duration-1000 delay-700",
+            )}
+          >
             Software Engineer & Problem Solver
           </h3>
 
@@ -184,13 +187,11 @@ export default function About() {
         </div>
       </div>
 
-      {/* Modern divider */}
       <div className="gold-divider my-12 fade-in-up"></div>
 
-      {/* Expertise section - Keeping this from the updated version */}
       <h3
         className={cn(
-          "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
+          "text-2xl font-bold mb-4 teal-accent-gradient inline-block",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           "transition-all duration-1000 delay-700",
         )}
@@ -272,16 +273,15 @@ export default function About() {
         </Card>
       </div>
 
-      {/* Professional Journey section with timeline - Keeping this from the updated version */}
       <h3
-        className={cn(
-          "text-2xl font-bold mb-8 coral-accent-gradient inline-block section-header",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-          "transition-all duration-1000 delay-1100",
-        )}
-      >
-        Professional Journey
-      </h3>
+            className={cn(
+              "text-2xl font-bold mb-4 teal-accent-gradient inline-block",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
+              "transition-all duration-1000 delay-700",
+            )}
+          >
+             Professional Journey
+          </h3>
 
       {/* Modern timeline */}
       <div className="relative mb-16">

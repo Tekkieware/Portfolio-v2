@@ -295,7 +295,9 @@ export default function Projects() {
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/20 -z-10 rounded-xl"></div>
       <div className="blob blob-primary blob-3 opacity-20 -z-10"></div>
 
-      <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up">Projects</h2>
+      <div className="flex w-full justify-center">
+        <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up purple-gold-gradient">Projects</h2>
+      </div>
 
       <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto fade-in-up delay-100">
         Here are some of my recent projects that showcase my expertise in Python, JavaScript/TypeScript, and modern web
