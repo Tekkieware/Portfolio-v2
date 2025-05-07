@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 const projects = [
   {
@@ -315,26 +316,26 @@ export default function Projects() {
               disabled={isTransitioning}
             >
               <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full mr-1 -ml-1 gap-1">
-                  
-                  <svg className=" bg-gold rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                <svg className=" bg-gold rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
-                      d="M11 17L6 12L11 7"
-                      stroke="#fff"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M18 17L13 12L18 7"
-                      stroke="#fff"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects.length}</p>
-                </div>
-                PREV
+                    d="M11 17L6 12L11 7"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M18 17L13 12L18 7"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects.length}</p>
+              </div>
+              PREV
             </button>
 
             <button
@@ -344,25 +345,25 @@ export default function Projects() {
               disabled={isTransitioning}
             >
               NEXT
-                <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full ml-1 -mr-1 gap-1">
-                  <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects.length}</p>
-                  <svg className=" bg-primary rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M13 7L18 12L13 17"
-                      stroke="#fff"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M6 7L11 12L6 17"
-                      stroke="#fff"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
+              <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full ml-1 -mr-1 gap-1">
+                <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                <svg className=" bg-primary rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M13 7L18 12L13 17"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M6 7L11 12L6 17"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
             </button>
           </div>
         ) : (
@@ -375,9 +376,9 @@ export default function Projects() {
                 disabled={isTransitioning}
               >
                 <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full mr-1 -ml-1 gap-1">
-                  
+
                   <svg className=" bg-gold rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
+                    <path
                       d="M11 17L6 12L11 7"
                       stroke="#fff"
                       strokeWidth="2"
@@ -495,166 +496,169 @@ export default function Projects() {
               const parallaxY = isActive && isHovering ? mousePosition.y * 5 : 0
 
               return (
-                <div
-                  key={index}
-                  ref={isActive ? activeCardRef : null}
-                  className={cn("transition-all duration-700 ease-out flex-shrink-0", isActive ? "z-10" : "z-0")}
-                  style={{
-                    width: cardWidth,
-                    transform: `
+                
+                  <div
+                    key={index}
+                    ref={isActive ? activeCardRef : null}
+                    className={cn("transition-all duration-700 ease-out flex-shrink-0", isActive ? "z-10" : "z-0")}
+                    style={{
+                      width: cardWidth,
+                      transform: `
                       scale(${isActive ? 1.05 : 0.95}) 
                       rotateY(${rotateY}deg) 
                       translateZ(${translateZ}px)
                       ${isActive ? `translate(${parallaxX}px, ${parallaxY}px)` : ""}
                     `,
-                    opacity: isActive ? 1 : 0.7,
-                    transition: "all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1)",
-                    order: position, // Use flexbox order to position cards
-                    filter: `blur(${blur}px)`,
-                  }}
-                  onMouseEnter={() => isActive && setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                  onMouseMove={isActive ? handleMouseMoveParallax : undefined}
-                >
-                  <Card
-                    className={cn(
-                      "overflow-hidden h-full transition-all duration-700",
-                      isActive ? glowClass : "shadow-md",
-                      isActive ? "border-2" : "border",
-                      // Add border radius to outer edges of inactive cards
-                      !isActive && position === -1 ? "rounded-l-2xl" : "",
-                      !isActive && position === 1 ? "rounded-r-2xl" : "",
-                      cardColor === "primary"
-                        ? "border-primary/50"
-                        : cardColor === "gold"
-                          ? "border-gold/50"
-                          : cardColor === "teal"
-                            ? "border-teal/50"
-                            : cardColor === "coral"
-                              ? "border-coral/50"
-                              : "border-lavender/50",
-                    )}
+                      opacity: isActive ? 1 : 0.7,
+                      transition: "all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                      order: position, // Use flexbox order to position cards
+                      filter: `blur(${blur}px)`,
+                    }}
+                    onMouseEnter={() => isActive && setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                    onMouseMove={isActive ? handleMouseMoveParallax : undefined}
                   >
-                    <div className="relative h-48 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
-                      <img
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform hover:scale-105"
-                        style={{
-                          transform:
-                            isActive && isHovering
-                              ? `translate(${mousePosition.x * -5}px, ${mousePosition.y * -5}px)`
-                              : "",
-                          transition: isHovering ? "transform 0.1s ease-out" : "transform 0.5s ease-out",
-                        }}
-                      />
-                      <div className="absolute top-3 left-3 z-20">
-                        <Badge
-                          className={cn(
-                            "text-xs px-3 py-1",
-                            cardColor === "primary"
-                              ? "bg-primary text-white"
-                              : cardColor === "gold"
-                                ? "bg-gold text-black"
-                                : cardColor === "teal"
-                                  ? "bg-teal text-white"
-                                  : cardColor === "coral"
-                                    ? "bg-coral text-white"
-                                    : "bg-lavender text-black",
-                          )}
-                        >
-                          {project.category}
-                        </Badge>
-                      </div>
-                    </div>
-
-                    <CardHeader className="pb-2">
-                      <CardTitle
-                        className={cn(
-                          "line-clamp-1",
-                          cardColor === "primary"
-                            ? "text-primary"
-                            : cardColor === "gold"
-                              ? "text-gold"
-                              : cardColor === "teal"
-                                ? "text-teal"
-                                : cardColor === "coral"
-                                  ? "text-coral"
-                                  : "text-lavender",
-                        )}
-                      >
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className={isActive ? "" : "line-clamp-2"}>
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <CardContent>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.slice(0, isActive ? 5 : 3).map((tag, i) => (
+                    <Link href="/projects/1">
+                    <Card
+                      className={cn(
+                        "overflow-hidden h-full transition-all duration-700",
+                        isActive ? glowClass : "shadow-md",
+                        isActive ? "border-2" : "border",
+                        // Add border radius to outer edges of inactive cards
+                        !isActive && position === -1 ? "rounded-l-2xl" : "",
+                        !isActive && position === 1 ? "rounded-r-2xl" : "",
+                        cardColor === "primary"
+                          ? "border-primary/50"
+                          : cardColor === "gold"
+                            ? "border-gold/50"
+                            : cardColor === "teal"
+                              ? "border-teal/50"
+                              : cardColor === "coral"
+                                ? "border-coral/50"
+                                : "border-lavender/50",
+                      )}
+                    >
+                      <div className="relative h-48 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
+                        <img
+                          src={project.image || "/placeholder.svg"}
+                          alt={project.title}
+                          className="w-full h-full object-cover transition-transform hover:scale-105"
+                          style={{
+                            transform:
+                              isActive && isHovering
+                                ? `translate(${mousePosition.x * -5}px, ${mousePosition.y * -5}px)`
+                                : "",
+                            transition: isHovering ? "transform 0.1s ease-out" : "transform 0.5s ease-out",
+                          }}
+                        />
+                        <div className="absolute top-3 left-3 z-20">
                           <Badge
-                            key={i}
-                            variant="outline"
                             className={cn(
-                              "text-xs",
+                              "text-xs px-3 py-1",
                               cardColor === "primary"
-                                ? "border-primary/50 text-primary"
+                                ? "bg-primary text-white"
                                 : cardColor === "gold"
-                                  ? "border-gold/50 text-gold"
+                                  ? "bg-gold text-black"
                                   : cardColor === "teal"
-                                    ? "border-teal/50 text-teal"
+                                    ? "bg-teal text-white"
                                     : cardColor === "coral"
-                                      ? "border-coral/50 text-coral"
-                                      : "border-lavender/50 text-lavender",
+                                      ? "bg-coral text-white"
+                                      : "bg-lavender text-black",
                             )}
                           >
-                            {tag}
+                            {project.category}
                           </Badge>
-                        ))}
-                        {!isActive && project.tags.length > 3 && (
-                          <Badge variant="outline" className="text-xs">
-                            +{project.tags.length - 3}
-                          </Badge>
-                        )}
+                        </div>
                       </div>
-                    </CardContent>
 
-                    {isActive && (
-                      <CardFooter className="flex justify-between">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="group"
-                          onClick={() => window.open(project.github, "_blank", "noopener,noreferrer")}
-                        >
-                          <Github className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
-                          GitHub
-                        </Button>
-                        <Button
-                          size="sm"
+                      <CardHeader className="pb-2">
+                        <CardTitle
                           className={cn(
-                            "group relative overflow-hidden",
+                            "line-clamp-1",
                             cardColor === "primary"
-                              ? "bg-primary hover:bg-primary/90 text-white"
+                              ? "text-primary"
                               : cardColor === "gold"
-                                ? "bg-gold hover:bg-gold/90 text-black"
+                                ? "text-gold"
                                 : cardColor === "teal"
-                                  ? "bg-teal hover:bg-teal/90 text-white"
+                                  ? "text-teal"
                                   : cardColor === "coral"
-                                    ? "bg-coral hover:bg-coral/90 text-white"
-                                    : "bg-lavender hover:bg-lavender/90 text-black",
+                                    ? "text-coral"
+                                    : "text-lavender",
                           )}
-                          onClick={() => window.open(project.demo, "_blank", "noopener,noreferrer")}
                         >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </Button>
-                      </CardFooter>
-                    )}
-                  </Card>
-                </div>
+                          {project.title}
+                        </CardTitle>
+                        <CardDescription className={isActive ? "" : "line-clamp-2"}>
+                          {project.description}
+                        </CardDescription>
+                      </CardHeader>
+
+                      <CardContent>
+                        <div className="flex flex-wrap gap-2">
+                          {project.tags.slice(0, isActive ? 5 : 3).map((tag, i) => (
+                            <Badge
+                              key={i}
+                              variant="outline"
+                              className={cn(
+                                "text-xs",
+                                cardColor === "primary"
+                                  ? "border-primary/50 text-primary"
+                                  : cardColor === "gold"
+                                    ? "border-gold/50 text-gold"
+                                    : cardColor === "teal"
+                                      ? "border-teal/50 text-teal"
+                                      : cardColor === "coral"
+                                        ? "border-coral/50 text-coral"
+                                        : "border-lavender/50 text-lavender",
+                              )}
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                          {!isActive && project.tags.length > 3 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{project.tags.length - 3}
+                            </Badge>
+                          )}
+                        </div>
+                      </CardContent>
+
+                      {isActive && (
+                        <CardFooter className="flex justify-between">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="group"
+                            onClick={() => window.open(project.github, "_blank", "noopener,noreferrer")}
+                          >
+                            <Github className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
+                            GitHub
+                          </Button>
+                          <Button
+                            size="sm"
+                            className={cn(
+                              "group relative overflow-hidden",
+                              cardColor === "primary"
+                                ? "bg-primary hover:bg-primary/90 text-white"
+                                : cardColor === "gold"
+                                  ? "bg-gold hover:bg-gold/90 text-black"
+                                  : cardColor === "teal"
+                                    ? "bg-teal hover:bg-teal/90 text-white"
+                                    : cardColor === "coral"
+                                      ? "bg-coral hover:bg-coral/90 text-white"
+                                      : "bg-lavender hover:bg-lavender/90 text-black",
+                            )}
+                            onClick={() => window.open(project.demo, "_blank", "noopener,noreferrer")}
+                          >
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Live Demo
+                          </Button>
+                        </CardFooter>
+                      )}
+                    </Card>
+                    </Link>
+                  </div>
               )
             })}
           </div>
