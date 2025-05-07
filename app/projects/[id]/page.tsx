@@ -535,9 +535,9 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 mt-10">
       <main>
-        <div className="container mx-auto max-w-6xl py-8 px-4 md:px-6">
+        <div className="container mx-auto max-w-6xl py-8">
           {/* Back Button */}
           <div className="mb-8">
             <button

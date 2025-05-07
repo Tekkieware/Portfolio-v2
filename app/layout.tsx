@@ -4,6 +4,8 @@ import { Mona_Sans as FontSans } from "next/font/google"
 import { Fira_Mono as FontMono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -12,7 +14,7 @@ const fontSans = FontSans({
 
 const fontMono = FontMono({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], 
+  weight: ["400", "500", "700"],
   variable: "--font-mono",
 })
 
@@ -37,7 +39,11 @@ export default function RootLayout({
       </head>
       <body className={cn("min-h-screen font-sans antialiased", fontSans.variable, fontMono.variable)}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          {children}
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
