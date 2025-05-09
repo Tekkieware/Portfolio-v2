@@ -1,22 +1,25 @@
 import type React from "react"
 import "@/app/globals.css"
-import { Mona_Sans as FontSans } from "next/font/google"
-import { Fira_Mono as FontMono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import { Inter } from 'next/font/google'
+import { Fira_Code } from 'next/font/google'
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+
+export const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
 })
 
-const fontMono = FontMono({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-mono",
+export const firaCode = Fira_Code({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  weight: ["700", "500", "600", "300" ,]
 })
+
+
 
 
 export const metadata = {
@@ -37,7 +40,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet" />
       </head>
-      <body className={cn("min-h-screen font-sans antialiased", fontSans.variable, fontMono.variable)}>
+      <body className={cn("min-h-screen antialiased", inter.variable, firaCode.variable)}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
             <Navbar />

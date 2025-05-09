@@ -45,6 +45,10 @@
     --teal: 180 100% 30%;
     --coral: 16 100% 66%;
     --lavender: 270 76% 70%;
+
+    /*font*/
+    --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', monospace;
   }
 
   .dark {

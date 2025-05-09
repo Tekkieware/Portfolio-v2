@@ -115,19 +115,19 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center z-10 fade-in-up">
         <div className="mb-6 inline-block">
-          <span className="px-4 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+          <span className="px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
             Software Engineer
           </span>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-bold mb-4 relative">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 relative">
           Hi, I'm <span className="purple-gold-gradient animate-pulse-glow px-3 rounded-sm">Isaiah Ozadhe</span>
         </h1>
 
-        <h2 className="text-xl md:text-3xl font-bold mb-6 code-bracket">Building modern solutions</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-6 code-bracket">Building modern solutions</h2>
 
         <div className="h-8 mb-8 font-mono">
-          <p className="text-lg md:text-xl">
+          <p className="text-xl md:text-2xl">
             <span className="text-gradient-gold-purple">&gt; </span>
             <span>{displayText}</span>
             <span
@@ -140,7 +140,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <p className="text-md md:text-lg max-w-2xl mb-10 text-muted-foreground">
+        <p className="text-lg md:text-xl max-w-2xl mb-10 text-muted-foreground">
         I specialize in building reliable, easy-to-use softwares that solves real-world problems using Python, JavaScript, and TypeScript.
         </p>
 
