@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react"
+import Projects from "@/components/projects"
 
 const projectsData = [
   {
@@ -755,39 +756,8 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
           {/* Related Projects */}
           <section id="related" className="mb-16 scroll-mt-24">
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Related Projects</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {project.relatedProjects.map((relatedProject: any, index: number) => (
-                <a href={`/projects/${relatedProject.id}`} key={index} className="block group">
-                  <div className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-800 h-full transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-md">
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <Image
-                        src={relatedProject.image || "/placeholder.svg"}
-                        alt={relatedProject.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                        {relatedProject.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400 mb-4">{relatedProject.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {relatedProject.technologies.map((tech: string, techIndex: number) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 text-xs rounded-md bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Related Projects</h2>
+            <Projects />
           </section>
         </div>
       </main>
