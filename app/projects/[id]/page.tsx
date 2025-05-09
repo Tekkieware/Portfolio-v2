@@ -541,22 +541,22 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 mt-10">
       <SideNavigator activeSection={activeSection} isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       <MobileNav activeSection={activeSection} />
-      <main>
-        <div className="container mx-auto px-4 py-8">
-          {/* Back Button */}
-          <div className="mb-8">
+      {/* Back Button */}
+      <div className="fixed top-20 left-4 z-50 dark:bg-gray-900 w-[188px] px-5 bg-background/80 hover:bg-muted text-sm backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg">
             <button
               onClick={handleBack}
-              className="inline-flex items-center text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+              className="inline-flex items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
             >
               <ArrowLeft size={18} />
               <span className="ml-1 font-medium">Back</span>
             </button>
           </div>
 
+      <main>
+        <div>
           {/* Hero Section */}
-          <section className="relative rounded-xl overflow-hidden mb-12 shadow-lg">
-            <div className="relative h-[400px] w-full">
+          <section className="relative overflow-hidden mb-12 shadow-lg">
+            <div className="relative h-[500px] w-full">
               <Image
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
@@ -567,8 +567,8 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <div className="flex flex-wrap items-center gap-2 mb-3">
+            <div className="absolute top-12 left-0 right-0 p-6 md:p-8 container mx-auto px-4 py-8">
+              <div className="flex flex-wrap justify-center items-center gap-2 mb-3">
                 {project.categories.map((category: string, index: number) => (
                   <span
                     key={index}
@@ -581,10 +581,10 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
                   {project.status}
                 </span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white">{project.title}</h1>
-              <p className="max-w-2xl text-gray-200 mb-6">{project.description}</p>
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white text-center">{project.title}</h1>
+              <p className="text-gray-200 mb-6 text-center">{project.description}</p>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center">
                 <a
                   href={project.liveUrl}
                   target="_blank"
