@@ -5,6 +5,7 @@ import { useState, useEffect, useCallback } from "react"
 import { ModeToggle } from "./mode-toggle"
 import { cn } from "@/lib/utils"
 import Logo from "./logo"
+import { usePathname } from "next/navigation"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -19,6 +20,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  const pathname = usePathname()
 
   const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, sectionId: string) => {
     e.preventDefault()
@@ -118,7 +120,7 @@ export default function Navbar() {
           </a>
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href.substring(1))}
@@ -132,7 +134,7 @@ export default function Navbar() {
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></span>
                 )}
               </a>
-            ))}
+            ))} 
             <ModeToggle />
           </nav>
           <div className="flex items-center md:hidden">

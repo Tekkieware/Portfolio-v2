@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import {
   ArrowLeft,
   Github,
@@ -19,6 +19,7 @@ import {
 import Projects from "@/components/projects"
 import SideNavigator from "@/components/project-side-bar"
 import MobileNav from "@/components/mobile-project-sidebar"
+import { cn } from "@/lib/utils"
 
 const projectsData = [
   {
@@ -538,17 +539,17 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 mt-10">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
       <SideNavigator activeSection={activeSection} isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       <MobileNav activeSection={activeSection} />
       {/* Back Button */}
-      <div className="fixed top-20 left-4 z-50 dark:bg-gray-900 w-[188px] px-5 bg-background/80 hover:bg-muted text-sm backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg">
+      <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-sm backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed? " w-[78px]": "w-[188px]")}>
             <button
               onClick={handleBack}
               className="inline-flex items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
             >
               <ArrowLeft size={18} />
-              <span className="ml-1 font-medium">Back</span>
+               {!isCollapsed &&<span className="ml-1 font-medium">Back</span>}
             </button>
           </div>
 
@@ -567,7 +568,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
             </div>
 
-            <div className="absolute top-12 left-0 right-0 p-6 md:p-8 container mx-auto px-4 py-8">
+            <div className="absolute top-28 left-0 right-0 p-6 md:p-8 container mx-auto px-4 py-8">
               <div className="flex flex-wrap justify-center items-center gap-2 mb-3">
                 {project.categories.map((category: string, index: number) => (
                   <span
@@ -608,7 +609,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
           </section>
 
           {/* Project Overview Section */}
-          <section id="overview" className="mb-16 scroll-mt-24">
+          <section id="overview" className="mb-16 scroll-mt-24 container mx-auto px-4">
             <div className="grid gap-8 md:grid-cols-3">
               <div className="md:col-span-2">
                 <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-800">
@@ -701,7 +702,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
           </section>
 
           {/* Features & Functionality Section */}
-          <section id="features" className="mb-16 scroll-mt-24">
+          <section id="features" className="mb-16 scroll-mt-24 container mx-auto px-4">
             <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Key Features & Functionality</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {project.features.map((feature: any, index: number) => (
@@ -727,7 +728,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
           </section>
 
           {/* Call to Action & Engagement Section */}
-          <section className="mb-16">
+          <section className="mb-16 container mx-auto px-4">
             <div className="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 rounded-xl p-8 text-center text-white shadow-lg">
               <h2 className="text-2xl font-bold mb-4">Explore This Project</h2>
               <p className="max-w-2xl mx-auto mb-6">
@@ -759,7 +760,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
           </section>
 
           {/* Related Projects */}
-          <section id="related" className="mb-16 scroll-mt-24">
+          <section id="related" className="mb-16 scroll-mt-24 container mx-auto px-4">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Related Projects</h2>
             <Projects />
           </section>
