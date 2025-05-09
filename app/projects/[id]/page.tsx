@@ -538,7 +538,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 mt-10">
       <main>
-        <div className="container mx-auto max-w-6xl py-8">
+        <div className="container mx-auto px-4 py-8">
           {/* Back Button */}
           <div className="mb-8">
             <button
@@ -546,7 +546,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
               className="inline-flex items-center text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
             >
               <ArrowLeft size={18} />
-              <span className="ml-1 font-medium">Back to Projects</span>
+              <span className="ml-1 font-medium">Back</span>
             </button>
           </div>
 
