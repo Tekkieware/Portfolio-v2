@@ -6,6 +6,7 @@ import { Github, Linkedin, Mail, Code, Server, Globe, Download } from "lucide-re
 import { Button } from "@/components/ui/button"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -123,7 +124,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-6">
             <Button
               variant="outline"
               className="group relative overflow-hidden border-primary/30 hover:border-primary/60 flex-1"
@@ -156,32 +157,29 @@ export default function About() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-              <Badge
-                variant="outline"
-                className="flex items-center gap-1 hover:bg-muted group transition-all duration-300 border-primary/50"
+            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center">
+              <span
+                className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
                 <Github className="h-3.5 w-3.5 group-hover:text-primary transition-colors" />
                 GitHub
-              </Badge>
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <Badge
-                variant="outline"
-                className="flex items-center gap-1 hover:bg-muted group transition-all duration-300 border-primary/50"
+              </span>
+            </Link>
+            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center">
+            <span
+                className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
                 <Linkedin className="h-3.5 w-3.5 group-hover:text-primary transition-colors" />
                 LinkedIn
-              </Badge>
-            </a>
-            <a href="mailto:isaiah@example.com">
-              <Badge
-                variant="outline"
-                className="flex items-center gap-1 hover:bg-muted group transition-all duration-300 border-primary/50"
+              </span>
+            </Link>
+            <a href="mailto:isaiah@example.com" className="flex-1 flex justify-center">
+            <span
+                className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
                 <Mail className="h-3.5 w-3.5 group-hover:text-primary transition-colors" />
                 Email
-              </Badge>
+              </span>
             </a>
           </div>
         </div>
