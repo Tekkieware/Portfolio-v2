@@ -240,7 +240,7 @@ export default function About() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Experienced in designing and implementing microservices using Docker, Kubernetes, and cloud platforms.
+              Experienced in designing and implementing microservices using Docker and Kubernetes.
             </p>
           </CardContent>
         </Card>
@@ -264,8 +264,8 @@ export default function About() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Built responsive web interfaces and mobile applications with React Native that work seamlessly across
-              devices.
+              Built  mobile applications with React Native that work seamlessly across
+              operating systems.
             </p>
           </CardContent>
         </Card>
