@@ -6,6 +6,7 @@ import { ModeToggle } from "./mode-toggle"
 import { cn } from "@/lib/utils"
 import Logo from "./logo"
 import { usePathname } from "next/navigation"
+import Link from "next/link"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -111,30 +112,31 @@ export default function Navbar() {
         )}
       >
         <div className="container mx-auto px-4 h-full flex items-center justify-between">
-          <a
-            href="#home"
-            onClick={(e) => scrollToSection(e, "home")}
+          <Link
+            href="/"
             className="text-xl font-bold tracking-wider flex items-center"
           >
             <Logo />
-          </a>
+          </Link>
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-               <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => scrollToSection(e, link.href.substring(1))}
-                className={cn(
-                  "text-sm font-medium transition-colors relative py-2",
-                  activeSection === link.href.substring(1) ? "text-primary" : "hover:text-primary",
-                )}
-              >
-                {link.name}
-                {activeSection === link.href.substring(1) && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></span>
-                )}
-              </a>
-            ))} 
+            {!pathname.includes("project") &&
+              navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => scrollToSection(e, link.href.substring(1))}
+                  className={cn(
+                    "text-sm font-medium transition-colors relative py-2",
+                    activeSection === link.href.substring(1) ? "text-primary" : "hover:text-primary",
+                  )}
+                >
+                  {link.name}
+                  {activeSection === link.href.substring(1) && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></span>
+                  )}
+                </a>
+              ))
+            }
             <ModeToggle />
           </nav>
           <div className="flex items-center md:hidden">
@@ -146,19 +148,16 @@ export default function Navbar() {
             >
               <div className="relative flex flex-col justify-center items-center w-6 h-6">
                 <span
-                  className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${
-                    mobileMenuOpen ? "w-7 translate-y-1.5 rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
-                  }`}
+                  className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${mobileMenuOpen ? "w-7 translate-y-1.5 rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
+                    }`}
                 ></span>
                 <span
-                  className={`hamburger-line my-1 transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen ? "w-0 opacity-0 scale-0" : "w-6 opacity-100 scale-100 bg-gray-900 dark:bg-gray-100"
-                  }`}
+                  className={`hamburger-line my-1 transition-all duration-300 ease-in-out ${mobileMenuOpen ? "w-0 opacity-0 scale-0" : "w-6 opacity-100 scale-100 bg-gray-900 dark:bg-gray-100"
+                    }`}
                 ></span>
                 <span
-                  className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${
-                    mobileMenuOpen ? "w-7 -translate-y-1.5 -rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
-                  }`}
+                  className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${mobileMenuOpen ? "w-7 -translate-y-1.5 -rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
+                    }`}
                 ></span>
               </div>
               <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300 scale-0 group-hover:scale-100"></div>

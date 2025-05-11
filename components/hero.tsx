@@ -129,7 +129,7 @@ export default function Hero() {
         <div className="h-8 mb-8 font-mono">
           <p className="text-xl md:text-2xl">
             <span className="text-gradient-gold-purple">&gt; </span>
-            <span>{displayText}a</span>
+            <span>{displayText}</span>
             <span
               className={cn("ml-1 inline-block w-2 bg-primary", {
                 "animate-blink": !isDeleting,
