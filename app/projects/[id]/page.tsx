@@ -401,15 +401,15 @@ const projectsData = [
 
 
 const sections = [
-    { id: "overview", label: "Overview", icon: <LayoutDashboard size={18} /> },
-    { id: "features", label: "Features", icon: <Layers size={18} /> },
-    { id: "related", label: "Related Projects", icon: <Grid size={18} /> },
-  ]
+  { id: "overview", label: "Overview", icon: <LayoutDashboard size={18} /> },
+  { id: "features", label: "Features", icon: <Layers size={18} /> },
+  { id: "related", label: "Related Projects", icon: <Grid size={18} /> },
+]
 
 
-  type Params = {
-    id: string;
-  };
+type Params = {
+  id: string;
+};
 
 export default function ProjectDetails({ params }: { params: Promise<Params> }) {
   const router = useRouter()
@@ -543,15 +543,15 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
       <SideNavigator activeSection={activeSection} isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       <MobileNav activeSection={activeSection} />
       {/* Back Button */}
-      <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-sm backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed? " w-[78px]": "w-[188px]")}>
-            <button
-              onClick={handleBack}
-              className="inline-flex items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
-            >
-              <ArrowLeft size={18} />
-               {!isCollapsed &&<span className="ml-1 font-medium">Back</span>}
-            </button>
-          </div>
+      <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-sm backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed ? " w-[78px]" : "w-[188px]")}>
+        <button
+          onClick={handleBack}
+          className="inline-flex items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+        >
+          <ArrowLeft size={18} />
+          {!isCollapsed && <span className="ml-1 font-medium">Back</span>}
+        </button>
+      </div>
 
       <main>
         <div>
@@ -613,7 +613,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
             <div className="grid gap-8 md:grid-cols-3">
               <div className="md:col-span-2">
                 <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-800">
-                  <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Project Overview</h2>
+                  <h2 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Project Overview</h2>
                   <p className="text-gray-700 dark:text-gray-300 mb-6">{project.overview}</p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
@@ -631,7 +631,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
               <div className="space-y-6">
                 <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-800">
-                  <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Project Details</h3>
+                  <h3 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Project Details</h3>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -668,7 +668,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
                 {/* Project Stats */}
                 <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-800">
-                  <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Project Statistics</h3>
+                  <h3 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Project Statistics</h3>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
@@ -703,7 +703,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
           {/* Features & Functionality Section */}
           <section id="features" className="mb-16 scroll-mt-24 container mx-auto px-4">
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Key Features & Functionality</h2>
+            <h2 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Key Features & Functionality</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {project.features.map((feature: any, index: number) => (
                 <div
@@ -729,7 +729,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
           {/* Call to Action & Engagement Section */}
           <section className="mb-16 container mx-auto px-4">
-            <div className="bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 rounded-xl p-8 text-center text-white shadow-lg">
+            <div className=" card-hover-effect gradient-border animated-gradient-border rounded-xl p-8 text-center text-white shadow-lg">
               <h2 className="text-2xl font-bold mb-4">Explore This Project</h2>
               <p className="max-w-2xl mx-auto mb-6">
                 Check out the live demo to see the project in action or explore the source code on GitHub. I welcome any
@@ -760,10 +760,14 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
           </section>
 
           {/* Related Projects */}
-          <section id="related" className="mb-16 scroll-mt-24 container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Related Projects</h2>
-            <Projects />
-          </section>
+          <>
+            <section id="related" className="scroll-mt-24 container mx-auto px-4 -mb-36">
+              <h2 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Related Projects</h2>
+            </section>
+            <div className="mx-auto md:mx-24">
+              <Projects />
+            </div>
+          </>
         </div>
       </main>
     </div>

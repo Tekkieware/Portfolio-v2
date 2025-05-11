@@ -5,8 +5,11 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowUp, Github, Linkedin, Mail } from "lucide-react"
 import Logo from "./logo"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export default function Footer() {
+  const pathname = usePathname()
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault()
     const section = document.getElementById(sectionId)
@@ -81,32 +84,32 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            {["Home", "About", "Projects", "Skills", "Blog", "Contact"].map((item, index) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => scrollToSection(e, item.toLowerCase())}
-                className={`text-sm text-muted-foreground hover:${
-                  index % 4 === 0
-                    ? "text-primary"
-                    : index % 4 === 1
-                      ? "text-gold"
-                      : index % 4 === 2
-                        ? "text-teal"
-                        : "text-coral"
-                } transition-colors ${
-                  index % 4 === 0
-                    ? "animated-border"
-                    : index % 4 === 1
-                      ? "animated-border-gold"
-                      : index % 4 === 2
-                        ? "animated-border-teal"
-                        : "animated-border-coral"
-                }`}
-              >
-                {item}
-              </a>
-            ))}
+            {!pathname.includes("project") &&
+              ["Home", "About", "Projects", "Skills", "Blog", "Contact"].map((item, index) => (
+                <Link
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={(e) => scrollToSection(e, item.toLowerCase())}
+                  className={`text-sm text-muted-foreground hover:${index % 4 === 0
+                      ? "text-primary"
+                      : index % 4 === 1
+                        ? "text-gold"
+                        : index % 4 === 2
+                          ? "text-teal"
+                          : "text-coral"
+                    } transition-colors ${index % 4 === 0
+                      ? "animated-border"
+                      : index % 4 === 1
+                        ? "animated-border-gold"
+                        : index % 4 === 2
+                          ? "animated-border-teal"
+                          : "animated-border-coral"
+                    }`}
+                >
+                  {item}
+                </Link>
+              ))
+            }
           </div>
         </div>
       </div>

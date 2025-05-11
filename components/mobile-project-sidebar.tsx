@@ -16,7 +16,9 @@ function MobileNav({ activeSection }: { activeSection: string }) {
           <Link
             href={`#${section.id}`}
             key={section.id}
-            className="flex flex-col items-center text-gray-700 dark:text-gray-300"
+            className={` flex flex-col items-center text-gray-700 dark:text-gray-300 ${
+              activeSection === section.id && "text-primary font-semibold" 
+            }`}
           >
             {section.icon}
             <span className="text-xs mt-1">{section.label}</span>
