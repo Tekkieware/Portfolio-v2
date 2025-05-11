@@ -93,6 +93,7 @@ export default function Projects() {
   const touchStartYRef = useRef<number | null>(null)
   const touchMoveYRef = useRef<number | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [viewMode, setViewMode] = useState("slider")
 
   // Handle window resize to determine device type
   useEffect(() => {
@@ -291,7 +292,7 @@ export default function Projects() {
   }
 
   return (
-    <div className="container mx-auto px-4 relative">
+    <div className="projects-container mx-auto px-4 relative">
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/20 -z-10 rounded-xl"></div>
       <div className="blob blob-primary blob-3 opacity-20 -z-10"></div>

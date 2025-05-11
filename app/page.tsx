@@ -53,7 +53,7 @@ export default function Home() {
         </section>
 
         <section id="projects" className="clip-path-slant bg-muted/50 py-20 relative">
-          <div className="container mx-auto">
+          <div className="mx-auto">
             <Projects />
           </div>
         </section>
