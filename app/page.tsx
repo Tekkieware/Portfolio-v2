@@ -52,13 +52,13 @@ export default function Home() {
           <Skills />
         </section>
 
-        <section id="projects" className="clip-path-slant bg-muted/50 py-20 relative">
+        <section id="projects" className=" bg-muted/50 py-20 relative">
           <div className="mx-auto">
             <Projects />
           </div>
         </section>
 
-        <section id="blog" className="clip-path-slant-reverse bg-muted/50 py-20 relative">
+        <section id="blog" className="bg-muted/50 py-20 relative">
           <div className="container mx-auto">
             <Blog />
           </div>
