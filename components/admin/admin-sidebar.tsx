@@ -43,11 +43,6 @@ export default function AdminSidebar() {
       icon: <FolderKanban className="h-5 w-5" />,
     },
     {
-      title: "Blog Posts",
-      href: "/admin/blog",
-      icon: <FileText className="h-5 w-5" />,
-    },
-    {
       title: "Settings",
       href: "/admin/settings",
       icon: <Settings className="h-5 w-5" />,
