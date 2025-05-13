@@ -729,7 +729,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
           {/* Call to Action & Engagement Section */}
           <section className="mb-16 container mx-auto px-4">
-            <div className=" card-hover-effect gradient-border fade-in-up delay-150 animated-gradient-border rounded-xl p-8 text-center text-white shadow-lg">
+            <div className=" card-hover-effect gradient-border animated-gradient-border rounded-xl p-8 text-center text-white shadow-lg">
               <h2 className="text-2xl font-bold mb-4">Explore This Project</h2>
               <p className="max-w-2xl mx-auto mb-6">
                 Check out the live demo to see the project in action or explore the source code on GitHub. I welcome any
