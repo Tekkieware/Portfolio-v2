@@ -7,6 +7,8 @@ import Projects from "@/components/projects"
 import Skills from "@/components/skills"
 import Blog from "@/components/blog"
 import Contact from "@/components/contact"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
 export default function Home() {
   // Add scroll animation handler
@@ -38,7 +40,8 @@ export default function Home() {
   }, [])
 
   return (
-    
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <Navbar />
       <main>
         <section id="home" className="pt-16">
           <Hero />
@@ -68,6 +71,8 @@ export default function Home() {
           <Contact />
         </section>
       </main>
-      
+      <Footer />
+    </div>
+
   )
 }
