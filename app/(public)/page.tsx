@@ -40,39 +40,35 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <Navbar />
-      <main>
-        <section id="home" className="pt-16">
-          <Hero />
-        </section>
+    <main>
+      <section id="home" className="pt-16">
+        <Hero />
+      </section>
 
-        <section id="about" className="py-20">
-          <About />
-        </section>
+      <section id="about" className="py-20">
+        <About />
+      </section>
 
-        <section id="skills" className="py-20">
-          <Skills />
-        </section>
+      <section id="skills" className="py-20">
+        <Skills />
+      </section>
 
-        <section id="projects" className=" bg-muted/50 py-20 relative">
-          <div className="mx-auto">
-            <Projects />
-          </div>
-        </section>
+      <section id="projects" className=" bg-muted/50 py-20 relative">
+        <div className="mx-auto">
+          <Projects />
+        </div>
+      </section>
 
-        <section id="blog" className="bg-muted/50 py-20 relative">
-          <div className="container mx-auto">
-            <Blog />
-          </div>
-        </section>
+      <section id="blog" className="bg-muted/50 py-20 relative">
+        <div className="container mx-auto">
+          <Blog />
+        </div>
+      </section>
 
-        <section id="contact" className="py-20">
-          <Contact />
-        </section>
-      </main>
-      <Footer />
-    </div>
+      <section id="contact" className="py-20">
+        <Contact />
+      </section>
+    </main>
 
   )
 }
