@@ -34,7 +34,7 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <div className="mb-6 md:mb-0">
+          <div className="mb-6 md:mb-0 flex gap-3">
             <a
               href="#home"
               onClick={(e) => scrollToSection(e, "home")}
@@ -42,7 +42,7 @@ export default function Footer() {
             >
               <Logo />
             </a>
-            <p className="text-muted-foreground mt-2 text-sm max-w-md">
+            <p className="text-muted-foreground text-[13px] max-w-md">
               Software Engineer specializing in Python, JavaScript/TypeScript, and modern web technologies.
             </p>
           </div>
@@ -91,12 +91,12 @@ export default function Footer() {
                   href={`#${item.toLowerCase()}`}
                   onClick={(e) => scrollToSection(e, item.toLowerCase())}
                   className={`text-sm text-muted-foreground hover:${index % 4 === 0
-                      ? "text-primary"
-                      : index % 4 === 1
-                        ? "text-gold"
-                        : index % 4 === 2
-                          ? "text-teal"
-                          : "text-coral"
+                    ? "text-primary"
+                    : index % 4 === 1
+                      ? "text-gold"
+                      : index % 4 === 2
+                        ? "text-teal"
+                        : "text-coral"
                     } transition-colors ${index % 4 === 0
                       ? "animated-border"
                       : index % 4 === 1
