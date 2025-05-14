@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Plus, X, Save } from "lucide-react"
 
@@ -81,7 +81,12 @@ const projectsData = [
   },
 ]
 
-export default function EditProjectPage({ params }: { params: { id: string } }) {
+
+type Params = {
+  id: string;
+};
+
+export default function EditProjectPage({ params }: { params: Promise<Params> }) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -90,6 +95,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
   const [activeTab, setActiveTab] = useState("overview")
   const [selectedFeatureIndex, setSelectedFeatureIndex] = useState<number | null>(null)
+  const { id: projectId } = use(params)
 
   const [projectData, setProjectData] = useState({
     id: "",
@@ -118,7 +124,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
     const fetchProject = async () => {
       try {
         // In a real app, this would be an API call
-        const project = projectsData.find((p) => p.id === params.id)
+        const project = projectsData.find((p) => p.id === projectId)
 
         if (project) {
           setProjectData(project)
@@ -136,7 +142,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
     }
 
     fetchProject()
-  }, [params.id, router])
+  }, [projectId, router])
 
   // Update selected feature index when switching to features tab or when features change
   useEffect(() => {
