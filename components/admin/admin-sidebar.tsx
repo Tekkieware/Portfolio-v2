@@ -37,11 +37,6 @@ export default function AdminSidebar() {
       title: "Dashboard",
       href: "/admin",
       icon: <LayoutDashboard className="h-5 w-5" />,
-    },
-    {
-      title: "Projects",
-      href: "/admin/projects",
-      icon: <FolderKanban className="h-5 w-5" />,
     }
   ]
 

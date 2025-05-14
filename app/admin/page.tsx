@@ -23,6 +23,7 @@ import {
   Wifi,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import Projects from "@/components/admin/projects"
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -172,6 +173,9 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Projects */}
+        <Projects />
       </div>
     </div>
   )
