@@ -97,8 +97,8 @@ export default function AdminSidebar() {
           )}
           asChild
         >
-          <Link href="/">
-            <LogOut className="h-5 w-5 mr-2" />
+          <Link href="/" className=" flex gap-1 items-center text-sm">
+            <LogOut className="h-4 w-4" />
             <span className={cn("transition-all duration-300", collapsed ? "opacity-0 w-0 hidden" : "opacity-100")}>
               Exit Admin
             </span>

@@ -83,12 +83,8 @@ export default function AdminDashboard() {
 
   return (
     <div className="relative overflow-hidden">
-      {/* Background particle effect */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-20" />
-
-      {/* Loading overlay */}
       {isLoading && (
-        <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-50">
+        <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
           <div className="flex flex-col items-center">
             <div className="relative w-24 h-24">
               <div className="absolute inset-0 border-4 border-purple-500/30 rounded-full animate-ping"></div>
