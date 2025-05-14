@@ -2,50 +2,62 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Plus, X, Upload, Trash2, Save } from "lucide-react"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
-import ProjectFormTabs from "@/components/admin/project-form-tabs"
-import { useToast } from "@/components/ui/use-toast"
+import { ArrowLeft, Plus, X, Save } from "lucide-react"
 
 export default function NewProjectPage() {
   const router = useRouter()
-  const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [tagInput, setTagInput] = useState("")
+  const [techInput, setTechInput] = useState("")
+  const [categoryInput, setCategoryInput] = useState("")
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+  const [activeTab, setActiveTab] = useState("overview")
+  const [selectedFeatureIndex, setSelectedFeatureIndex] = useState<number | null>(null)
+
   const [projectData, setProjectData] = useState({
+    id: "",
     title: "",
     description: "",
-    category: "",
+    image: "/placeholder.svg?height=600&width=1200",
+    status: "In Progress",
+    publishStatus: "draft",
+    client: "",
+    startDate: "",
+    technologies: [] as string[],
+    categories: [] as string[],
+    githubUrl: "",
+    liveUrl: "",
     color: "primary",
-    status: "draft",
-    tags: [] as string[],
-    image: null as string | null,
-    features: [{ title: "", description: "" }],
-    techStack: [{ name: "", icon: "" }],
-    challenges: [{ title: "", description: "", solution: "" }],
+    overview: "",
+    features: [] as {
+      title: string
+      description: string
+      image: string
+    }[],
   })
 
-  // Update project data from tabs
-  const updateProjectData = (field: string, value: any) => {
-    setProjectData((prev) => ({
-      ...prev,
-      [field]: value,
-    }))
-  }
+  // Update selected feature index when switching to features tab or when features change
+  useEffect(() => {
+    if (activeTab === "features" && projectData.features.length > 0 && selectedFeatureIndex === null) {
+      setSelectedFeatureIndex(0)
+    } else if (activeTab === "features" && projectData.features.length === 0) {
+      setSelectedFeatureIndex(null)
+    } else if (
+      activeTab === "features" &&
+      selectedFeatureIndex !== null &&
+      selectedFeatureIndex >= projectData.features.length
+    ) {
+      setSelectedFeatureIndex(projectData.features.length - 1)
+    } else if (activeTab !== "features") {
+      setSelectedFeatureIndex(null)
+    }
+  }, [activeTab, projectData.features.length, selectedFeatureIndex])
 
   const validateForm = () => {
     const errors: Record<string, string> = {}
 
+    // Basic fields validation
     if (!projectData.title.trim()) {
       errors.title = "Title is required"
     }
@@ -54,59 +66,164 @@ export default function NewProjectPage() {
       errors.description = "Description is required"
     }
 
-    if (!projectData.category) {
-      errors.category = "Category is required"
+    if (!projectData.client.trim()) {
+      errors.client = "Client is required"
+    }
+
+    if (!projectData.startDate.trim()) {
+      errors.startDate = "Start date is required"
+    }
+
+    if (!projectData.overview.trim()) {
+      errors.overview = "Overview is required"
+    }
+
+    if (projectData.technologies.length === 0) {
+      errors.technologies = "At least one technology is required"
+    }
+
+    if (projectData.categories.length === 0) {
+      errors.categories = "At least one category is required"
+    }
+
+    if (!projectData.githubUrl.trim()) {
+      errors.githubUrl = "GitHub URL is required"
+    }
+
+    if (!projectData.liveUrl.trim()) {
+      errors.liveUrl = "Live URL is required"
+    }
+
+    // Features validation
+    if (projectData.features.length === 0) {
+      errors.features = "At least one feature is required"
+    } else {
+      projectData.features.forEach((feature, index) => {
+        if (!feature.title.trim()) {
+          errors[`feature-${index}-title`] = "Feature title is required"
+        }
+        if (!feature.description.trim()) {
+          errors[`feature-${index}-description`] = "Feature description is required"
+        }
+      })
     }
 
     setFormErrors(errors)
     return Object.keys(errors).length === 0
   }
 
-  const handleAddTag = () => {
-    if (tagInput.trim() && !projectData.tags.includes(tagInput.trim())) {
+  const handleAddTechnology = () => {
+    if (techInput.trim() && !projectData.technologies.includes(techInput.trim())) {
       setProjectData({
         ...projectData,
-        tags: [...projectData.tags, tagInput.trim()],
+        technologies: [...projectData.technologies, techInput.trim()],
       })
-      setTagInput("")
+      setTechInput("")
     }
   }
 
-  const handleRemoveTag = (tag: string) => {
+  const handleRemoveTechnology = (tech: string) => {
     setProjectData({
       ...projectData,
-      tags: projectData.tags.filter((t) => t !== tag),
+      technologies: projectData.technologies.filter((t) => t !== tech),
     })
   }
 
-  const handleTagKeyDown = (e: React.KeyboardEvent) => {
+  const handleTechKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault()
-      handleAddTag()
+      handleAddTechnology()
     }
   }
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAddCategory = () => {
+    if (categoryInput.trim() && !projectData.categories.includes(categoryInput.trim())) {
+      setProjectData({
+        ...projectData,
+        categories: [...projectData.categories, categoryInput.trim()],
+      })
+      setCategoryInput("")
+    }
+  }
+
+  const handleRemoveCategory = (category: string) => {
+    setProjectData({
+      ...projectData,
+      categories: projectData.categories.filter((c) => c !== category),
+    })
+  }
+
+  const handleCategoryKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault()
+      handleAddCategory()
+    }
+  }
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, field = "image", featureIndex?: number) => {
     const file = e.target.files?.[0]
     if (file) {
       // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
-        toast({
-          title: "File too large",
-          description: "Image must be less than 5MB",
-          variant: "destructive",
-        })
+        alert("File too large. Image must be less than 5MB")
         return
       }
 
       const reader = new FileReader()
       reader.onload = (event) => {
-        setProjectData({
-          ...projectData,
-          image: event.target?.result as string,
-        })
+        const imageUrl = event.target?.result as string
+
+        if (field === "image") {
+          setProjectData({
+            ...projectData,
+            image: imageUrl,
+          })
+        } else if (field === "featureImage" && typeof featureIndex === "number") {
+          const updatedFeatures = [...projectData.features]
+          updatedFeatures[featureIndex] = { ...updatedFeatures[featureIndex], image: imageUrl }
+          setProjectData({ ...projectData, features: updatedFeatures })
+        }
       }
       reader.readAsDataURL(file)
+    }
+  }
+
+  const handleFeatureChange = (index: number, field: string, value: string) => {
+    const updatedFeatures = [...projectData.features]
+    updatedFeatures[index] = { ...updatedFeatures[index], [field]: value }
+    setProjectData({ ...projectData, features: updatedFeatures })
+  }
+
+  const handleAddFeature = () => {
+    const newFeature = {
+      title: "",
+      description: "",
+      image: "/placeholder.svg?height=200&width=400",
+    }
+
+    setProjectData({
+      ...projectData,
+      features: [...projectData.features, newFeature],
+    })
+
+    // Select the newly added feature
+    setSelectedFeatureIndex(projectData.features.length)
+  }
+
+  const handleRemoveFeature = (index: number) => {
+    const updatedFeatures = [...projectData.features]
+    updatedFeatures.splice(index, 1)
+    setProjectData({ ...projectData, features: updatedFeatures })
+
+    // Update selected feature index if needed
+    if (selectedFeatureIndex === index) {
+      if (updatedFeatures.length > 0) {
+        setSelectedFeatureIndex(Math.min(index, updatedFeatures.length - 1))
+      } else {
+        setSelectedFeatureIndex(null)
+      }
+    } else if (selectedFeatureIndex !== null && selectedFeatureIndex > index) {
+      setSelectedFeatureIndex(selectedFeatureIndex - 1)
     }
   }
 
@@ -114,64 +231,91 @@ export default function NewProjectPage() {
     e.preventDefault()
 
     if (!validateForm()) {
-      toast({
-        title: "Validation Error",
-        description: "Please fill in all required fields",
-        variant: "destructive",
-      })
+      // Scroll to the first error
+      const firstErrorElement = document.querySelector('[class*="border-red-500"]')
+      if (firstErrorElement) {
+        firstErrorElement.scrollIntoView({ behavior: "smooth", block: "center" })
+      }
+
+      alert("Please fill in all required fields")
       return
     }
 
     setIsSubmitting(true)
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      // Just log the project data to console
       console.log("Project data submitted:", projectData)
 
-      toast({
-        title: "Project Created",
-        description: "Your project has been created successfully",
-      })
+      // Show success message
+      alert("Project created successfully! Check the console for details.")
 
-      // Redirect to projects page
-      router.push("/admin/projects")
+      setIsSubmitting(false)
     } catch (error) {
       console.error("Error submitting project:", error)
-      toast({
-        title: "Error",
-        description: "Failed to create project. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
+      alert("Failed to create project. Please try again.")
       setIsSubmitting(false)
     }
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto px-4 py-8">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center space-x-2">
-          <Button variant="outline" size="icon" onClick={() => router.back()}>
+          <button
+            className="p-2 rounded-md border border-gray-300 hover:bg-gray-100 transition-colors"
+            onClick={() => router.back()}
+          >
             <ArrowLeft className="h-4 w-4" />
-          </Button>
+          </button>
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight">New Project</h1>
         </div>
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="published"
-              checked={projectData.status === "published"}
-              onCheckedChange={(checked) =>
-                setProjectData({
-                  ...projectData,
-                  status: checked ? "published" : "draft",
-                })
-              }
-            />
-            <Label htmlFor="published">{projectData.status === "published" ? "Published" : "Draft"}</Label>
+          <div className="flex items-center space-x-4">
+            {/* Completion Status Toggle */}
+            <div className="flex items-center space-x-2">
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={projectData.status === "Completed"}
+                  onChange={(e) =>
+                    setProjectData({
+                      ...projectData,
+                      status: e.target.checked ? "Completed" : "In Progress",
+                    })
+                  }
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                <span className="ml-3 text-sm font-medium text-gray-900">{projectData.status}</span>
+              </label>
+            </div>
+
+            {/* Publication Status Toggle */}
+            <div className="flex items-center space-x-2">
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={projectData.publishStatus === "published"}
+                  onChange={(e) =>
+                    setProjectData({
+                      ...projectData,
+                      publishStatus: e.target.checked ? "published" : "draft",
+                    })
+                  }
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <span className="ml-3 text-sm font-medium text-gray-900 capitalize">{projectData.publishStatus}</span>
+              </label>
+            </div>
           </div>
-          <Button onClick={handleSubmit} disabled={isSubmitting}>
+
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             {isSubmitting ? (
               <>
                 <span className="animate-spin mr-2">⏳</span>
@@ -183,41 +327,56 @@ export default function NewProjectPage() {
                 Save Project
               </>
             )}
-          </Button>
+          </button>
         </div>
+      </div>
+
+      <div className="flex space-x-2 border-b border-gray-200">
+        <button
+          className={`px-4 py-2 font-medium text-sm ${activeTab === "overview" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
+          onClick={() => setActiveTab("overview")}
+        >
+          Overview
+        </button>
+        <button
+          className={`px-4 py-2 font-medium text-sm ${activeTab === "features" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
+          onClick={() => setActiveTab("features")}
+        >
+          Features
+        </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          <Card className="bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors duration-300 shadow-md">
-            <CardContent className="p-6">
+          {activeTab === "overview" && (
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 space-y-6">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="space-y-2">
-                  <Label htmlFor="title" className="flex items-center">
+                  <label htmlFor="title" className="flex items-center text-sm font-medium">
                     Project Title <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Input
+                  </label>
+                  <input
                     id="title"
                     placeholder="Enter project title"
                     value={projectData.title}
                     onChange={(e) => setProjectData({ ...projectData, title: e.target.value })}
-                    className={formErrors.title ? "border-red-500" : ""}
+                    className={`w-full px-3 py-2 border ${formErrors.title ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     required
                   />
                   {formErrors.title && <p className="text-red-500 text-sm mt-1">{formErrors.title}</p>}
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="description" className="flex items-center">
+                  <label htmlFor="description" className="flex items-center text-sm font-medium">
                     Description <span className="text-red-500 ml-1">*</span>
-                  </Label>
-                  <Textarea
+                  </label>
+                  <textarea
                     id="description"
                     placeholder="Enter project description"
                     rows={4}
                     value={projectData.description}
                     onChange={(e) => setProjectData({ ...projectData, description: e.target.value })}
-                    className={formErrors.description ? "border-red-500" : ""}
+                    className={`w-full px-3 py-2 border ${formErrors.description ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     required
                   />
                   {formErrors.description && <p className="text-red-500 text-sm mt-1">{formErrors.description}</p>}
@@ -225,159 +384,435 @@ export default function NewProjectPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="category" className="flex items-center">
-                      Category <span className="text-red-500 ml-1">*</span>
-                    </Label>
-                    <Select
-                      value={projectData.category}
-                      onValueChange={(value) => setProjectData({ ...projectData, category: value })}
-                    >
-                      <SelectTrigger id="category" className={formErrors.category ? "border-red-500" : ""}>
-                        <SelectValue placeholder="Select category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="🌐 Web App">🌐 Web App</SelectItem>
-                        <SelectItem value="📱 Mobile">📱 Mobile</SelectItem>
-                        <SelectItem value="🏥 Healthcare">🏥 Healthcare</SelectItem>
-                        <SelectItem value="💪 Fitness">💪 Fitness</SelectItem>
-                        <SelectItem value="💬 Communication">💬 Communication</SelectItem>
-                        <SelectItem value="📝 CMS">📝 CMS</SelectItem>
-                        <SelectItem value="🤖 AI">🤖 AI</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {formErrors.category && <p className="text-red-500 text-sm mt-1">{formErrors.category}</p>}
+                    <label htmlFor="client" className="flex items-center text-sm font-medium">
+                      Client <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                      id="client"
+                      placeholder="Client name"
+                      value={projectData.client}
+                      onChange={(e) => setProjectData({ ...projectData, client: e.target.value })}
+                      className={`w-full px-3 py-2 border ${formErrors.client ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      required
+                    />
+                    {formErrors.client && <p className="text-red-500 text-sm mt-1">{formErrors.client}</p>}
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="color">Color Theme</Label>
-                    <Select
+                    <label htmlFor="startDate" className="flex items-center text-sm font-medium">
+                      Start Date <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                      id="startDate"
+                      type="date"
+                      value={projectData.startDate}
+                      onChange={(e) => setProjectData({ ...projectData, startDate: e.target.value })}
+                      className={`w-full px-3 py-2 border ${formErrors.startDate ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      required
+                    />
+                    {formErrors.startDate && <p className="text-red-500 text-sm mt-1">{formErrors.startDate}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="color" className="flex items-center text-sm font-medium">
+                      Color Theme <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <select
+                      id="color"
                       value={projectData.color}
-                      onValueChange={(value) => setProjectData({ ...projectData, color: value })}
+                      onChange={(e) => setProjectData({ ...projectData, color: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
                     >
-                      <SelectTrigger id="color">
-                        <SelectValue placeholder="Select color" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="primary">Purple</SelectItem>
-                        <SelectItem value="gold">Gold</SelectItem>
-                        <SelectItem value="teal">Teal</SelectItem>
-                        <SelectItem value="coral">Coral</SelectItem>
-                        <SelectItem value="lavender">Lavender</SelectItem>
-                      </SelectContent>
-                    </Select>
+                      <option value="">Select a color</option>
+                      <option value="primary">Purple</option>
+                      <option value="gold">Gold</option>
+                      <option value="teal">Teal</option>
+                      <option value="coral">Coral</option>
+                      <option value="lavender">Lavender</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="githubUrl" className="flex items-center text-sm font-medium">
+                      GitHub URL <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                      id="githubUrl"
+                      placeholder="https://github.com/username/repo"
+                      value={projectData.githubUrl}
+                      onChange={(e) => setProjectData({ ...projectData, githubUrl: e.target.value })}
+                      className={`w-full px-3 py-2 border ${formErrors.githubUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      required
+                    />
+                    {formErrors.githubUrl && <p className="text-red-500 text-sm mt-1">{formErrors.githubUrl}</p>}
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="liveUrl" className="flex items-center text-sm font-medium">
+                      Live URL <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                      id="liveUrl"
+                      placeholder="https://your-project.com"
+                      value={projectData.liveUrl}
+                      onChange={(e) => setProjectData({ ...projectData, liveUrl: e.target.value })}
+                      className={`w-full px-3 py-2 border ${formErrors.liveUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      required
+                    />
+                    {formErrors.liveUrl && <p className="text-red-500 text-sm mt-1">{formErrors.liveUrl}</p>}
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="tags">Tags</Label>
+                  <label htmlFor="overview" className="flex items-center text-sm font-medium">
+                    Overview <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <textarea
+                    id="overview"
+                    placeholder="Detailed project overview"
+                    rows={6}
+                    value={projectData.overview}
+                    onChange={(e) => setProjectData({ ...projectData, overview: e.target.value })}
+                    className={`w-full px-3 py-2 border ${formErrors.overview ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    required
+                  />
+                  {formErrors.overview && <p className="text-red-500 text-sm mt-1">{formErrors.overview}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="technologies" className="flex items-center text-sm font-medium">
+                    Technologies <span className="text-red-500 ml-1">*</span>
+                  </label>
                   <div className="flex items-center space-x-2">
-                    <Input
-                      id="tags"
-                      placeholder="Add a tag"
-                      value={tagInput}
-                      onChange={(e) => setTagInput(e.target.value)}
-                      onKeyDown={handleTagKeyDown}
+                    <input
+                      id="technologies"
+                      placeholder="Add a technology"
+                      value={techInput}
+                      onChange={(e) => setTechInput(e.target.value)}
+                      onKeyDown={handleTechKeyDown}
+                      className={`w-full px-3 py-2 border ${formErrors.technologies ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     />
-                    <Button type="button" size="icon" onClick={handleAddTag}>
+                    <button
+                      type="button"
+                      onClick={handleAddTechnology}
+                      className="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
                       <Plus className="h-4 w-4" />
-                    </Button>
+                    </button>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {projectData.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="flex items-center gap-1">
-                        {tag}
+                    {projectData.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                      >
+                        {tech}
                         <button
                           type="button"
-                          onClick={() => handleRemoveTag(tag)}
-                          className="text-muted-foreground hover:text-foreground"
+                          onClick={() => handleRemoveTechnology(tech)}
+                          className="ml-1 text-blue-500 hover:text-blue-700"
                         >
                           <X className="h-3 w-3" />
                         </button>
-                      </Badge>
+                      </span>
                     ))}
                   </div>
+                  {formErrors.technologies && <p className="text-red-500 text-sm mt-1">{formErrors.technologies}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="categories" className="flex items-center text-sm font-medium">
+                    Categories <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      id="categories"
+                      placeholder="Add a category"
+                      value={categoryInput}
+                      onChange={(e) => setCategoryInput(e.target.value)}
+                      onKeyDown={handleCategoryKeyDown}
+                      className={`w-full px-3 py-2 border ${formErrors.categories ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAddCategory}
+                      className="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {projectData.categories.map((category, index) => (
+                      <span
+                        key={index}
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                      >
+                        {category}
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveCategory(category)}
+                          className="ml-1 text-green-500 hover:text-green-700"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                  {formErrors.categories && <p className="text-red-500 text-sm mt-1">{formErrors.categories}</p>}
                 </div>
               </form>
-            </CardContent>
-          </Card>
+            </div>
+          )}
 
-          <ProjectFormTabs
-            features={projectData.features}
-            techStack={projectData.techStack}
-            challenges={projectData.challenges}
-            onFeaturesChange={(features) => updateProjectData("features", features)}
-            onTechStackChange={(techStack) => updateProjectData("techStack", techStack)}
-            onChallengesChange={(challenges) => updateProjectData("challenges", challenges)}
-          />
+          {activeTab === "features" && (
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-medium">Project Features</h2>
+                <button
+                  type="button"
+                  onClick={handleAddFeature}
+                  className="flex items-center px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                >
+                  <Plus className="h-4 w-4 mr-1" />
+                  Add Feature
+                </button>
+              </div>
+
+              {formErrors.features && (
+                <p className="text-red-500 text-sm mt-1 p-2 bg-red-50 rounded-md">{formErrors.features}</p>
+              )}
+
+              {projectData.features.length === 0 ? (
+                <div className="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg">
+                  <p className="text-gray-500">No features added yet. Click "Add Feature" to get started.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-6">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {projectData.features.map((feature, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => setSelectedFeatureIndex(index)}
+                        className={`px-3 py-1.5 text-sm rounded-md transition-colors ${selectedFeatureIndex === index
+                            ? "bg-blue-600 text-white"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          }`}
+                      >
+                        {feature.title || `Feature ${index + 1}`}
+                      </button>
+                    ))}
+                  </div>
+
+                  {selectedFeatureIndex !== null && (
+                    <div className="p-4 border border-gray-200 rounded-lg relative">
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveFeature(selectedFeatureIndex)}
+                        className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                      <div className="space-y-4">
+                        <div>
+                          <label htmlFor="feature-title" className="flex items-center text-sm font-medium mb-1">
+                            Feature Title <span className="text-red-500 ml-1">*</span>
+                          </label>
+                          <input
+                            id="feature-title"
+                            value={projectData.features[selectedFeatureIndex].title}
+                            onChange={(e) => handleFeatureChange(selectedFeatureIndex, "title", e.target.value)}
+                            className={`w-full px-3 py-2 border ${formErrors[`feature-${selectedFeatureIndex}-title`] ? "border-red-500" : "border-gray-300"
+                              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                            placeholder="Feature title"
+                            required
+                          />
+                          {formErrors[`feature-${selectedFeatureIndex}-title`] && (
+                            <p className="text-red-500 text-sm mt-1">
+                              {formErrors[`feature-${selectedFeatureIndex}-title`]}
+                            </p>
+                          )}
+                        </div>
+                        <div>
+                          <label htmlFor="feature-desc" className="flex items-center text-sm font-medium mb-1">
+                            Feature Description <span className="text-red-500 ml-1">*</span>
+                          </label>
+                          <textarea
+                            id="feature-desc"
+                            value={projectData.features[selectedFeatureIndex].description}
+                            onChange={(e) => handleFeatureChange(selectedFeatureIndex, "description", e.target.value)}
+                            className={`w-full px-3 py-2 border ${formErrors[`feature-${selectedFeatureIndex}-description`]
+                                ? "border-red-500"
+                                : "border-gray-300"
+                              } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                            placeholder="Feature description"
+                            rows={3}
+                            required
+                          />
+                          {formErrors[`feature-${selectedFeatureIndex}-description`] && (
+                            <p className="text-red-500 text-sm mt-1">
+                              {formErrors[`feature-${selectedFeatureIndex}-description`]}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="space-y-6">
-          <Card className="bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors duration-300 shadow-md">
-            <CardContent className="p-6">
-              <div className="space-y-4">
-                <Label>Featured Image</Label>
-                {projectData.image ? (
+          {activeTab === "overview" && (
+            <>
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+                <div className="space-y-4">
+                  <label className="block text-sm font-medium">
+                    Featured Image <span className="text-red-500">*</span>
+                  </label>
                   <div className="relative rounded-lg overflow-hidden">
                     <img
                       src={projectData.image || "/placeholder.svg"}
                       alt="Project preview"
                       className="w-full aspect-video object-cover"
                     />
-                    <Button
-                      variant="destructive"
-                      size="icon"
-                      className="absolute top-2 right-2"
-                      onClick={() => setProjectData({ ...projectData, image: null })}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center">
-                    <div className="flex flex-col items-center">
-                      <Upload className="h-8 w-8 text-muted-foreground mb-2" />
-                      <p className="text-sm text-muted-foreground mb-2">Drag and drop an image, or click to browse</p>
-                      <Input
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity">
+                      <input
                         type="file"
                         accept="image/*"
                         className="hidden"
-                        id="image-upload"
-                        onChange={handleImageUpload}
+                        id="main-image-upload"
+                        onChange={(e) => handleImageUpload(e, "image")}
                       />
-                      <Label
-                        htmlFor="image-upload"
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm cursor-pointer"
+                      <label
+                        htmlFor="main-image-upload"
+                        className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
                       >
-                        Upload Image
-                      </Label>
+                        Change Image
+                      </label>
                     </div>
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors duration-300 shadow-md">
-            <CardContent className="p-6">
-              <div className="space-y-4">
-                <h3 className="font-medium">Project Preview</h3>
-                <div className="rounded-lg overflow-hidden border border-border">
-                  <div className="h-32 bg-muted flex items-center justify-center">
-                    {projectData.title ? (
-                      <div className="text-center p-4">
-                        <h3 className="font-bold">{projectData.title}</h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-                          {projectData.description || "No description provided"}
-                        </p>
-                      </div>
-                    ) : (
-                      <p className="text-sm text-muted-foreground">Preview will appear here</p>
-                    )}
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+                <div className="space-y-4">
+                  <h3 className="font-medium">Project Preview</h3>
+                  <div className="rounded-lg overflow-hidden border border-gray-200">
+                    <div className="bg-gray-100 flex flex-col">
+                      <div className="aspect-video bg-gray-200 relative overflow-hidden">
+                        <img
+                          src={projectData.image || "/placeholder.svg"}
+                          alt="Project preview"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <div className="flex justify-between items-center mb-2">
+                          <h3 className="font-bold text-lg">{projectData.title || "Project Title"}</h3>
+                          <div className="flex space-x-2">
+                            <span className="px-2 py-0.5 text-xs rounded-full capitalize bg-gray-100 text-gray-800">
+                              {projectData.publishStatus}
+                            </span>
+                            <span
+                              className={`px-2 py-0.5 text-xs rounded-full capitalize ${projectData.status === "Completed"
+                                  ? "bg-green-100 text-green-800"
+                                  : "bg-yellow-100 text-yellow-800"
+                                }`}
+                            >
+                              {projectData.status}
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-500 line-clamp-2">
+                          {projectData.description || "Project description will appear here"}
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-1">
+                          {projectData.technologies.slice(0, 3).map((tech, i) => (
+                            <span key={i} className="px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded-full">
+                              {tech}
+                            </span>
+                          ))}
+                          {projectData.technologies.length > 3 && (
+                            <span className="px-2 py-0.5 bg-gray-100 text-gray-800 text-xs rounded-full">
+                              +{projectData.technologies.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+          {activeTab === "features" && selectedFeatureIndex !== null && (
+            <>
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+                <div className="space-y-4">
+                  <label className="block text-sm font-medium">
+                    Feature Image <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative rounded-lg overflow-hidden">
+                    <img
+                      src={projectData.features[selectedFeatureIndex].image || "/placeholder.svg"}
+                      alt="Feature preview"
+                      className="w-full aspect-video object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        id={`feature-image-upload-${selectedFeatureIndex}`}
+                        onChange={(e) => handleImageUpload(e, "featureImage", selectedFeatureIndex)}
+                      />
+                      <label
+                        htmlFor={`feature-image-upload-${selectedFeatureIndex}`}
+                        className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
+                      >
+                        Change Image
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+                <div className="space-y-4">
+                  <h3 className="font-medium">Feature Preview</h3>
+                  <div className="rounded-lg overflow-hidden border border-gray-200">
+                    <div className="bg-gray-100 flex flex-col">
+                      <div className="aspect-video bg-gray-200 relative overflow-hidden">
+                        <img
+                          src={projectData.features[selectedFeatureIndex].image || "/placeholder.svg"}
+                          alt="Feature preview"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-bold text-lg">
+                          {projectData.features[selectedFeatureIndex].title || "Feature Title"}
+                        </h3>
+                        <p className="text-sm text-gray-500 mt-2">
+                          {projectData.features[selectedFeatureIndex].description ||
+                            "Feature description will appear here"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

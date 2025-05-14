@@ -26,7 +26,7 @@ const projectsData = [
     id: "1",
     title: "E-Commerce Microservices",
     description:
-      "A scalable e-commerce platform using microservices architecture with Python FastAPI, Docker, and React.",
+      "A stacalable e-commerce platform using microservices architecture with Python FastAPI, Docker, and React.",
     image: "/placeholder.svg?height=600&width=1200",
     status: "Completed",
     client: "Nebula Technologies",
@@ -36,6 +36,7 @@ const projectsData = [
     categories: ["Web Application", "Developer Tools"],
     githubUrl: "https://github.com/username/ecommerce-microservices",
     liveUrl: "https://ecommerce-microservices.vercel.app",
+    color: "primary",
     overview:
       "Built a scalable e-commerce platform using microservices architecture with Python FastAPI, Docker, and React. The platform includes services for product catalog, user authentication, order processing, payment gateway, and inventory management.",
     features: [
