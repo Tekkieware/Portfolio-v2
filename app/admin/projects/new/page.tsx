@@ -259,7 +259,7 @@ export default function NewProjectPage() {
   }
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto px-4 py-8">
+    <div className="space-y-6 max-w-7xl mx-auto px-4">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center space-x-2">
           <button
@@ -272,7 +272,6 @@ export default function NewProjectPage() {
         </div>
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-4">
-            {/* Completion Status Toggle */}
             <div className="flex items-center space-x-2">
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -290,8 +289,6 @@ export default function NewProjectPage() {
                 <span className="ml-3 text-sm font-medium text-gray-900">{projectData.status}</span>
               </label>
             </div>
-
-            {/* Publication Status Toggle */}
             <div className="flex items-center space-x-2">
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -305,7 +302,7 @@ export default function NewProjectPage() {
                     })
                   }
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                 <span className="ml-3 text-sm font-medium text-gray-900 capitalize">{projectData.publishStatus}</span>
               </label>
             </div>
@@ -314,7 +311,7 @@ export default function NewProjectPage() {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>
@@ -333,13 +330,13 @@ export default function NewProjectPage() {
 
       <div className="flex space-x-2 border-b border-gray-200">
         <button
-          className={`px-4 py-2 font-medium text-sm ${activeTab === "overview" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
+          className={`px-4 py-2 font-medium text-sm ${activeTab === "overview" ? "text-primary border-b-2 border-primary" : "text-gray-500 hover:text-gray-700"}`}
           onClick={() => setActiveTab("overview")}
         >
           Overview
         </button>
         <button
-          className={`px-4 py-2 font-medium text-sm ${activeTab === "features" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
+          className={`px-4 py-2 font-medium text-sm ${activeTab === "features" ? "text-primary border-b-2 border-primary" : "text-gray-500 hover:text-gray-700"}`}
           onClick={() => setActiveTab("features")}
         >
           Features
@@ -500,7 +497,7 @@ export default function NewProjectPage() {
                     <button
                       type="button"
                       onClick={handleAddTechnology}
-                      className="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                      className="p-2 bg-primary text-white rounded-md hover:bg-primary transition-colors"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -515,7 +512,7 @@ export default function NewProjectPage() {
                         <button
                           type="button"
                           onClick={() => handleRemoveTechnology(tech)}
-                          className="ml-1 text-blue-500 hover:text-blue-700"
+                          className="ml-1 text-blue-500 hover:text-primary"
                         >
                           <X className="h-3 w-3" />
                         </button>
@@ -541,7 +538,7 @@ export default function NewProjectPage() {
                     <button
                       type="button"
                       onClick={handleAddCategory}
-                      className="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                      className="p-2 bg-primary text-white rounded-md hover:bg-primary transition-colors"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -576,7 +573,7 @@ export default function NewProjectPage() {
                 <button
                   type="button"
                   onClick={handleAddFeature}
-                  className="flex items-center px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  className="flex items-center px-3 py-1.5 text-sm bg-primary text-white rounded-md hover:bg-primary transition-colors"
                 >
                   <Plus className="h-4 w-4 mr-1" />
                   Add Feature
@@ -600,8 +597,8 @@ export default function NewProjectPage() {
                         type="button"
                         onClick={() => setSelectedFeatureIndex(index)}
                         className={`px-3 py-1.5 text-sm rounded-md transition-colors ${selectedFeatureIndex === index
-                            ? "bg-blue-600 text-white"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          ? "bg-primary text-white"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                           }`}
                       >
                         {feature.title || `Feature ${index + 1}`}
@@ -647,8 +644,8 @@ export default function NewProjectPage() {
                             value={projectData.features[selectedFeatureIndex].description}
                             onChange={(e) => handleFeatureChange(selectedFeatureIndex, "description", e.target.value)}
                             className={`w-full px-3 py-2 border ${formErrors[`feature-${selectedFeatureIndex}-description`]
-                                ? "border-red-500"
-                                : "border-gray-300"
+                              ? "border-red-500"
+                              : "border-gray-300"
                               } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                             placeholder="Feature description"
                             rows={3}
@@ -693,7 +690,7 @@ export default function NewProjectPage() {
                       />
                       <label
                         htmlFor="main-image-upload"
-                        className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
+                        className="bg-primary text-white hover:bg-primary px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
                       >
                         Change Image
                       </label>
@@ -723,8 +720,8 @@ export default function NewProjectPage() {
                             </span>
                             <span
                               className={`px-2 py-0.5 text-xs rounded-full capitalize ${projectData.status === "Completed"
-                                  ? "bg-green-100 text-green-800"
-                                  : "bg-yellow-100 text-yellow-800"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-yellow-100 text-yellow-800"
                                 }`}
                             >
                               {projectData.status}
@@ -777,7 +774,7 @@ export default function NewProjectPage() {
                       />
                       <label
                         htmlFor={`feature-image-upload-${selectedFeatureIndex}`}
-                        className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
+                        className="bg-primary text-white hover:bg-primary px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
                       >
                         Change Image
                       </label>
