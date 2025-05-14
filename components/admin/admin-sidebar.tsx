@@ -42,7 +42,7 @@ export default function AdminSidebar() {
   ]
 
   function logoutHandler() {
-    router.push("")
+    router.push("/")
   }
 
   return (
@@ -96,8 +96,9 @@ export default function AdminSidebar() {
       <div className="p-4 border-t border-border">
         <Button
           variant="ghost"
+          onClick={logoutHandler}
           className={cn(
-            "w-full justify-start flex gap-1 items-center text-muted-foreground hover:text-foreground text-sm",
+            "w-full justify-start flex gap-1 items-center text-muted-foreground hover:text-foreground text-sm hover:cursor-pointer",
             collapsed && "justify-center",
           )}
           asChild
