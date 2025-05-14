@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { LayoutDashboard, FolderKanban, FileText, Settings, ChevronLeft, ChevronRight, LogOut, PanelRightOpen, PanelLeftOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -12,6 +12,7 @@ export default function AdminSidebar() {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const router = useRouter()
 
   // Handle responsive behavior
   useEffect(() => {
@@ -39,6 +40,10 @@ export default function AdminSidebar() {
       icon: <LayoutDashboard className="h-5 w-5" />,
     }
   ]
+
+  function logoutHandler() {
+    router.push("")
+  }
 
   return (
     <div
@@ -92,17 +97,15 @@ export default function AdminSidebar() {
         <Button
           variant="ghost"
           className={cn(
-            "w-full justify-start text-muted-foreground hover:text-foreground",
+            "w-full justify-start flex gap-1 items-center text-muted-foreground hover:text-foreground text-sm",
             collapsed && "justify-center",
           )}
           asChild
         >
-          <Link href="/" className=" flex gap-1 items-center text-sm">
-            <LogOut className="h-4 w-4" />
-            <span className={cn("transition-all duration-300", collapsed ? "opacity-0 w-0 hidden" : "opacity-100")}>
-              Exit Admin
-            </span>
-          </Link>
+          <LogOut className="h-4 w-4" />
+          <span className={cn("transition-all duration-300", collapsed ? "opacity-0 w-0 hidden" : "opacity-100")}>
+            Exit Admin
+          </span>
         </Button>
       </div>
     </div>
