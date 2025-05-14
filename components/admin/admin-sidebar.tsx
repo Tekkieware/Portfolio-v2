@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { LayoutDashboard, FolderKanban, FileText, Settings, ChevronLeft, ChevronRight, LogOut } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Logo from "../logo"
 
 export default function AdminSidebar() {
   const pathname = usePathname()
@@ -57,22 +58,9 @@ export default function AdminSidebar() {
           href="/admin"
           className={cn(
             "flex items-center gap-2 font-bold text-xl",
-            collapsed ? "opacity-0 invisible" : "opacity-100 visible",
           )}
         >
-          <div className="flex justify-center min-h-full gap-0.5">
-            <div className="flex flex-col items-center">
-              <div className="flex mb-0.5">
-                <div className="w-2 h-2 rounded-full bg-gold mr-0.5"></div>
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
-              </div>
-              <div className="flex w-5 h-6">
-                <div className="w-1/2 h-full bg-primary rounded-l-sm"></div>
-                <div className="w-1/2 h-full bg-gold rounded-r-sm"></div>
-              </div>
-            </div>
-          </div>
-          <span className="transition-opacity duration-300">Admin</span>
+          <Logo />
         </Link>
         <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setCollapsed(!collapsed)}>
           {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
