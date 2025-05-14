@@ -286,7 +286,7 @@ export default function NewProjectPage() {
                   }
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
-                <span className="ml-3 text-sm font-medium text-gray-900">{projectData.status}</span>
+                <span className="ml-3 text-sm font-medium">{projectData.status}</span>
               </label>
             </div>
             <div className="flex items-center space-x-2">
@@ -303,7 +303,7 @@ export default function NewProjectPage() {
                   }
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                <span className="ml-3 text-sm font-medium text-gray-900 capitalize">{projectData.publishStatus}</span>
+                <span className="ml-3 text-sm font-medium capitalize">{projectData.publishStatus}</span>
               </label>
             </div>
           </div>
@@ -328,7 +328,7 @@ export default function NewProjectPage() {
         </div>
       </div>
 
-      <div className="flex space-x-2 border-b border-gray-200">
+      <div className="flex space-x-2 border-b">
         <button
           className={`px-4 py-2 font-medium text-sm ${activeTab === "overview" ? "text-primary border-b-2 border-primary" : "text-gray-500 hover:text-gray-700"}`}
           onClick={() => setActiveTab("overview")}
@@ -346,7 +346,7 @@ export default function NewProjectPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           {activeTab === "overview" && (
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 space-y-6">
+            <div className="rounded-lg border border-gray-200 shadow-sm p-6 space-y-6">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="space-y-2">
                   <label htmlFor="title" className="flex items-center text-sm font-medium">
@@ -357,7 +357,7 @@ export default function NewProjectPage() {
                     placeholder="Enter project title"
                     value={projectData.title}
                     onChange={(e) => setProjectData({ ...projectData, title: e.target.value })}
-                    className={`w-full px-3 py-2 border ${formErrors.title ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    className={`w-full px-3 py-2 border ${formErrors.title ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent`}
                     required
                   />
                   {formErrors.title && <p className="text-red-500 text-sm mt-1">{formErrors.title}</p>}
@@ -373,7 +373,7 @@ export default function NewProjectPage() {
                     rows={4}
                     value={projectData.description}
                     onChange={(e) => setProjectData({ ...projectData, description: e.target.value })}
-                    className={`w-full px-3 py-2 border ${formErrors.description ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    className={`w-full bg-transparent px-3 py-2 border ${formErrors.description ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     required
                   />
                   {formErrors.description && <p className="text-red-500 text-sm mt-1">{formErrors.description}</p>}
@@ -389,7 +389,7 @@ export default function NewProjectPage() {
                       placeholder="Client name"
                       value={projectData.client}
                       onChange={(e) => setProjectData({ ...projectData, client: e.target.value })}
-                      className={`w-full px-3 py-2 border ${formErrors.client ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.client ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
                     {formErrors.client && <p className="text-red-500 text-sm mt-1">{formErrors.client}</p>}
@@ -404,7 +404,7 @@ export default function NewProjectPage() {
                       type="date"
                       value={projectData.startDate}
                       onChange={(e) => setProjectData({ ...projectData, startDate: e.target.value })}
-                      className={`w-full px-3 py-2 border ${formErrors.startDate ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.startDate ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
                     {formErrors.startDate && <p className="text-red-500 text-sm mt-1">{formErrors.startDate}</p>}
@@ -420,7 +420,7 @@ export default function NewProjectPage() {
                       id="color"
                       value={projectData.color}
                       onChange={(e) => setProjectData({ ...projectData, color: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full bg-transparent px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     >
                       <option value="">Select a color</option>
@@ -443,7 +443,7 @@ export default function NewProjectPage() {
                       placeholder="https://github.com/username/repo"
                       value={projectData.githubUrl}
                       onChange={(e) => setProjectData({ ...projectData, githubUrl: e.target.value })}
-                      className={`w-full px-3 py-2 border ${formErrors.githubUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.githubUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
                     {formErrors.githubUrl && <p className="text-red-500 text-sm mt-1">{formErrors.githubUrl}</p>}
@@ -458,7 +458,7 @@ export default function NewProjectPage() {
                       placeholder="https://your-project.com"
                       value={projectData.liveUrl}
                       onChange={(e) => setProjectData({ ...projectData, liveUrl: e.target.value })}
-                      className={`w-full px-3 py-2 border ${formErrors.liveUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.liveUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
                     {formErrors.liveUrl && <p className="text-red-500 text-sm mt-1">{formErrors.liveUrl}</p>}
@@ -475,7 +475,7 @@ export default function NewProjectPage() {
                     rows={6}
                     value={projectData.overview}
                     onChange={(e) => setProjectData({ ...projectData, overview: e.target.value })}
-                    className={`w-full px-3 py-2 border ${formErrors.overview ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    className={`w-full bg-transparent px-3 py-2 border ${formErrors.overview ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     required
                   />
                   {formErrors.overview && <p className="text-red-500 text-sm mt-1">{formErrors.overview}</p>}
@@ -492,7 +492,7 @@ export default function NewProjectPage() {
                       value={techInput}
                       onChange={(e) => setTechInput(e.target.value)}
                       onKeyDown={handleTechKeyDown}
-                      className={`w-full px-3 py-2 border ${formErrors.technologies ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.technologies ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     />
                     <button
                       type="button"
@@ -533,7 +533,7 @@ export default function NewProjectPage() {
                       value={categoryInput}
                       onChange={(e) => setCategoryInput(e.target.value)}
                       onKeyDown={handleCategoryKeyDown}
-                      className={`w-full px-3 py-2 border ${formErrors.categories ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.categories ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     />
                     <button
                       type="button"
@@ -567,7 +567,7 @@ export default function NewProjectPage() {
           )}
 
           {activeTab === "features" && (
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 space-y-6">
+            <div className="rounded-lg border border-gray-200 shadow-sm p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-medium">Project Features</h2>
                 <button
@@ -624,7 +624,7 @@ export default function NewProjectPage() {
                             id="feature-title"
                             value={projectData.features[selectedFeatureIndex].title}
                             onChange={(e) => handleFeatureChange(selectedFeatureIndex, "title", e.target.value)}
-                            className={`w-full px-3 py-2 border ${formErrors[`feature-${selectedFeatureIndex}-title`] ? "border-red-500" : "border-gray-300"
+                            className={`w-full bg-transparent px-3 py-2 border ${formErrors[`feature-${selectedFeatureIndex}-title`] ? "border-red-500" : "border-gray-300"
                               } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                             placeholder="Feature title"
                             required
@@ -643,7 +643,7 @@ export default function NewProjectPage() {
                             id="feature-desc"
                             value={projectData.features[selectedFeatureIndex].description}
                             onChange={(e) => handleFeatureChange(selectedFeatureIndex, "description", e.target.value)}
-                            className={`w-full px-3 py-2 border ${formErrors[`feature-${selectedFeatureIndex}-description`]
+                            className={`w-full bg-transparent px-3 py-2 border ${formErrors[`feature-${selectedFeatureIndex}-description`]
                               ? "border-red-500"
                               : "border-gray-300"
                               } rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
@@ -669,7 +669,7 @@ export default function NewProjectPage() {
         <div className="space-y-6">
           {activeTab === "overview" && (
             <>
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <div className="rounded-lg border border-gray-200 shadow-sm p-6">
                 <div className="space-y-4">
                   <label className="block text-sm font-medium">
                     Featured Image <span className="text-red-500">*</span>
@@ -699,11 +699,11 @@ export default function NewProjectPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <div className=" rounded-lg border border-gray-200 shadow-sm p-6">
                 <div className="space-y-4">
                   <h3 className="font-medium">Project Preview</h3>
                   <div className="rounded-lg overflow-hidden border border-gray-200">
-                    <div className="bg-gray-100 flex flex-col">
+                    <div className=" flex flex-col">
                       <div className="aspect-video bg-gray-200 relative overflow-hidden">
                         <img
                           src={projectData.image || "/placeholder.svg"}
@@ -753,7 +753,7 @@ export default function NewProjectPage() {
 
           {activeTab === "features" && selectedFeatureIndex !== null && (
             <>
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <div className=" rounded-lg border border-gray-200 shadow-sm p-6">
                 <div className="space-y-4">
                   <label className="block text-sm font-medium">
                     Feature Image <span className="text-red-500">*</span>
@@ -783,11 +783,11 @@ export default function NewProjectPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+              <div className="rounded-lg border border-gray-200 shadow-sm p-6">
                 <div className="space-y-4">
                   <h3 className="font-medium">Feature Preview</h3>
                   <div className="rounded-lg overflow-hidden border border-gray-200">
-                    <div className="bg-gray-100 flex flex-col">
+                    <div className=" flex flex-col">
                       <div className="aspect-video bg-gray-200 relative overflow-hidden">
                         <img
                           src={projectData.features[selectedFeatureIndex].image || "/placeholder.svg"}
