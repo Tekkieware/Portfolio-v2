@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { LayoutDashboard, FolderKanban, FileText, Settings, ChevronLeft, ChevronRight, LogOut } from "lucide-react"
+import { LayoutDashboard, FolderKanban, FileText, Settings, ChevronLeft, ChevronRight, LogOut, PanelRightOpen, PanelLeftOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Logo from "../logo"
 
@@ -48,7 +48,7 @@ export default function AdminSidebar() {
         isMobile && collapsed ? "absolute" : "",
       )}
     >
-      <div className="p-4 border-b border-border flex items-center justify-between">
+      <div className="p-4 border-b border-border flex items-start justify-between gap-2">
         <Link
           href="/admin"
           className={cn(
@@ -58,7 +58,7 @@ export default function AdminSidebar() {
           <Logo />
         </Link>
         <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setCollapsed(!collapsed)}>
-          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+          {collapsed ? <PanelLeftOpen size={15} /> : <PanelRightOpen size={15} />}
         </Button>
       </div>
 
