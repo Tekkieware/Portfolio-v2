@@ -43,7 +43,7 @@ export default function AdminSidebar() {
   return (
     <div
       className={cn(
-        "h-screen bg-card/50 backdrop-blur-sm border-r border-border flex flex-col transition-all duration-300 relative z-20",
+        "h-screen overflow-hidden bg-card/50 backdrop-blur-sm border-r border-border flex flex-col transition-all duration-300 relative z-20",
         collapsed ? "w-16" : "w-64",
         isMobile && collapsed ? "absolute" : "",
       )}
