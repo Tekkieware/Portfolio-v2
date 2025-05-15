@@ -64,7 +64,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium">Email</h4>
                   <a href="mailto:alex@example.com" className="text-gradient-gold-purple hover:underline">
-                    alex@example.com
+                    isaiahozadhe247@gmail.com
                   </a>
                 </div>
               </CardContent>
@@ -81,12 +81,12 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium">LinkedIn</h4>
                   <a
-                    href="https://linkedin.com/in/alexchen"
+                    href="https://www.linkedin.com/in/isaiah-ozadhe"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gradient-gold-purple hover:underline"
                   >
-                    linkedin.com/in/alexchen
+                    linkedin.com &gt; isaiahozadhe
                   </a>
                 </div>
               </CardContent>
@@ -103,12 +103,12 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium">GitHub</h4>
                   <a
-                    href="https://github.com/alexchen"
+                    href="https://github.com/Tekkieware"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gradient-teal-purple hover:underline"
                   >
-                    github.com/alexchen
+                    github.com &gt; isaiahozadhe
                   </a>
                 </div>
               </CardContent>
@@ -117,7 +117,7 @@ export default function Contact() {
         </div>
 
         <div className="fade-in-left delay-100">
-        <h3
+          <h3
             className="text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header"
           >
             Send Me a Message

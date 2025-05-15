@@ -34,7 +34,7 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <div className="mb-6 md:mb-0 flex gap-3">
+          <div className="mb-6 md:mb-0 flex gap-3 items-end">
             <a
               href="#home"
               onClick={(e) => scrollToSection(e, "home")}
@@ -42,8 +42,8 @@ export default function Footer() {
             >
               <Logo />
             </a>
-            <p className="text-muted-foreground text-[13px] max-w-md">
-              Software Engineer specializing in Python, JavaScript/TypeScript, and modern web technologies.
+            <p className="text-muted-foreground text-sm max-w-md">
+              Building Solutions!
             </p>
           </div>
 
@@ -52,7 +52,7 @@ export default function Footer() {
               variant="ghost"
               size="icon"
               className="rounded-full hover:bg-primary/20 hover:text-primary transition-colors"
-              onClick={() => window.open("https://github.com", "_blank", "noopener,noreferrer")}
+              onClick={() => window.open("https://github.com/Tekkieware", "_blank", "noopener,noreferrer")}
               aria-label="GitHub"
             >
               <Github className="h-5 w-5" />
@@ -61,7 +61,7 @@ export default function Footer() {
               variant="ghost"
               size="icon"
               className="rounded-full hover:bg-gold/20 hover:text-gold transition-colors"
-              onClick={() => window.open("https://linkedin.com", "_blank", "noopener,noreferrer")}
+              onClick={() => window.open("https://www.linkedin.com/in/isaiah-ozadhe", "_blank", "noopener,noreferrer")}
               aria-label="LinkedIn"
             >
               <Linkedin className="h-5 w-5" />
@@ -70,7 +70,7 @@ export default function Footer() {
               variant="ghost"
               size="icon"
               className="rounded-full hover:bg-teal/20 hover:text-teal transition-colors"
-              onClick={() => window.open("mailto:isaiah@example.com")}
+              onClick={() => window.open("mailto:isaiahozadhe247@gmail.com")}
               aria-label="Email"
             >
               <Mail className="h-5 w-5" />
