@@ -155,7 +155,7 @@ export default function About() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center">
+            <Link href="https://github.com/Tekkieware" target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center">
               <span
                 className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
@@ -163,7 +163,7 @@ export default function About() {
                 GitHub
               </span>
             </Link>
-            <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center">
+            <Link href="https://www.linkedin.com/in/isaiah-ozadhe" target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center">
               <span
                 className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
@@ -171,7 +171,7 @@ export default function About() {
                 LinkedIn
               </span>
             </Link>
-            <a href="mailto:isaiah@example.com" className="flex-1 flex justify-center">
+            <a href="mailto:isaiahozadhe247@gmail.com" className="flex-1 flex justify-center">
               <span
                 className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
