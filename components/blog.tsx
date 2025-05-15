@@ -45,25 +45,27 @@ const blogPosts = [
 export default function Blog() {
   return (
     <div className="container mx-auto px-4">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16">
-      <div className="flex w-full justify-center">
-        <h2 className="text-3xl font-bold text-center relative inline-block section-header fade-in-up purple-gold-gradient">Latest Articles</h2>
-      </div>
+      <div className="flex flex-col">
+        <div className="flex w-full justify-center">
+          <h2 className="text-3xl font-bold text-center relative inline-block section-header fade-in-up purple-gold-gradient">Latest Articles</h2>
+        </div>
+        <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto fade-in-up delay-100">
+          Check out my recent articles where i share my thoughts.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {blogPosts.map((post, index) => (
           <Card
             key={index}
-            className={`overflow-hidden ${
-              index % 4 === 0
-                ? "gradient-border"
-                : index % 4 === 1
-                  ? "gold-border"
-                  : index % 4 === 2
-                    ? "teal-border"
-                    : "coral-border"
-            } hover:shadow-md transition-shadow card-hover-effect fade-in-up ${index % 2 === 0 ? "animated-gradient-border" : ""}`}
+            className={`overflow-hidden ${index % 4 === 0
+              ? "gradient-border"
+              : index % 4 === 1
+                ? "gold-border"
+                : index % 4 === 2
+                  ? "teal-border"
+                  : "coral-border"
+              } hover:shadow-md transition-shadow card-hover-effect fade-in-up ${index % 2 === 0 ? "animated-gradient-border" : ""}`}
             style={{ transitionDelay: `${100 + index * 100}ms` }}
           >
             <div className="h-48 overflow-hidden">
@@ -74,73 +76,68 @@ export default function Blog() {
               />
             </div>
             <CardHeader
-              className={`${
-                index % 4 === 0
-                  ? "card-gradient-header"
-                  : index % 4 === 1
-                    ? "card-gradient-header-teal"
-                    : "card-gradient-header-coral"
-              }`}
+              className={`${index % 4 === 0
+                ? "card-gradient-header"
+                : index % 4 === 1
+                  ? "card-gradient-header-teal"
+                  : "card-gradient-header-coral"
+                }`}
             >
               <div className="flex flex-wrap gap-2 mb-2">
                 {post.tags.map((tag, i) => (
                   <Badge
                     key={i}
-                    className={`text-xs ${
-                      i % 5 === 0
-                        ? "badge-gradient-primary"
-                        : i % 5 === 1
-                          ? "badge-gradient-gold"
-                          : i % 5 === 2
-                            ? "badge-gradient-teal"
-                            : i % 5 === 3
-                              ? "badge-gradient-coral"
-                              : "badge-gradient-lavender"
-                    }`}
+                    className={`text-xs ${i % 5 === 0
+                      ? "badge-gradient-primary"
+                      : i % 5 === 1
+                        ? "badge-gradient-gold"
+                        : i % 5 === 2
+                          ? "badge-gradient-teal"
+                          : i % 5 === 3
+                            ? "badge-gradient-coral"
+                            : "badge-gradient-lavender"
+                      }`}
                   >
                     {tag}
                   </Badge>
                 ))}
               </div>
               <CardTitle
-                className={`line-clamp-2 ${
-                  index % 4 === 0
-                    ? "purple-gold-gradient"
-                    : index % 4 === 1
-                      ? "teal-accent-gradient"
-                      : index % 4 === 2
-                        ? "text-gradient-lavender-primary"
-                        : "coral-accent-gradient"
-                }`}
+                className={`line-clamp-2 ${index % 4 === 0
+                  ? "purple-gold-gradient"
+                  : index % 4 === 1
+                    ? "teal-accent-gradient"
+                    : index % 4 === 2
+                      ? "text-gradient-lavender-primary"
+                      : "coral-accent-gradient"
+                  }`}
               >
                 {post.title}
               </CardTitle>
               <CardDescription className="flex items-center text-xs gap-4">
                 <span className="flex items-center">
                   <Calendar
-                    className={`h-3 w-3 mr-1 ${
-                      index % 4 === 0
-                        ? "text-primary"
-                        : index % 4 === 1
-                          ? "text-gold"
-                          : index % 4 === 2
-                            ? "text-teal"
-                            : "text-coral"
-                    }`}
+                    className={`h-3 w-3 mr-1 ${index % 4 === 0
+                      ? "text-primary"
+                      : index % 4 === 1
+                        ? "text-gold"
+                        : index % 4 === 2
+                          ? "text-teal"
+                          : "text-coral"
+                      }`}
                   />
                   {post.date}
                 </span>
                 <span className="flex items-center">
                   <Clock
-                    className={`h-3 w-3 mr-1 ${
-                      index % 4 === 0
-                        ? "text-primary"
-                        : index % 4 === 1
-                          ? "text-gold"
-                          : index % 4 === 2
-                            ? "text-teal"
-                            : "text-coral"
-                    }`}
+                    className={`h-3 w-3 mr-1 ${index % 4 === 0
+                      ? "text-primary"
+                      : index % 4 === 1
+                        ? "text-gold"
+                        : index % 4 === 2
+                          ? "text-teal"
+                          : "text-coral"
+                      }`}
                   />
                   {post.readTime}
                 </span>
@@ -152,15 +149,14 @@ export default function Blog() {
             <CardFooter>
               <Button
                 variant="link"
-                className={`px-0 ${
-                  index % 4 === 0
-                    ? "text-primary"
-                    : index % 4 === 1
-                      ? "text-gold"
-                      : index % 4 === 2
-                        ? "text-teal"
-                        : "text-coral"
-                }`}
+                className={`px-0 ${index % 4 === 0
+                  ? "text-primary"
+                  : index % 4 === 1
+                    ? "text-gold"
+                    : index % 4 === 2
+                      ? "text-teal"
+                      : "text-coral"
+                  }`}
               >
                 Read More
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -70,8 +70,7 @@ export default function About() {
           <span className="purple-gold-gradient">About Me</span>
         </h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100">
-          I'm a passionate software engineer with over 3 years of experience building web applications, microservices,
-          and mobile apps.
+          I'm a dedicated software engineer with over three years of experience designing and developing web applications, microservices, and mobile solutions.
         </p>
       </div>
 
@@ -119,8 +118,7 @@ export default function About() {
 
           <div className="glass-card p-6 rounded-lg gold-border mb-6 card-hover-effect">
             <p className="text-muted-foreground">
-              I specialize in creating efficient, scalable solutions that solve real-world problems. My expertise spans
-              across full-stack development, microservices architecture, and cross-platform mobile applications.
+              I build smart, scalable solutions that help solve real-world problems. My skills cover full-stack development, microservices, and mobile apps that work across different platforms.
             </p>
           </div>
 
@@ -166,7 +164,7 @@ export default function About() {
               </span>
             </Link>
             <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center">
-            <span
+              <span
                 className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
                 <Linkedin className="h-3.5 w-3.5 group-hover:text-primary transition-colors" />
@@ -174,7 +172,7 @@ export default function About() {
               </span>
             </Link>
             <a href="mailto:isaiah@example.com" className="flex-1 flex justify-center">
-            <span
+              <span
                 className="flex gap-0.5 hover:bg-muted group transition-all duration-300 border text-xs font-semibold border-primary/50 w-full justify-center py-1 rounded-sm"
               >
                 <Mail className="h-3.5 w-3.5 group-hover:text-primary transition-colors" />
@@ -188,14 +186,14 @@ export default function About() {
       <div className="gold-divider my-12 fade-in-up"></div>
 
       <h3
-            className={cn(
-              "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-              "transition-all duration-1000 delay-700",
-            )}
-          >
-             My Expertise
-          </h3>
+        className={cn(
+          "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
+          "transition-all duration-1000 delay-700",
+        )}
+      >
+        My Expertise
+      </h3>
 
       {/* Expertise cards with glassmorphic styling */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -215,8 +213,7 @@ export default function About() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Proficient in Python (Flask, Django, FastAPI) and JavaScript/TypeScript (React, Next.js) for building
-              end-to-end solutions.
+              I'm skilled in Python (Flask, Django) and JavaScript/TypeScript (React, Next.js, React Native), and use them to build complete, end-to-end solutions.
             </p>
           </CardContent>
         </Card>
@@ -240,7 +237,7 @@ export default function About() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Experienced in designing and implementing microservices using Docker and Kubernetes.
+              I design and build microservices using Docker, with a growing understanding of Kubernetes and DevOps practices.
             </p>
           </CardContent>
         </Card>
@@ -264,22 +261,21 @@ export default function About() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Built  mobile applications with React Native that work seamlessly across
-              operating systems.
+              Mobile applications with React Native that run smoothly on both iOS and Android.
             </p>
           </CardContent>
         </Card>
       </div>
 
       <h3
-            className={cn(
-              "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-              "transition-all duration-1000 delay-700",
-            )}
-          >
-             Professional Journey
-          </h3>
+        className={cn(
+          "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
+          "transition-all duration-1000 delay-700",
+        )}
+      >
+        Professional Journey
+      </h3>
 
       {/* Timeline */}
       <div className="relative mb-16">

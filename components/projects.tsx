@@ -12,8 +12,7 @@ const Projects = () => {
       </div>
 
       <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto fade-in-up delay-100">
-        Here are some of my recent projects that showcase my expertise in Python, JavaScript/TypeScript, and modern web
-        development frameworks.
+        Here are a few recent projects that highlight my skills with Python, JavaScript/TypeScript, and current development tools and frameworks.
       </p>
       <div className="flex w-full justify-center space-x-2 fade-in-up delay-200 mb-5">
         <button
