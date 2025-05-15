@@ -23,10 +23,35 @@ export const firaCode = Fira_Code({
 
 
 export const metadata = {
-  title: "Isaiah Ozadhe | Software Engineer | Python Developer | Javascript Developer | Typescript Developer",
+  title: "Isaiah Ozadhe | Software Engineer | Python & JavaScript/TypeScript Developer | Microservices & Docker Expert",
   description:
-    "Portfolio of Isaiah Ozadhe, a Software Engineer specializing in Python, JavaScript/TypeScript, Microservices, and modern technologies.",
+    "Portfolio of Isaiah Ozadhe, a software engineer skilled in Python, JavaScript, TypeScript, microservices, Docker, and modern development technologies.",
+
+  keywords: "Isaiah Ozadhe, Software Engineer, Python Developer, JavaScript Developer, TypeScript Developer, Microservices, Docker, Full-stack Developer, React, Next.js, Flask, Django, FastAPI",
+
+  author: "Isaiah Ozadhe",
+
+  robots: "index, follow",
+
+  // Open Graph (for social media previews)
+  openGraph: {
+    title: "Isaiah Ozadhe | Software Engineer",
+    description: "Explore Isaiah Ozadhe's portfolio showcasing skills in Python, JavaScript/TypeScript, microservices, Docker, and modern tech.",
+    url: "https://isaiahozadhe.tech",
+    site_name: "Isaiah Ozadhe | Software Engineer Portfolio",
+    type: "website",
+    images: [
+      {
+        url: "https://isaiahozadhe.tech/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Isaiah Ozadhe | Software Engineer Portfolio",
+      },
+    ],
+  }
 }
+
+
 
 export default function RootLayout({
   children,
