@@ -5,10 +5,14 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Plus, X, Save } from "lucide-react"
+import { uploadFileToCloudinary } from "@/lib/utils"
+import Loader from "@/components/loader"
+import { createProject } from "@/lib/services/projectService"
 
 export default function NewProjectPage() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
   const [techInput, setTechInput] = useState("")
   const [categoryInput, setCategoryInput] = useState("")
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
@@ -162,22 +166,32 @@ export default function NewProjectPage() {
         return
       }
 
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        const imageUrl = event.target?.result as string
-
-        if (field === "image") {
+      setIsUploading(true)
+      if (field === "image") {
+        uploadFileToCloudinary(file, "project-images").then((image_url: string) => {
           setProjectData({
             ...projectData,
-            image: imageUrl,
+            image: image_url,
           })
-        } else if (field === "featureImage" && typeof featureIndex === "number") {
+        }).catch((error) => {
+          console.log("Upload failed:", error);
+        })
+          .finally(() => {
+            setIsUploading(false);
+          });
+      } else if (field === "featureImage" && typeof featureIndex === "number") {
+        uploadFileToCloudinary(file, "project-feature-images").then((image_url: string) => {
           const updatedFeatures = [...projectData.features]
-          updatedFeatures[featureIndex] = { ...updatedFeatures[featureIndex], image: imageUrl }
+          updatedFeatures[featureIndex] = { ...updatedFeatures[featureIndex], image: image_url }
           setProjectData({ ...projectData, features: updatedFeatures })
-        }
+        }).catch((error) => {
+          console.log("Upload failed:", error);
+        })
+          .finally(() => {
+            setIsUploading(false);
+          });
       }
-      reader.readAsDataURL(file)
+
     }
   }
 
@@ -233,19 +247,23 @@ export default function NewProjectPage() {
     }
 
     setIsSubmitting(true)
-
-    try {
-      // Just log the project data to console
-      console.log("Project data submitted:", projectData)
-
-      setIsSubmitting(false)
+    await createProject(projectData).then(() => {
       router.push("/admin")
-    } catch (error) {
-      console.error("Error submitting project:", error)
-      alert("Failed to create project. Please try again.")
+    }).catch((error) => {
+      console.log("Error saving project")
+    }).finally(() => {
       setIsSubmitting(false)
-    }
+    })
+    setIsSubmitting(false)
   }
+
+
+  if (isUploading || isSubmitting) {
+    return <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
+      <Loader text={isUploading ? "Uploading Image." : "Saving Entry"} />
+    </div>
+  }
+
 
   return (
     <div className="space-y-6 w-full mx-auto px-4">
@@ -384,7 +402,7 @@ export default function NewProjectPage() {
                     />
                     {formErrors.startDate && <p className="text-red-500 text-sm mt-1">{formErrors.startDate}</p>}
                   </div>
-                    <div className="space-y-2">
+                  <div className="space-y-2">
                     <label htmlFor="color" className="flex items-center text-sm font-medium">
                       Color Theme <span className="text-red-500 ml-1">*</span>
                     </label>

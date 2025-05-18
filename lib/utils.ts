@@ -11,10 +11,10 @@ export const uploadFileToCloudinary = async (
   file: File,
   path: string
 ): Promise<string> => {
-  const url = "https://api.cloudinary.com/v1_1/dcajjwtba/image/upload";
+  const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME}/image/upload`;
   const uploadPreset = "portfolio";
   const folder = `portfolio/${path}`;
-  
+
   try {
     const formData = new FormData();
     formData.append("file", file);

@@ -9,7 +9,6 @@ export type Project = {
   description: string;
   image: string;
   status: string;
-  client: string;
   startDate: string; 
   technologies: string[];
   categories: string[];
@@ -18,7 +17,7 @@ export type Project = {
   color: string; 
   overview: string;
   features: ProjectFeature[];
-  publishStatus: "published" | "draft" | "archived"; 
+  publishStatus: string; 
 };
 
 

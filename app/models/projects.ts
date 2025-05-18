@@ -16,7 +16,6 @@ const ProjectSchema = new Schema<Project>(
     description: { type: String, required: true },
     image: { type: String, required: true },
     status: { type: String, enum: ["Completed", "In Progress"], required: true },
-    client: { type: String, required: true },
     startDate: { type: String, required: true },
     technologies: [{ type: String, required: true }],
     categories: [{ type: String, required: true }],
