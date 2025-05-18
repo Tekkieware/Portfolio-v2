@@ -511,8 +511,8 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
   if (loading) {
     return (
-       <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
-        <Loader text="Loading project details" />
+       <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-gray-50 dark:bg-gray-950 flex items-center justify-center z-50">
+       <Loader text="Loading project details..." />
       </div>
     )
   }
