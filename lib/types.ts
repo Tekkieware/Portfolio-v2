@@ -5,6 +5,7 @@ export type ProjectFeature = {
 };
 
 export type Project = {
+  _id: string;
   title: string;
   description: string;
   image: string;
@@ -18,11 +19,13 @@ export type Project = {
   overview: string;
   features: ProjectFeature[];
   publishStatus: string; 
+  createdAt?: string;
+  updatedAt?: string
 };
 
 
  export type projectState = {
-    projects: Project[];
+    projects?: Project[];
     isLoadingProjects: boolean;
     fetchProjects: ()=> Promise<void>;
   };

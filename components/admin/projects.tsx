@@ -18,95 +18,18 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import DeleteProjectModal from "@/components/admin/delete-project-modal"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Project } from "@/lib/types"
 
-// Sample project data
-const initialProjects = [
-    {
-        id: 1,
-        title: "E-Commerce Microservices",
-        description:
-            "Built a scalable e-commerce platform using microservices architecture with Python FastAPI, Docker, and React.",
-        category: "🌐 Web App",
-        status: "published",
-        tags: ["Python", "FastAPI", "Docker"],
-        date: "2023-05-15",
-        color: "primary",
-    },
-    {
-        id: 2,
-        title: "Task Management App",
-        description:
-            "Full-stack task management application with real-time updates, user authentication, and mobile responsiveness.",
-        category: "📱 Mobile",
-        status: "published",
-        tags: ["TypeScript", "Next.js", "MongoDB"],
-        date: "2023-03-22",
-        color: "gold",
-    },
-    {
-        id: 3,
-        title: "Healthcare API Platform",
-        description:
-            "RESTful API platform for healthcare data management with Django, including authentication, authorization, and data validation.",
-        category: "🏥 Healthcare",
-        status: "published",
-        tags: ["Python", "Django", "PostgreSQL"],
-        date: "2023-01-10",
-        color: "teal",
-    },
-    {
-        id: 4,
-        title: "Mobile Fitness Tracker",
-        description:
-            "Cross-platform mobile application for fitness tracking with workout plans, progress monitoring, and social features.",
-        category: "💪 Fitness",
-        status: "published",
-        tags: ["React Native", "Firebase", "Redux"],
-        date: "2022-11-05",
-        color: "coral",
-    },
-    {
-        id: 5,
-        title: "Real-time Chat Application",
-        description:
-            "Scalable real-time chat application with private messaging, group chats, and file sharing capabilities.",
-        category: "💬 Communication",
-        status: "published",
-        tags: ["JavaScript", "Socket.io", "MongoDB"],
-        date: "2022-09-18",
-        color: "lavender",
-    },
-    {
-        id: 6,
-        title: "AI Image Generator",
-        description: "Web application that uses AI to generate custom images based on text prompts.",
-        category: "🤖 AI",
-        status: "draft",
-        tags: ["Python", "React", "OpenAI"],
-        date: "2023-06-01",
-        color: "primary",
-    },
-]
 
-export default function Projects() {
+export default function Projects({projects, isLoadingProjects}: {projects: Project[], isLoadingProjects:boolean}) {
     const router = useRouter()
-    const [projects, setProjects] = useState<any[]>([])
     const [searchQuery, setSearchQuery] = useState("")
-    const [isLoading, setIsLoading] = useState(true)
     const [sortField, setSortField] = useState("date")
     const [sortDirection, setSortDirection] = useState("desc")
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
-    const [projectToDelete, setProjectToDelete] = useState<number | null>(null)
+    const [projectToDelete, setProjectToDelete] = useState<string | null>(null)
 
-    useEffect(() => {
-        // Simulate loading data
-        const timer = setTimeout(() => {
-            setProjects(initialProjects)
-            setIsLoading(false)
-        }, 1000)
-
-        return () => clearTimeout(timer)
-    }, [])
+  
 
     const handleSort = (field: string) => {
         if (sortField === field) {
@@ -117,37 +40,41 @@ export default function Projects() {
         }
     }
 
-    const sortedProjects = [...projects].sort((a, b) => {
-        if (sortField === "title") {
-            return sortDirection === "asc" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
-        } else if (sortField === "date") {
-            return sortDirection === "asc"
-                ? new Date(a.date).getTime() - new Date(b.date).getTime()
-                : new Date(b.date).getTime() - new Date(a.date).getTime()
-        } else if (sortField === "status") {
-            return sortDirection === "asc" ? a.status.localeCompare(b.status) : b.status.localeCompare(a.status)
-        }
-        return 0
-    })
+    const sortedProjects = Array.isArray(projects)
+    ? [...projects].sort((a, b) => {
+          if (sortField === "title") {
+              return sortDirection === "asc"
+                  ? a.title.localeCompare(b.title)
+                  : b.title.localeCompare(a.title)
+          } else if (sortField === "date") {
+              return sortDirection === "asc"
+                  ? new Date(a.createdAt ?? "").getTime() - new Date(b.createdAt ?? "").getTime()
+                  : new Date(b.createdAt ?? "").getTime() - new Date(a.createdAt ?? "").getTime()
+          } else if (sortField === "status") {
+              return sortDirection === "asc"
+                  ? a.status.localeCompare(b.status)
+                  : b.status.localeCompare(a.status)
+          }
+          return 0
+      })
+    : []
+
+
 
     const filteredProjects = sortedProjects.filter(
         (project) =>
             project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            project.tags.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase())),
+            project.categories.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase())),
     )
 
-    const handleDeleteClick = (id: number) => {
+    const handleDeleteClick = (id: string) => {
         setProjectToDelete(id)
         setDeleteModalOpen(true)
     }
 
     const handleDeleteConfirm = () => {
-        if (projectToDelete) {
-            setProjects(projects.filter((project) => project.id !== projectToDelete))
-            setDeleteModalOpen(false)
-            setProjectToDelete(null)
-        }
+       //Delete project here
     }
 
     const getStatusColor = (status: string) => {
@@ -260,7 +187,7 @@ export default function Projects() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {isLoading ? (
+                            {isLoadingProjects ? (
                                 // Loading skeleton
                                 Array.from({ length: 5 }).map((_, i) => (
                                     <TableRow key={i}>
@@ -286,7 +213,7 @@ export default function Projects() {
                                 ))
                             ) : filteredProjects.length > 0 ? (
                                 filteredProjects.map((project) => (
-                                    <TableRow key={project.id}>
+                                    <TableRow key={project._id}>
                                         <TableCell>
                                             <div>
                                                 <p className="font-medium">{project.title}</p>
@@ -295,17 +222,17 @@ export default function Projects() {
                                                 </p>
                                             </div>
                                         </TableCell>
-                                        <TableCell className="hidden md:table-cell">{project.category}</TableCell>
+                                        <TableCell className="hidden md:table-cell">{project.categories[0]}</TableCell>
                                         <TableCell className="hidden lg:table-cell">
                                             <div className="flex flex-wrap gap-1">
-                                                {project.tags.slice(0, 3).map((tag: string, i: number) => (
+                                                {project.categories.slice(0, 3).map((tag: string, i: number) => (
                                                     <Badge key={i} variant="outline" className="text-xs">
                                                         {tag}
                                                     </Badge>
                                                 ))}
-                                                {project.tags.length > 3 && (
+                                                {project.categories.length > 3 && (
                                                     <Badge variant="outline" className="text-xs">
-                                                        +{project.tags.length - 3}
+                                                        +{project.categories.length - 3}
                                                     </Badge>
                                                 )}
                                             </div>
@@ -316,7 +243,7 @@ export default function Projects() {
                                             </Badge>
                                         </TableCell>
                                         <TableCell className="hidden sm:table-cell">
-                                            {new Date(project.date).toLocaleDateString()}
+                                            {new Date(project.createdAt!).toLocaleDateString()}
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <DropdownMenu>
@@ -329,17 +256,17 @@ export default function Projects() {
                                                 <DropdownMenuContent align="end">
                                                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                                     <DropdownMenuSeparator />
-                                                    <DropdownMenuItem onClick={() => router.push(`/projects/${project.id}`)}>
+                                                    <DropdownMenuItem onClick={() => router.push(`/projects/${project._id}`)}>
                                                         <Eye className="mr-2 h-4 w-4" />
                                                         View
                                                     </DropdownMenuItem>
-                                                    <DropdownMenuItem onClick={() => router.push(`/admin/projects/${project.id}`)}>
+                                                    <DropdownMenuItem onClick={() => router.push(`/admin/projects/${project._id}`)}>
                                                         <Edit className="mr-2 h-4 w-4" />
                                                         Edit
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem
                                                         className="text-red-600 dark:text-red-400"
-                                                        onClick={() => handleDeleteClick(project.id)}
+                                                        onClick={() => handleDeleteClick(project._id)}
                                                     >
                                                         <Trash2 className="mr-2 h-4 w-4" />
                                                         Delete

@@ -4,7 +4,6 @@ import { projectState } from '../types';
 
 
 export const useProjectsStore = create<projectState>((set, get) => ({
-  projects: [],
   isLoadingProjects: false,
   fetchProjects: async () => {
     set({ isLoadingProjects: true })

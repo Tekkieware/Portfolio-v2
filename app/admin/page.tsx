@@ -3,88 +3,40 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 import {
-  Activity,
-  BarChart3,
   Clock,
   Command,
-  Cpu,
   Eye,
   FolderPlus,
-  HardDrive,
-  LineChart,
-  RefreshCw,
-  Users,
-  Wifi,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Projects from "@/components/admin/projects"
 import Loader from "@/components/loader"
+import { useProjectsStore } from "@/lib/store/useProjectsStore"
 
 export default function AdminDashboard() {
   const router = useRouter()
-  const [stats, setStats] = useState({
-    totalProjects: 0,
-    publishedProjects: 0,
-    drafts: 0,
-    totalViews: 0,
-  })
+  
+  const {fetchProjects, isLoadingProjects, projects} = useProjectsStore()
 
-  const [isLoading, setIsLoading] = useState(true)
-  const [cpuUsage, setCpuUsage] = useState(42)
-  const [memoryUsage, setMemoryUsage] = useState(68)
-  const [networkStatus, setNetworkStatus] = useState(92)
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const published = projects?.filter((project)=> project.publishStatus === "published").length
+  const drafts = projects?.filter((project)=> project.publishStatus === "draft").length
 
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  // Update time
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date())
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  // Simulate loading data
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setStats({
-        totalProjects: 6,
-        publishedProjects: 5,
-        drafts: 1,
-        totalViews: 1250,
-      })
-      setIsLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  // Simulate changing data
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCpuUsage(Math.floor(Math.random() * 30) + 30)
-      setMemoryUsage(Math.floor(Math.random() * 20) + 60)
-      setNetworkStatus(Math.floor(Math.random() * 15) + 80)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [])
 
   const handleNewProject = () => {
     router.push("/admin/projects/new")
   }
 
+  useEffect(()=>{
+    fetchProjects()
+  }, [])
+
   return (
     <div className="relative overflow-hidden">
-      {isLoading && (
+      {isLoadingProjects && (
         <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
           <Loader text="INITIALIZING DASHBOARD" />
         </div>
@@ -109,10 +61,10 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Total Projects</p>
-                  {isLoading ? (
+                  {isLoadingProjects ? (
                     <div className="h-9 w-16 bg-muted animate-pulse rounded mt-1"></div>
                   ) : (
-                    <h3 className="text-3xl font-bold">{stats.totalProjects}</h3>
+                    <h3 className="text-3xl font-bold">{projects?.length}</h3>
                   )}
                 </div>
                 <div className="h-12 w-12 rounded-full bg-purple-500/10 flex items-center justify-center">
@@ -128,10 +80,10 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Published</p>
-                  {isLoading ? (
+                  {isLoadingProjects ? (
                     <div className="h-9 w-16 bg-muted animate-pulse rounded mt-1"></div>
                   ) : (
-                    <h3 className="text-3xl font-bold">{stats.publishedProjects}</h3>
+                    <h3 className="text-3xl font-bold">{published}</h3>
                   )}
                 </div>
                 <div className="h-12 w-12 rounded-full bg-amber-500/10 flex items-center justify-center">
@@ -147,10 +99,10 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Drafts</p>
-                  {isLoading ? (
+                  {isLoadingProjects ? (
                     <div className="h-9 w-16 bg-muted animate-pulse rounded mt-1"></div>
                   ) : (
-                    <h3 className="text-3xl font-bold">{stats.drafts}</h3>
+                    <h3 className="text-3xl font-bold">{drafts}</h3>
                   )}
                 </div>
                 <div className="h-12 w-12 rounded-full bg-emerald-500/10 flex items-center justify-center">
@@ -163,7 +115,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Projects */}
-        <Projects />
+        <Projects projects={projects!} isLoadingProjects={isLoadingProjects} />
       </div>
     </div>
   )
