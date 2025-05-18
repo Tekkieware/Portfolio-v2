@@ -19,17 +19,19 @@ import { useRouter } from "next/navigation"
 import DeleteProjectModal from "@/components/admin/delete-project-modal"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Project } from "@/lib/types"
+import { deleteProject } from "@/lib/services/projectService"
 
 
-export default function Projects({projects, isLoadingProjects}: {projects: Project[], isLoadingProjects:boolean}) {
+export default function Projects({ projects, isLoadingProjects }: { projects: Project[], isLoadingProjects: boolean }) {
     const router = useRouter()
     const [searchQuery, setSearchQuery] = useState("")
     const [sortField, setSortField] = useState("date")
     const [sortDirection, setSortDirection] = useState("desc")
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
     const [projectToDelete, setProjectToDelete] = useState<string | null>(null)
+    const [deleting, setDeleting] = useState(false)
 
-  
+
 
     const handleSort = (field: string) => {
         if (sortField === field) {
@@ -41,23 +43,23 @@ export default function Projects({projects, isLoadingProjects}: {projects: Proje
     }
 
     const sortedProjects = Array.isArray(projects)
-    ? [...projects].sort((a, b) => {
-          if (sortField === "title") {
-              return sortDirection === "asc"
-                  ? a.title.localeCompare(b.title)
-                  : b.title.localeCompare(a.title)
-          } else if (sortField === "date") {
-              return sortDirection === "asc"
-                  ? new Date(a.createdAt ?? "").getTime() - new Date(b.createdAt ?? "").getTime()
-                  : new Date(b.createdAt ?? "").getTime() - new Date(a.createdAt ?? "").getTime()
-          } else if (sortField === "status") {
-              return sortDirection === "asc"
-                  ? a.status.localeCompare(b.status)
-                  : b.status.localeCompare(a.status)
-          }
-          return 0
-      })
-    : []
+        ? [...projects].sort((a, b) => {
+            if (sortField === "title") {
+                return sortDirection === "asc"
+                    ? a.title.localeCompare(b.title)
+                    : b.title.localeCompare(a.title)
+            } else if (sortField === "date") {
+                return sortDirection === "asc"
+                    ? new Date(a.createdAt ?? "").getTime() - new Date(b.createdAt ?? "").getTime()
+                    : new Date(b.createdAt ?? "").getTime() - new Date(a.createdAt ?? "").getTime()
+            } else if (sortField === "status") {
+                return sortDirection === "asc"
+                    ? a.status.localeCompare(b.status)
+                    : b.status.localeCompare(a.status)
+            }
+            return 0
+        })
+        : []
 
 
 
@@ -73,8 +75,15 @@ export default function Projects({projects, isLoadingProjects}: {projects: Proje
         setDeleteModalOpen(true)
     }
 
-    const handleDeleteConfirm = () => {
-       //Delete project here
+    const handleDeleteConfirm = async () => {
+        if (projectToDelete) {
+            const result = await deleteProject(projectToDelete);
+            if (result.success) {
+                alert("Deleted!");
+            } else {
+                alert("Error: " + result.message);
+            }
+        }
     }
 
     const getStatusColor = (status: string) => {
