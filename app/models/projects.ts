@@ -12,7 +12,6 @@ const FeatureSchema = new Schema<ProjectFeature>(
 
 const ProjectSchema = new Schema<Project>(
   {
-    id: { type: String, required: true, unique: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
     image: { type: String, required: true },
