@@ -5,6 +5,10 @@ import type React from "react"
 import { useState, useEffect, use } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Plus, X, Save } from "lucide-react"
+import { useProjectsStore } from "@/lib/store/useProjectsStore"
+import { updateProject } from "@/lib/services/projectService"
+import { uploadFileToCloudinary } from "@/lib/utils"
+import Loader from "@/components/loader"
 
 // Sample project data - this would typically come from an API
 const projectsData = [
@@ -88,7 +92,6 @@ type Params = {
 
 export default function EditProjectPage({ params }: { params: Promise<Params> }) {
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [techInput, setTechInput] = useState("")
   const [categoryInput, setCategoryInput] = useState("")
@@ -96,21 +99,21 @@ export default function EditProjectPage({ params }: { params: Promise<Params> })
   const [activeTab, setActiveTab] = useState("overview")
   const [selectedFeatureIndex, setSelectedFeatureIndex] = useState<number | null>(null)
   const { id: projectId } = use(params)
+  const [isUploading, setIsUploading] = useState(false)
 
   const [projectData, setProjectData] = useState({
-    id: "",
+    _id: "",
     title: "",
     description: "",
     image: "/placeholder.svg?height=600&width=1200",
-    status: "In Progress", // Completion status
-    publishStatus: "draft", // Publication status
-    client: "",
+    status: "In Progress",
+    publishStatus: "draft",
     startDate: "",
     technologies: [] as string[],
     categories: [] as string[],
     githubUrl: "",
     liveUrl: "",
-    color: "primary",
+    color: "",
     overview: "",
     features: [] as {
       title: string
@@ -119,28 +122,26 @@ export default function EditProjectPage({ params }: { params: Promise<Params> })
     }[],
   })
 
+  const { projects, fetchProjects, isLoadingProjects } = useProjectsStore()
+
   // Fetch project data on component mount
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        // In a real app, this would be an API call
-        const project = projectsData.find((p) => p.id === projectId)
+        fetchProjects()
+        const project = projects!.find((p) => p._id === projectId)
 
         if (project) {
           setProjectData(project)
         } else {
-          // Project not found, redirect to projects page
           alert("Project not found")
-          router.push("/projects")
+          router.push("/admin")
         }
       } catch (error) {
         console.error("Error fetching project:", error)
         alert("Failed to load project data")
-      } finally {
-        setIsLoading(false)
       }
     }
-
     fetchProject()
   }, [projectId, router])
 
@@ -173,9 +174,6 @@ export default function EditProjectPage({ params }: { params: Promise<Params> })
       errors.description = "Description is required"
     }
 
-    if (!projectData.client.trim()) {
-      errors.client = "Client is required"
-    }
 
     if (!projectData.startDate.trim()) {
       errors.startDate = "Start date is required"
@@ -276,22 +274,32 @@ export default function EditProjectPage({ params }: { params: Promise<Params> })
         return
       }
 
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        const imageUrl = event.target?.result as string
-
-        if (field === "image") {
+      setIsUploading(true)
+      if (field === "image") {
+        uploadFileToCloudinary(file, "project-images").then((image_url: string) => {
           setProjectData({
             ...projectData,
-            image: imageUrl,
+            image: image_url,
           })
-        } else if (field === "featureImage" && typeof featureIndex === "number") {
+        }).catch((error) => {
+          console.log("Upload failed:", error);
+        })
+          .finally(() => {
+            setIsUploading(false);
+          });
+      } else if (field === "featureImage" && typeof featureIndex === "number") {
+        uploadFileToCloudinary(file, "project-feature-images").then((image_url: string) => {
           const updatedFeatures = [...projectData.features]
-          updatedFeatures[featureIndex] = { ...updatedFeatures[featureIndex], image: imageUrl }
+          updatedFeatures[featureIndex] = { ...updatedFeatures[featureIndex], image: image_url }
           setProjectData({ ...projectData, features: updatedFeatures })
-        }
+        }).catch((error) => {
+          console.log("Upload failed:", error);
+        })
+          .finally(() => {
+            setIsUploading(false);
+          });
       }
-      reader.readAsDataURL(file)
+
     }
   }
 
@@ -349,28 +357,20 @@ export default function EditProjectPage({ params }: { params: Promise<Params> })
     }
 
     setIsSubmitting(true)
-
-    try {
-      // Just log the project data to console
-      console.log("Project data updated:", projectData)
-
-      // Show success message
-      alert("Project updated successfully! Check the console for details.")
-
+    await updateProject(projectId, projectData).then(() => {
+      router.push("/admin")
+    }).catch((error) => {
+      console.log("Error updating project", error)
+    }).finally(() => {
       setIsSubmitting(false)
-    } catch (error) {
-      console.error("Error updating project:", error)
-      alert("Failed to update project. Please try again.")
-      setIsSubmitting(false)
-    }
+    })
+    setIsSubmitting(false)
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-[calc(100vh-200px)]">
-        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    )
+  if (isLoadingProjects || isUploading || isSubmitting) {
+   return <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
+      <Loader text={isLoadingProjects ? "Fetching project data." : isUploading ? "Replacing Image." : "Saving Entry"} />
+    </div>
   }
 
   return (
@@ -499,21 +499,6 @@ export default function EditProjectPage({ params }: { params: Promise<Params> })
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="client" className="flex items-center text-sm font-medium">
-                      Client <span className="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                      id="client"
-                      placeholder="Client name"
-                      value={projectData.client}
-                      onChange={(e) => setProjectData({ ...projectData, client: e.target.value })}
-                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.client ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                      required
-                    />
-                    {formErrors.client && <p className="text-red-500 text-sm mt-1">{formErrors.client}</p>}
-                  </div>
-
-                  <div className="space-y-2">
                     <label htmlFor="startDate" className="flex items-center text-sm font-medium">
                       Start Date <span className="text-red-500 ml-1">*</span>
                     </label>
@@ -527,30 +512,21 @@ export default function EditProjectPage({ params }: { params: Promise<Params> })
                     />
                     {formErrors.startDate && <p className="text-red-500 text-sm mt-1">{formErrors.startDate}</p>}
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="color" className="flex items-center text-sm font-medium">
-                      Color Theme <span className="text-red-500 ml-1">*</span>
+                      Color theme <span className="text-red-500 ml-1">*</span>
                     </label>
-                    <select
-                      id="color"
+                    <input
+                      id="client"
+                      placeholder="Color theme"
                       value={projectData.color}
                       onChange={(e) => setProjectData({ ...projectData, color: e.target.value })}
-                      className="w-full bg-transparent px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.client ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
-                    >
-                      <option value="">Select a color</option>
-                      <option value="primary">Purple</option>
-                      <option value="gold">Gold</option>
-                      <option value="teal">Teal</option>
-                      <option value="coral">Coral</option>
-                      <option value="lavender">Lavender</option>
-                    </select>
+                    />
+                    {formErrors.color && <p className="text-red-500 text-sm mt-1">{formErrors.color}</p>}
                   </div>
                 </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="githubUrl" className="flex items-center text-sm font-medium">

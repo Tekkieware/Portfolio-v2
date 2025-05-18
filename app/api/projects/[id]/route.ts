@@ -22,19 +22,35 @@ export async function GET(
   }
 }
 
-export async function PATCH(
+export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     await dbConnect();
 
-    const updateData = await req.json();
+    const { params } = context;
+    const {id} = await params
+
+    if (!id) {
+      return new Response("Project ID is missing in route params", { status: 400 });
+    }
+
+    const newProjectData = await req.json();
+
+    // Remove _id if present to avoid immutable field issues
+    if ("_id" in newProjectData) {
+      delete newProjectData._id;
+    }
 
     const updatedProject = await ProjectModel.findByIdAndUpdate(
-      params.id,
-      updateData,
-      { new: true, runValidators: true }
+      id,
+      newProjectData,
+      {
+        new: true,
+        runValidators: true,
+        overwrite: true,
+      }
     );
 
     if (!updatedProject) {
@@ -43,7 +59,7 @@ export async function PATCH(
 
     return Response.json(updatedProject);
   } catch (err) {
-    console.error("PATCH update project error:", err);
+    console.error("PUT update project error:", err);
     return new Response("Failed to update project", { status: 500 });
   }
 }
