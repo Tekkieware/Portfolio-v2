@@ -20,6 +20,7 @@ import Projects from "@/components/projects"
 import SideNavigator from "@/components/project-side-bar"
 import MobileNav from "@/components/mobile-project-sidebar"
 import { cn } from "@/lib/utils"
+import Loader from "@/components/loader"
 
 const projectsData = [
   {
@@ -510,11 +511,8 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-lg">Loading project details...</p>
-        </div>
+       <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
+        <Loader text="Loading project details" />
       </div>
     )
   }

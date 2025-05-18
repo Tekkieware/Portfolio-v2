@@ -70,6 +70,10 @@ const config = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+      animation: {
+        'spin-slow': 'spin 2s linear infinite',
+        'spin-slower': 'spin 3s linear infinite',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
