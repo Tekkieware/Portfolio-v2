@@ -63,3 +63,31 @@ export async function PUT(
     return new Response("Failed to update project", { status: 500 });
   }
 }
+
+
+export async function DELETE(
+  _req: NextRequest,
+  context: { params: { id: string } }
+) {
+  try {
+    await dbConnect();
+
+    const { params } = context;
+    const {id} = await params;
+
+    if (!id) {
+      return new Response("Project ID is missing in route params", { status: 400 });
+    }
+
+    const deletedProject = await ProjectModel.findByIdAndDelete(id);
+
+    if (!deletedProject) {
+      return new Response("Project not found", { status: 404 });
+    }
+
+    return new Response("Project deleted successfully", { status: 200 });
+  } catch (err) {
+    console.error("DELETE project error:", err);
+    return new Response("Failed to delete project", { status: 500 });
+  }
+}
