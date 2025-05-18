@@ -16,19 +16,17 @@ export default function NewProjectPage() {
   const [selectedFeatureIndex, setSelectedFeatureIndex] = useState<number | null>(null)
 
   const [projectData, setProjectData] = useState({
-    id: "",
     title: "",
     description: "",
     image: "/placeholder.svg?height=600&width=1200",
     status: "In Progress",
     publishStatus: "draft",
-    client: "",
     startDate: "",
     technologies: [] as string[],
     categories: [] as string[],
     githubUrl: "",
     liveUrl: "",
-    color: "primary",
+    color: "",
     overview: "",
     features: [] as {
       title: string
@@ -65,11 +63,6 @@ export default function NewProjectPage() {
     if (!projectData.description.trim()) {
       errors.description = "Description is required"
     }
-
-    if (!projectData.client.trim()) {
-      errors.client = "Client is required"
-    }
-
     if (!projectData.startDate.trim()) {
       errors.startDate = "Start date is required"
     }
@@ -236,8 +229,6 @@ export default function NewProjectPage() {
       if (firstErrorElement) {
         firstErrorElement.scrollIntoView({ behavior: "smooth", block: "center" })
       }
-
-      alert("Please fill in all required fields")
       return
     }
 
@@ -247,10 +238,8 @@ export default function NewProjectPage() {
       // Just log the project data to console
       console.log("Project data submitted:", projectData)
 
-      // Show success message
-      alert("Project created successfully! Check the console for details.")
-
       setIsSubmitting(false)
+      router.push("/admin")
     } catch (error) {
       console.error("Error submitting project:", error)
       alert("Failed to create project. Please try again.")
@@ -380,20 +369,6 @@ export default function NewProjectPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="client" className="flex items-center text-sm font-medium">
-                      Client <span className="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                      id="client"
-                      placeholder="Client name"
-                      value={projectData.client}
-                      onChange={(e) => setProjectData({ ...projectData, client: e.target.value })}
-                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.client ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                      required
-                    />
-                    {formErrors.client && <p className="text-red-500 text-sm mt-1">{formErrors.client}</p>}
-                  </div>
 
                   <div className="space-y-2">
                     <label htmlFor="startDate" className="flex items-center text-sm font-medium">
@@ -409,30 +384,21 @@ export default function NewProjectPage() {
                     />
                     {formErrors.startDate && <p className="text-red-500 text-sm mt-1">{formErrors.startDate}</p>}
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
+                    <div className="space-y-2">
                     <label htmlFor="color" className="flex items-center text-sm font-medium">
                       Color Theme <span className="text-red-500 ml-1">*</span>
                     </label>
-                    <select
+                    <input
                       id="color"
+                      placeholder="Color theme"
                       value={projectData.color}
                       onChange={(e) => setProjectData({ ...projectData, color: e.target.value })}
-                      className="w-full bg-transparent px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className={`w-full bg-transparent px-3 py-2 border ${formErrors.color ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
-                    >
-                      <option value="">Select a color</option>
-                      <option value="primary">Purple</option>
-                      <option value="gold">Gold</option>
-                      <option value="teal">Teal</option>
-                      <option value="coral">Coral</option>
-                      <option value="lavender">Lavender</option>
-                    </select>
+                    />
+                    {formErrors.color && <p className="text-red-500 text-sm mt-1">{formErrors.color}</p>}
                   </div>
                 </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="githubUrl" className="flex items-center text-sm font-medium">

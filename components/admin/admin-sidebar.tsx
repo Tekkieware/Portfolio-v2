@@ -49,11 +49,11 @@ export default function AdminSidebar() {
     <div
       className={cn(
         "h-screen overflow-hidden bg-card/50 backdrop-blur-sm border-r border-border flex flex-col transition-all duration-300 relative z-20",
-        collapsed ? "w-16" : "w-64",
+        collapsed ? "w-20" : "w-64",
         isMobile && collapsed ? "absolute" : "",
       )}
     >
-      <div className="p-4 border-b border-border flex items-start justify-between gap-2">
+      <div className="p-4 border-b border-border flex items-start  justify-between gap-2">
         <Link
           href="/admin"
           className={cn(
@@ -63,7 +63,7 @@ export default function AdminSidebar() {
           <Logo />
         </Link>
         <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setCollapsed(!collapsed)}>
-          {collapsed ? <PanelLeftOpen size={15} /> : <PanelRightOpen size={15} />}
+          {collapsed ? <PanelLeftOpen size={25} /> : <PanelRightOpen size={25} />}
         </Button>
       </div>
 
