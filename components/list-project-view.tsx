@@ -26,15 +26,6 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                             key={project._id}
                             className={cn(
                                 "overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300",
-                                project.color === "primary"
-                                    ? "border-primary/50"
-                                    : project.color === "gold"
-                                        ? "border-gold/50"
-                                        : project.color === "teal"
-                                            ? "border-teal/50"
-                                            : project.color === "coral"
-                                                ? "border-coral/50"
-                                                : "border-lavender/50",
                             )}
                             onClick={() => router.push(`/projects/${project._id}`)}
                         >
@@ -48,17 +39,9 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                                 <div className="absolute top-3 left-3 z-20">
                                     <Badge
                                         className={cn(
-                                            "text-xs px-3 py-1",
-                                            project.color === "primary"
-                                                ? "bg-primary text-white"
-                                                : project.color === "gold"
-                                                    ? "bg-gold text-black"
-                                                    : project.color === "teal"
-                                                        ? "bg-teal text-white"
-                                                        : project.color === "coral"
-                                                            ? "bg-coral text-white"
-                                                            : "bg-lavender text-black",
+                                            "text-xs px-3 py-1 text-white rounded-md"
                                         )}
+                                        style={{ backgroundColor: project.color }}
                                     >
                                         {project.categories[0]}
                                     </Badge>
@@ -66,18 +49,6 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                             </div>
                             <CardHeader className="pb-2">
                                 <CardTitle
-                                    className={cn(
-                                        "line-clamp-1",
-                                        project.color === "primary"
-                                            ? "text-primary"
-                                            : project.color === "gold"
-                                                ? "text-gold"
-                                                : project.color === "teal"
-                                                    ? "text-teal"
-                                                    : project.color === "coral"
-                                                        ? "text-coral"
-                                                        : "text-lavender",
-                                    )}
                                 >
                                     {project.title}
                                 </CardTitle>
@@ -85,22 +56,12 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                             </CardHeader>
                             <CardContent>
                                 <div className="flex flex-wrap gap-2">
-                                    {project.categories.slice(0, 3).map((tag: string, i: number) => (
+                                    {project.technologies.slice(0, 3).map((tag: string, i: number) => (
                                         <Badge
                                             key={i}
                                             variant="outline"
-                                            className={cn(
-                                                "text-xs",
-                                                project.color === "primary"
-                                                    ? "border-primary/50 text-primary"
-                                                    : project.color === "gold"
-                                                        ? "border-gold/50 text-gold"
-                                                        : project.color === "teal"
-                                                            ? "border-teal/50 text-teal"
-                                                            : project.color === "coral"
-                                                                ? "border-coral/50 text-coral"
-                                                                : "border-lavender/50 text-lavender",
-                                            )}
+                                            className=' text-[10px]'
+                                            style={{ color: project.color, borderColor: project.color }}
                                         >
                                             {tag}
                                         </Badge>
@@ -116,7 +77,7 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="group"
+                                    className="group text-sm"
                                     onClick={(e) => {
                                         e.stopPropagation()
                                         window.open(project.githubUrl, "_blank", "noopener,noreferrer")
@@ -128,17 +89,9 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                                 <Button
                                     size="sm"
                                     className={cn(
-                                        "group relative overflow-hidden",
-                                        project.color === "primary"
-                                            ? "bg-primary hover:bg-primary/90 text-white"
-                                            : project.color === "gold"
-                                                ? "bg-gold hover:bg-gold/90 text-black"
-                                                : project.color === "teal"
-                                                    ? "bg-teal hover:bg-teal/90 text-white"
-                                                    : project.color === "coral"
-                                                        ? "bg-coral hover:bg-coral/90 text-white"
-                                                        : "bg-lavender hover:bg-lavender/90 text-black",
+                                        "group relative overflow-hidden text-white text-sm"
                                     )}
+                                    style={{ backgroundColor: project.color }}
                                     onClick={(e) => {
                                         e.stopPropagation()
                                         window.open(project.liveUrl, "_blank", "noopener,noreferrer")
