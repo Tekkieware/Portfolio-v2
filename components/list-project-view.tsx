@@ -13,7 +13,7 @@ import Loader from './loader'
 const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[], isLoadingProjects: boolean }) => {
     const router = useRouter()
     if (isLoadingProjects) {
-        return <div className="container mx-auto px-4 min-h-52 min-w-full top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
+        return <div className="container mx-auto px-4 min-h-80 top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
             <Loader text="LOADING PROJECTS" />
         </div>
     }
