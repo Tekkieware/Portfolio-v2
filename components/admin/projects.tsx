@@ -248,7 +248,7 @@ export default function Projects({ projects, isLoadingProjects }: { projects: Pr
                                         </TableCell>
                                         <TableCell>
                                             <Badge className={`${getStatusColor(project.status)}`}>
-                                                {project.status === "published" ? "Published" : "Draft"}
+                                                {project.publishStatus === "published" ? "Published" : "Draft"}
                                             </Badge>
                                         </TableCell>
                                         <TableCell className="hidden sm:table-cell">
