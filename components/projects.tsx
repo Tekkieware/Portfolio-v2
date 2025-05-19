@@ -1,10 +1,16 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SLiderProjetsView from './slider-projects-view'
 import ListProjectView from './list-project-view'
+import { useProjectsStore } from '@/lib/store/useProjectsStore'
 
 const Projects = () => {
   const [viewMode, setViewMode] = useState("slide")
+  const { fetchProjects, isLoadingProjects, projects } = useProjectsStore()
+
+  useEffect(() => {
+    fetchProjects()
+  }, [])
   return (
     <div>
       <div className="flex w-full justify-center">
@@ -31,7 +37,7 @@ const Projects = () => {
         </button>
       </div>
       {
-        viewMode === "slide" ? <SLiderProjetsView /> : <ListProjectView />
+        viewMode === "slide" ? <SLiderProjetsView /> : <ListProjectView projects={projects!} isLoadingProjects={isLoadingProjects} />
       }
     </div>
   )
