@@ -20,7 +20,6 @@ export default function NewProjectPage() {
   const [selectedFeatureIndex, setSelectedFeatureIndex] = useState<number | null>(null)
 
   const [projectData, setProjectData] = useState({
-    _id: "",
     title: "",
     description: "",
     image: "/placeholder.svg?height=600&width=1200",

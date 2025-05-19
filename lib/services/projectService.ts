@@ -1,6 +1,6 @@
 import { Project } from "../types";
 
-export async function createProject(projectData: Project) {
+export async function createProject(projectData: Partial<Project>) {
   try {
     const response = await fetch("/api/projects", {
       method: "POST",
