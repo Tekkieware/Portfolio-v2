@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import {
   ArrowLeft,
   Github,
@@ -13,393 +13,16 @@ import {
   LayoutDashboard,
   Layers,
   Grid,
-  ChevronLeft,
-  ChevronRight,
+  RefreshCcw,
 } from "lucide-react"
 import Projects from "@/components/projects"
 import SideNavigator from "@/components/project-side-bar"
 import MobileNav from "@/components/mobile-project-sidebar"
 import { cn } from "@/lib/utils"
 import Loader from "@/components/loader"
+import { Project } from "@/lib/types"
+import { useProjectsStore } from "@/lib/store/useProjectsStore"
 
-const projectsData = [
-  {
-    id: "1",
-    title: "E-Commerce Microservices",
-    description:
-      "A stacalable e-commerce platform using microservices architecture with Python FastAPI, Docker, and React.",
-    image: "/placeholder.svg?height=600&width=1200",
-    status: "Completed",
-    client: "Nebula Technologies",
-    date: "2023-05-15",
-    duration: "4 months",
-    technologies: ["Python", "FastAPI", "Docker", "React", "PostgreSQL"],
-    categories: ["Web Application", "Developer Tools"],
-    githubUrl: "https://github.com/username/ecommerce-microservices",
-    liveUrl: "https://ecommerce-microservices.vercel.app",
-    color: "primary",
-    overview:
-      "Built a scalable e-commerce platform using microservices architecture with Python FastAPI, Docker, and React. The platform includes services for product catalog, user authentication, order processing, payment gateway, and inventory management.",
-    features: [
-      {
-        title: "Microservices Architecture",
-        description:
-          "Decomposed the application into specialized services: Product Catalog, User Authentication, Order Processing, Payment Gateway, and Inventory Management.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "API Gateway",
-        description:
-          "Centralized entry point for all client requests, handling routing, authentication, and rate limiting.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Event-Driven Communication",
-        description:
-          "Implemented asynchronous communication between services using RabbitMQ for events like order placement and inventory updates.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Containerized Deployment",
-        description: "Docker containers orchestrated with Kubernetes for scalable and resilient deployment.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-    ],
-    stats: {
-      commits: 1247,
-      contributors: 8,
-      stars: 342,
-      forks: 87,
-    },
-    relatedProjects: [
-      {
-        id: "2",
-        title: "Task Management App",
-        description: "Full-stack task management application with real-time updates and mobile responsiveness.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["TypeScript", "Next.js", "MongoDB", "Tailwind CSS"],
-      },
-      {
-        id: "3",
-        title: "Healthcare API Platform",
-        description: "RESTful API platform for healthcare data management with Django.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["Python", "Django", "Django REST", "PostgreSQL"],
-      },
-    ],
-  },
-  {
-    id: "2",
-    title: "Task Management App",
-    description:
-      "Full-stack task management application with real-time updates, user authentication, and mobile responsiveness.",
-    image: "/placeholder.svg?height=600&width=1200",
-    status: "Completed",
-    client: "Stellar Solutions",
-    date: "2023-01-10",
-    duration: "2 months",
-    technologies: ["TypeScript", "Next.js", "MongoDB", "Tailwind CSS"],
-    categories: ["Web Application", "Productivity"],
-    githubUrl: "https://github.com/username/task-management-app",
-    liveUrl: "https://task-management-app.vercel.app",
-    overview:
-      "A modern, real-time task management solution for teams and individuals. The application features interactive kanban boards, real-time collaboration, and task dependencies management.",
-    features: [
-      {
-        title: "Kanban Board",
-        description: "Interactive kanban board with customizable columns and drag-and-drop task management.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Real-time Collaboration",
-        description: "Live updates when team members create, modify, or complete tasks.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Task Dependencies",
-        description: "Define and visualize task dependencies to manage complex workflows and project timelines.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Mobile Responsive",
-        description: "Fully responsive design that works seamlessly on desktop, tablet, and mobile devices.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-    ],
-    stats: {
-      commits: 856,
-      contributors: 3,
-      stars: 178,
-      forks: 42,
-    },
-    relatedProjects: [
-      {
-        id: "1",
-        title: "E-Commerce Microservices",
-        description: "A scalable e-commerce platform using microservices architecture.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["Python", "FastAPI", "Docker", "React"],
-      },
-      {
-        id: "4",
-        title: "Mobile Fitness Tracker",
-        description: "Cross-platform mobile application for fitness tracking with workout plans.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["React Native", "TypeScript", "Firebase", "Redux"],
-      },
-    ],
-  },
-  {
-    id: "3",
-    title: "Healthcare API Platform",
-    description:
-      "RESTful API platform for healthcare data management with Django, including authentication, authorization, and data validation.",
-    image: "/placeholder.svg?height=600&width=1200",
-    status: "Completed",
-    client: "MediTech Innovations",
-    date: "2022-11-05",
-    duration: "4 months",
-    technologies: ["Python", "Django", "Django REST", "JWT", "PostgreSQL"],
-    categories: ["API", "Healthcare"],
-    githubUrl: "https://github.com/username/healthcare-api-platform",
-    liveUrl: "https://healthcare-api-platform.vercel.app",
-    overview:
-      "Secure, compliant API infrastructure for healthcare applications. The platform implements FHIR standards for healthcare data exchange and includes comprehensive audit logging for compliance and security.",
-    features: [
-      {
-        title: "FHIR Compliance",
-        description:
-          "Implementation of Fast Healthcare Interoperability Resources (FHIR) standards for healthcare data exchange.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Role-Based Access Control",
-        description:
-          "Granular permission system with role-based access control for different types of healthcare providers.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Audit Logging",
-        description: "Comprehensive audit logging of all data access and modifications for compliance and security.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Data Validation",
-        description: "Robust data validation and sanitization to ensure data integrity and security.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-    ],
-    stats: {
-      commits: 1089,
-      contributors: 5,
-      stars: 215,
-      forks: 63,
-    },
-    relatedProjects: [
-      {
-        id: "1",
-        title: "E-Commerce Microservices",
-        description: "A scalable e-commerce platform using microservices architecture.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["Python", "FastAPI", "Docker", "React"],
-      },
-      {
-        id: "6",
-        title: "Content Management System",
-        description: "Headless CMS with a modern admin interface and API-first approach.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["TypeScript", "Next.js", "GraphQL", "PostgreSQL"],
-      },
-    ],
-  },
-  {
-    id: "4",
-    title: "Mobile Fitness Tracker",
-    description:
-      "Cross-platform mobile application for fitness tracking with workout plans, progress monitoring, and social features.",
-    image: "/placeholder.svg?height=600&width=1200",
-    status: "Completed",
-    client: "FitLife Solutions",
-    date: "2022-08-20",
-    duration: "3 months",
-    technologies: ["React Native", "TypeScript", "Firebase", "Redux"],
-    categories: ["Mobile Application", "Health & Fitness"],
-    githubUrl: "https://github.com/username/mobile-fitness-tracker",
-    liveUrl: "https://mobile-fitness-tracker.vercel.app",
-    overview:
-      "Your personal fitness companion for tracking workouts and achieving goals. The app includes workout tracking, progress analytics, and AI workout recommendations based on user goals and fitness level.",
-    features: [
-      {
-        title: "Workout Tracking",
-        description: "Track exercises, sets, reps, and weights with automatic rest timers and personal records.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Progress Analytics",
-        description:
-          "Visual charts and graphs showing progress over time for different exercises and body measurements.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "AI Workout Recommendations",
-        description: "Personalized workout recommendations based on goals, available equipment, and fitness level.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Social Features",
-        description: "Connect with friends, share achievements, and participate in challenges for added motivation.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-    ],
-    stats: {
-      commits: 932,
-      contributors: 4,
-      stars: 267,
-      forks: 71,
-    },
-    relatedProjects: [
-      {
-        id: "2",
-        title: "Task Management App",
-        description: "Full-stack task management application with real-time updates.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["TypeScript", "Next.js", "MongoDB", "Tailwind CSS"],
-      },
-      {
-        id: "5",
-        title: "Real-time Chat Application",
-        description: "Scalable real-time chat application with private messaging and group chats.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["JavaScript", "Express", "MongoDB", "Redis"],
-      },
-    ],
-  },
-  {
-    id: "5",
-    title: "Real-time Chat Application",
-    description:
-      "Scalable real-time chat application with private messaging, group chats, and file sharing capabilities.",
-    image: "/placeholder.svg?height=600&width=1200",
-    status: "Completed",
-    client: "ConnectX",
-    date: "2022-05-15",
-    duration: "2.5 months",
-    technologies: ["JavaScript", "Express", "MongoDB", "Redis"],
-    categories: ["Web Application", "Communication"],
-    githubUrl: "https://github.com/username/real-time-chat-application",
-    liveUrl: "https://real-time-chat-application.vercel.app",
-    overview:
-      "Secure, feature-rich messaging platform for teams and communities. The application includes real-time messaging, end-to-end encryption, and rich media sharing capabilities.",
-    features: [
-      {
-        title: "Real-time Messaging",
-        description: "Instant message delivery with typing indicators, read receipts, and presence status.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "End-to-End Encryption",
-        description: "Messages encrypted on the client side before transmission, ensuring privacy and security.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Rich Media Sharing",
-        description: "Share images, videos, documents, and code snippets with preview capabilities.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Group Chats & Channels",
-        description: "Create and manage group conversations with customizable permissions and notifications.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-    ],
-    stats: {
-      commits: 768,
-      contributors: 6,
-      stars: 312,
-      forks: 84,
-    },
-    relatedProjects: [
-      {
-        id: "4",
-        title: "Mobile Fitness Tracker",
-        description: "Cross-platform mobile application for fitness tracking with workout plans.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["React Native", "TypeScript", "Firebase", "Redux"],
-      },
-      {
-        id: "6",
-        title: "Content Management System",
-        description: "Headless CMS with a modern admin interface and API-first approach.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["TypeScript", "Next.js", "GraphQL", "PostgreSQL"],
-      },
-    ],
-  },
-  {
-    id: "6",
-    title: "Content Management System",
-    description:
-      "Headless CMS with a modern admin interface, content modeling, and API-first approach for multi-platform publishing.",
-    image: "/placeholder.svg?height=600&width=1200",
-    status: "Completed",
-    client: "PublishPro",
-    date: "2022-02-10",
-    duration: "5 months",
-    technologies: ["TypeScript", "Next.js", "GraphQL", "PostgreSQL"],
-    categories: ["Web Application", "Content Management"],
-    githubUrl: "https://github.com/username/content-management-system",
-    liveUrl: "https://content-management-system.vercel.app",
-    overview:
-      "A flexible, API-first content management system for modern digital experiences. The CMS includes flexible content modeling, a powerful GraphQL API, and a modern block-based editor.",
-    features: [
-      {
-        title: "Content Modeling",
-        description:
-          "Flexible content modeling system allowing users to define custom content types and relationships.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "GraphQL API",
-        description:
-          "Powerful GraphQL API with filtering, pagination, and nested queries for efficient content delivery.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "WYSIWYG Editor",
-        description:
-          "Modern block-based editor with support for rich media, custom components, and collaborative editing.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-      {
-        title: "Multi-platform Publishing",
-        description: "Publish content to multiple platforms and channels from a single source of truth.",
-        image: "/placeholder.svg?height=200&width=400",
-      },
-    ],
-    stats: {
-      commits: 1356,
-      contributors: 7,
-      stars: 389,
-      forks: 92,
-    },
-    relatedProjects: [
-      {
-        id: "3",
-        title: "Healthcare API Platform",
-        description: "RESTful API platform for healthcare data management with Django.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["Python", "Django", "Django REST", "PostgreSQL"],
-      },
-      {
-        id: "5",
-        title: "Real-time Chat Application",
-        description: "Scalable real-time chat application with private messaging and group chats.",
-        image: "/placeholder.svg?height=300&width=600",
-        technologies: ["JavaScript", "Express", "MongoDB", "Redis"],
-      },
-    ],
-  },
-]
 
 
 const sections = [
@@ -417,10 +40,11 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
   const router = useRouter()
   const [activeSection, setActiveSection] = useState("overview")
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [project, setProject] = useState<any>(null)
+  const [project, setProject] = useState<Project | null>(null)
   const [loading, setLoading] = useState(true)
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({})
   const { id } = React.use(params)
+  const { projects, fetchProjects, isLoadingProjects } = useProjectsStore()
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed)
@@ -432,26 +56,24 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
 
   // Find the project data based on the ID
   useEffect(() => {
+    fetchProjects()
     try {
       const projectId = id
-      console.log("Looking for project with ID:", projectId)
-
-      const foundProject = projectsData.find((p) => p.id === projectId)
-      console.log("Project found:", foundProject)
-
-      if (foundProject) {
-        setProject(foundProject)
-      } else {
-        console.log("Project not found, redirecting to projects section")
-        router.push("/#projects")
+      if (projects && projects.length > 1) {
+        const foundProject = projects.find((p) => p._id === projectId)
+        console.log(foundProject)
+        if (foundProject) {
+          setProject(foundProject)
+        } else {
+          setProject(null)
+        }
       }
-
       setLoading(false)
     } catch (error) {
-      console.error("Error in project detail:", error)
+      setProject(null)
       setLoading(false)
     }
-  }, [params, router])
+  }, [params, router, projects])
 
   // Check if mobile on initial load and when window resizes
   useEffect(() => {
@@ -509,10 +131,10 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
     }
   }, [project])
 
-  if (loading) {
+  if (isLoadingProjects || loading) {
     return (
-       <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-gray-50 dark:bg-gray-950 flex items-center justify-center z-50">
-       <Loader text="Loading project details..." />
+      <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-gray-50 dark:bg-gray-950 flex items-center justify-center z-50">
+        <Loader text="Loading project details..." />
       </div>
     )
   }
@@ -636,9 +258,9 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
                     <div className="flex items-center gap-3">
                       <Calendar className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Completion Date</p>
-                        <p className="text-gray-900 dark:text-white">
-                          {new Date(project.date).toLocaleDateString("en-US", {
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Start Date</p>
+                        <p className="text-gray-900 dark:text-white text-sm">
+                          {new Date(project.startDate).toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "long",
                             day: "numeric",
@@ -648,51 +270,11 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <Users className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                      <RefreshCcw className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Client</p>
-                        <p className="text-gray-900 dark:text-white">{project.client}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Status</p>
+                        <p className="text-gray-900 dark:text-white text-sm">{project.status}</p>
                       </div>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <Calendar className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                      <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Duration</p>
-                        <p className="text-gray-900 dark:text-white">{project.duration}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project Stats */}
-                <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-800">
-                  <h3 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Project Statistics</h3>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                        {project.stats.commits}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Commits</div>
-                    </div>
-                    <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                        {project.stats.contributors}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Contributors</div>
-                    </div>
-                    <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                        {project.stats.stars}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Stars</div>
-                    </div>
-                    <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                        {project.stats.forks}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">Forks</div>
                     </div>
                   </div>
                 </div>
@@ -759,14 +341,14 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
           </section>
 
           {/* Related Projects */}
-          <>
+          <div className="py-5">
             <section id="related" className="scroll-mt-24 container mx-auto px-4 -mb-36">
               <h2 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Related Projects</h2>
             </section>
             <div className="mx-auto md:mx-24">
               <Projects />
             </div>
-          </>
+          </div>
         </div>
       </main>
     </div>

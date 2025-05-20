@@ -438,7 +438,7 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                     )}
                     style={{ boxShadow: isActive ? `0 0 15px rgba(${rgbColor}, 0.5)` : "", borderColor: `rgba(${rgbColor}, 0.5)` }}
                   >
-                    <Link href="/projects/1">
+                    <Link href={`/projects/${project._id}`}>
                       <div className="relative h-48 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
                         <img

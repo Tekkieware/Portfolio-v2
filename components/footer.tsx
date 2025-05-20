@@ -27,7 +27,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-muted/30 py-12 mt-20 relative overflow-hidden">
+    <footer className="py-12 mt-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="blob blob-primary blob-1 opacity-10"></div>
       <div className="blob blob-secondary blob-2 opacity-10"></div>
