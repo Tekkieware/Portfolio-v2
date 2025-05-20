@@ -141,27 +141,30 @@ export default function Navbar() {
           </nav>
           <div className="flex items-center md:hidden">
             <ModeToggle />
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-              className="relative w-10 h-10 ml-2 flex items-center justify-center focus:outline-none group"
-            >
-              <div className="relative flex flex-col justify-center items-center w-6 h-6">
-                <span
-                  className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${mobileMenuOpen ? "w-7 translate-y-1.5 rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
-                    }`}
-                ></span>
-                <span
-                  className={`hamburger-line my-1 transition-all duration-300 ease-in-out ${mobileMenuOpen ? "w-0 opacity-0 scale-0" : "w-6 opacity-100 scale-100 bg-gray-900 dark:bg-gray-100"
-                    }`}
-                ></span>
-                <span
-                  className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${mobileMenuOpen ? "w-7 -translate-y-1.5 -rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
-                    }`}
-                ></span>
-              </div>
-              <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300 scale-0 group-hover:scale-100"></div>
-            </button>
+            {
+              !pathname.includes("project") &&
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+                className="relative w-10 h-10 ml-2 flex items-center justify-center focus:outline-none group"
+              >
+                <div className="relative flex flex-col justify-center items-center w-6 h-6">
+                  <span
+                    className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${mobileMenuOpen ? "w-7 translate-y-1.5 rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
+                      }`}
+                  ></span>
+                  <span
+                    className={`hamburger-line my-1 transition-all duration-300 ease-in-out ${mobileMenuOpen ? "w-0 opacity-0 scale-0" : "w-6 opacity-100 scale-100 bg-gray-900 dark:bg-gray-100"
+                      }`}
+                  ></span>
+                  <span
+                    className={`hamburger-line origin-center transition-all duration-500 ease-in-out ${mobileMenuOpen ? "w-7 -translate-y-1.5 -rotate-45 bg-primary" : "w-6 bg-gray-900 dark:bg-gray-100"
+                      }`}
+                  ></span>
+                </div>
+                <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300 scale-0 group-hover:scale-100"></div>
+              </button>
+            }
           </div>
         </div>
       </div>
