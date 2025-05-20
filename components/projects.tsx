@@ -4,10 +4,11 @@ import SLiderProjetsView from './slider-projects-view'
 import ListProjectView from './list-project-view'
 import { useProjectsStore } from '@/lib/store/useProjectsStore'
 
-const Projects = () => {
+const Projects = ({ related, id }: { related?: string, id?: string }) => {
   const [viewMode, setViewMode] = useState("slide")
-  const { fetchProjects, isLoadingProjects, projects } = useProjectsStore()
+  const { fetchProjects, isLoadingProjects, projects: allProjects } = useProjectsStore()
 
+  const projects = related ? allProjects?.filter((project) => project.categories.includes(related) && project._id !== id) : allProjects
   useEffect(() => {
     fetchProjects()
   }, [])

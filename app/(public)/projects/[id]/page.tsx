@@ -348,7 +348,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
               <h2 className="text-2xl font-bold teal-accent-gradient inline-block section-header">Related Projects</h2>
             </section>
             <div className="mx-auto md:mx-24">
-              <Projects />
+              <Projects related={project.categories[0]} id={project._id} />
             </div>
           </div>
         </div>
