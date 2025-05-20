@@ -6,80 +6,14 @@ import { useState, useRef, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Github, ExternalLink, ColumnsIcon } from "lucide-react"
+import { cn, hexToRgb } from "@/lib/utils"
 import Link from "next/link"
+import { Project } from "@/lib/types"
+import Loader from "./loader"
 
-const projects = [
-  {
-    title: "E-Commerce Microservices",
-    description:
-      "Built a scalable e-commerce platform using microservices architecture with Python FastAPI, Docker, and React.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Python", "FastAPI", "Docker", "React", "PostgreSQL"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    category: "🌐 Web App",
-    color: "primary",
-  },
-  {
-    title: "Task Management App",
-    description:
-      "Full-stack task management application with real-time updates, user authentication, and mobile responsiveness.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["TypeScript", "Next.js", "MongoDB", "Tailwind CSS"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    category: "📱 Mobile",
-    color: "gold",
-  },
-  {
-    title: "Healthcare API Platform",
-    description:
-      "RESTful API platform for healthcare data management with Django, including authentication, authorization, and data validation.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Python", "Django", "Django REST", "JWT", "PostgreSQL"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    category: "🏥 Healthcare",
-    color: "teal",
-  },
-  {
-    title: "Mobile Fitness Tracker",
-    description:
-      "Cross-platform mobile application for fitness tracking with workout plans, progress monitoring, and social features.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["React Native", "TypeScript", "Firebase", "Redux"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    category: "💪 Fitness",
-    color: "coral",
-  },
-  {
-    title: "Real-time Chat Application",
-    description:
-      "Scalable real-time chat application with private messaging, group chats, and file sharing capabilities.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["JavaScript", "Socket.io", "Express", "MongoDB"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    category: "💬 Communication",
-    color: "lavender",
-  },
-  {
-    title: "Content Management System",
-    description:
-      "Headless CMS with a modern admin interface, content modeling, and API-first approach for multi-platform publishing.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["TypeScript", "Next.js", "GraphQL", "PostgreSQL"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    category: "📝 CMS",
-    color: "primary",
-  },
-]
 
-export default function SLiderProjetsView() {
+export default function SLiderProjetsView({ projects, isLoadingProjects }: { projects: Project[], isLoadingProjects: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
@@ -129,7 +63,7 @@ export default function SLiderProjetsView() {
     if (isTransitioning) return
 
     setIsTransitioning(true)
-    setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1))
+    setActiveIndex((prev) => (prev === 0 ? projects?.length - 1 : prev - 1))
 
     // Reset transition state after animation completes
     setTimeout(() => {
@@ -141,7 +75,7 @@ export default function SLiderProjetsView() {
     if (isTransitioning) return
 
     setIsTransitioning(true)
-    setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1))
+    setActiveIndex((prev) => (prev === projects?.length - 1 ? 0 : prev + 1))
 
     // Reset transition state after animation completes
     setTimeout(() => {
@@ -256,28 +190,7 @@ export default function SLiderProjetsView() {
     setMousePosition({ x: offsetX, y: offsetY })
   }
 
-  // Get card color based on index
-  const getCardColor = (index: number, color: string) => {
-    return color
-  }
 
-  // Get card border glow class
-  const getCardGlowClass = (color: string) => {
-    switch (color) {
-      case "primary":
-        return "shadow-[0_0_15px_rgba(91,33,182,0.5)]"
-      case "gold":
-        return "shadow-[0_0_15px_rgba(255,215,0,0.5)]"
-      case "teal":
-        return "shadow-[0_0_15px_rgba(0,128,128,0.5)]"
-      case "coral":
-        return "shadow-[0_0_15px_rgba(255,127,80,0.5)]"
-      case "lavender":
-        return "shadow-[0_0_15px_rgba(230,230,250,0.5)]"
-      default:
-        return "shadow-[0_0_15px_rgba(91,33,182,0.5)]"
-    }
-  }
 
   // Get card width based on whether it's active and screen size
   const getCardWidth = (isActive: boolean) => {
@@ -288,6 +201,13 @@ export default function SLiderProjetsView() {
     } else {
       return isActive ? "40%" : "30%"
     }
+  }
+
+
+  if (isLoadingProjects || !projects) {
+    return <div className="container mx-auto px-4 min-h-80 top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
+      <Loader text="LOADING PROJECTS" />
+    </div>
   }
 
   return (
@@ -323,7 +243,7 @@ export default function SLiderProjetsView() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects?.length}</p>
               </div>
               PREV
             </button>
@@ -336,7 +256,7 @@ export default function SLiderProjetsView() {
             >
               NEXT
               <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full ml-1 -mr-1 gap-1">
-                <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects?.length}</p>
                 <svg className=" bg-primary rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M13 7L18 12L13 17"
@@ -383,7 +303,7 @@ export default function SLiderProjetsView() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                  <p className=" text-gold text-[10px]">{activeIndex + 1} / {projects?.length}</p>
                 </div>
                 PREV
               </button>
@@ -398,7 +318,7 @@ export default function SLiderProjetsView() {
               >
                 NEXT
                 <div className="flex items-center justify-center w-12 h-6 bg-white rounded-full ml-1 -mr-1 gap-1">
-                  <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects.length}</p>
+                  <p className=" text-primary text-[10px]">{activeIndex + 1} / {projects?.length}</p>
                   <svg className=" bg-primary rounded-full" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M13 7L18 12L13 17"
@@ -446,8 +366,8 @@ export default function SLiderProjetsView() {
               // Calculate the distance from active index (considering circular navigation)
               const distance = Math.min(
                 Math.abs(index - activeIndex),
-                Math.abs(index - activeIndex - projects.length),
-                Math.abs(index - activeIndex + projects.length),
+                Math.abs(index - activeIndex - projects?.length),
+                Math.abs(index - activeIndex + projects?.length),
               )
 
               // Determine if this card is the active one
@@ -459,9 +379,7 @@ export default function SLiderProjetsView() {
               const isVisible = isMobile ? distance === 0 : distance <= 1
 
               if (!isVisible) return null
-
-              const cardColor = getCardColor(index, project.color)
-              const glowClass = getCardGlowClass(cardColor)
+              const rgbColor = hexToRgb(project.color)
               const cardWidth = getCardWidth(isActive)
 
               // Calculate the position of the card
@@ -472,8 +390,8 @@ export default function SLiderProjetsView() {
               if (!isActive) {
                 position = index < activeIndex ? -1 : 1
                 // Handle wrap-around cases
-                if (activeIndex === 0 && index === projects.length - 1) position = -1
-                if (activeIndex === projects.length - 1 && index === 0) position = 1
+                if (activeIndex === 0 && index === projects?.length - 1) position = -1
+                if (activeIndex === projects?.length - 1 && index === 0) position = 1
               }
 
               // Calculate 3D rotation for inactive cards
@@ -512,21 +430,14 @@ export default function SLiderProjetsView() {
                     <Card
                       className={cn(
                         "overflow-hidden h-full transition-all duration-700",
-                        isActive ? glowClass : "shadow-md",
+                        isActive ? "shadow-[0_0_15px_rgba(91,33,182,0.5)]y" : "shadow-md",
                         isActive ? "border-2" : "border",
                         // Add border radius to outer edges of inactive cards
                         !isActive && position === -1 ? "rounded-l-2xl" : "",
                         !isActive && position === 1 ? "rounded-r-2xl" : "",
-                        cardColor === "primary"
-                          ? "border-primary/50"
-                          : cardColor === "gold"
-                            ? "border-gold/50"
-                            : cardColor === "teal"
-                              ? "border-teal/50"
-                              : cardColor === "coral"
-                                ? "border-coral/50"
-                                : "border-lavender/50",
+
                       )}
+                      style={{ boxShadow: isActive ? `0 0 15px rgba(${rgbColor}, 0.5)` : "", borderColor: `rgba(${rgbColor}, 0.5)` }}
                     >
                       <div className="relative h-48 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
@@ -545,19 +456,11 @@ export default function SLiderProjetsView() {
                         <div className="absolute top-3 left-3 z-20">
                           <Badge
                             className={cn(
-                              "text-xs px-3 py-1",
-                              cardColor === "primary"
-                                ? "bg-primary text-white"
-                                : cardColor === "gold"
-                                  ? "bg-gold text-black"
-                                  : cardColor === "teal"
-                                    ? "bg-teal text-white"
-                                    : cardColor === "coral"
-                                      ? "bg-coral text-white"
-                                      : "bg-lavender text-black",
+                              "text-xs px-3 py-1 text-white",
                             )}
+                            style={{ backgroundColor: project.color }}
                           >
-                            {project.category}
+                            {project.categories[0]}
                           </Badge>
                         </div>
                       </div>
@@ -565,16 +468,7 @@ export default function SLiderProjetsView() {
                       <CardHeader className="pb-2">
                         <CardTitle
                           className={cn(
-                            "line-clamp-1",
-                            cardColor === "primary"
-                              ? "text-primary"
-                              : cardColor === "gold"
-                                ? "text-gold"
-                                : cardColor === "teal"
-                                  ? "text-teal"
-                                  : cardColor === "coral"
-                                    ? "text-coral"
-                                    : "text-lavender",
+                            "line-clamp-1"
                           )}
                         >
                           {project.title}
@@ -586,29 +480,21 @@ export default function SLiderProjetsView() {
 
                       <CardContent>
                         <div className="flex flex-wrap gap-2">
-                          {project.tags.slice(0, isActive ? 5 : 3).map((tag, i) => (
+                          {project.technologies.slice(0, isActive ? 5 : 3).map((tag, i) => (
                             <Badge
                               key={i}
                               variant="outline"
                               className={cn(
-                                "text-xs",
-                                cardColor === "primary"
-                                  ? "border-primary/50 text-primary"
-                                  : cardColor === "gold"
-                                    ? "border-gold/50 text-gold"
-                                    : cardColor === "teal"
-                                      ? "border-teal/50 text-teal"
-                                      : cardColor === "coral"
-                                        ? "border-coral/50 text-coral"
-                                        : "border-lavender/50 text-lavender",
+                                "text-xs"
                               )}
+                              style={{ border: `1px solid rgb(${rgbColor})` }}
                             >
                               {tag}
                             </Badge>
                           ))}
-                          {!isActive && project.tags.length > 3 && (
+                          {!isActive && project.technologies.length > 3 && (
                             <Badge variant="outline" className="text-xs">
-                              +{project.tags.length - 3}
+                              +{project.technologies.length - 3}
                             </Badge>
                           )}
                         </div>
@@ -620,7 +506,7 @@ export default function SLiderProjetsView() {
                             variant="outline"
                             size="sm"
                             className="group"
-                            onClick={() => window.open(project.github, "_blank", "noopener,noreferrer")}
+                            onClick={() => window.open(project.githubUrl, "_blank", "noopener,noreferrer")}
                           >
                             <Github className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
                             GitHub
@@ -628,18 +514,10 @@ export default function SLiderProjetsView() {
                           <Button
                             size="sm"
                             className={cn(
-                              "group relative overflow-hidden",
-                              cardColor === "primary"
-                                ? "bg-primary hover:bg-primary/90 text-white"
-                                : cardColor === "gold"
-                                  ? "bg-gold hover:bg-gold/90 text-black"
-                                  : cardColor === "teal"
-                                    ? "bg-teal hover:bg-teal/90 text-white"
-                                    : cardColor === "coral"
-                                      ? "bg-coral hover:bg-coral/90 text-white"
-                                      : "bg-lavender hover:bg-lavender/90 text-black",
+                              "group relative overflow-hidden"
                             )}
-                            onClick={() => window.open(project.demo, "_blank", "noopener,noreferrer")}
+                            style={{ backgroundColor: project.color }}
+                            onClick={() => window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
                           >
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Live Demo
@@ -662,9 +540,10 @@ export default function SLiderProjetsView() {
               className={cn(
                 "w-2 h-2 rounded-full transition-all relative group",
                 index === activeIndex
-                  ? `bg-${project.color} w-6`
+                  ? `w-6`
                   : "bg-gray-400 dark:bg-gray-600 hover:bg-gray-500 dark:hover:bg-gray-500",
               )}
+              style={{ backgroundColor: index === activeIndex ? project.color : "" }}
               onClick={() => {
                 if (!isTransitioning) {
                   setIsTransitioning(true)

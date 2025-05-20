@@ -37,7 +37,7 @@ const Projects = () => {
         </button>
       </div>
       {
-        viewMode === "slide" ? <SLiderProjetsView /> : <ListProjectView projects={projects!} isLoadingProjects={isLoadingProjects} />
+        viewMode === "slide" ? <SLiderProjetsView projects={projects!} isLoadingProjects={isLoadingProjects} /> : <ListProjectView projects={projects!} isLoadingProjects={isLoadingProjects} />
       }
     </div>
   )
