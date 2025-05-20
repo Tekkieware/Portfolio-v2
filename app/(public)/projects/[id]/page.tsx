@@ -73,6 +73,8 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
       setProject(null)
       setLoading(false)
     }
+    window.scrollTo({ top: 0, behavior: "smooth" })
+
   }, [params, router, projects])
 
   // Check if mobile on initial load and when window resizes
