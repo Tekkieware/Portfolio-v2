@@ -2,7 +2,7 @@
 import { Code, Database, ExternalLink, Github } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
-import { cn } from '@/lib/utils'
+import { cn, hexToRgb } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { Badge } from './ui/badge'
 import { useRouter } from 'next/navigation'
@@ -17,6 +17,8 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
             <Loader text="LOADING PROJECTS" />
         </div>
     }
+
+
     return (
         <section className="py-20">
             <div className="container mx-auto px-4">
@@ -61,7 +63,7 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                                             key={i}
                                             variant="outline"
                                             className=' text-[10px]'
-                                            style={{ color: project.color, borderColor: project.color }}
+                                            style={{ borderColor: `rgb(${hexToRgb(project?.color)}, 0.5)`, color: project.color }}
                                         >
                                             {tag}
                                         </Badge>
@@ -98,7 +100,7 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                                     }}
                                 >
                                     <ExternalLink className="mr-2 h-4 w-4" />
-                                    Live Demo
+                                    Live
                                 </Button>
                             </CardFooter>
                         </Card>

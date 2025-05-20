@@ -426,19 +426,19 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                   onMouseLeave={() => setIsHovering(false)}
                   onMouseMove={isActive ? handleMouseMoveParallax : undefined}
                 >
-                  <Link href="/projects/1">
-                    <Card
-                      className={cn(
-                        "overflow-hidden h-full transition-all duration-700",
-                        isActive ? "shadow-[0_0_15px_rgba(91,33,182,0.5)]y" : "shadow-md",
-                        isActive ? "border-2" : "border",
-                        // Add border radius to outer edges of inactive cards
-                        !isActive && position === -1 ? "rounded-l-2xl" : "",
-                        !isActive && position === 1 ? "rounded-r-2xl" : "",
+                  <Card
+                    className={cn(
+                      "overflow-hidden h-full transition-all duration-700",
+                      isActive ? "shadow-[0_0_15px_rgba(91,33,182,0.5)]y" : "shadow-md",
+                      isActive ? "border-2" : "border",
+                      // Add border radius to outer edges of inactive cards
+                      !isActive && position === -1 ? "rounded-l-2xl" : "",
+                      !isActive && position === 1 ? "rounded-r-2xl" : "",
 
-                      )}
-                      style={{ boxShadow: isActive ? `0 0 15px rgba(${rgbColor}, 0.5)` : "", borderColor: `rgba(${rgbColor}, 0.5)` }}
-                    >
+                    )}
+                    style={{ boxShadow: isActive ? `0 0 15px rgba(${rgbColor}, 0.5)` : "", borderColor: `rgba(${rgbColor}, 0.5)` }}
+                  >
+                    <Link href="/projects/1">
                       <div className="relative h-48 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
                         <img
@@ -456,7 +456,7 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                         <div className="absolute top-3 left-3 z-20">
                           <Badge
                             className={cn(
-                              "text-xs px-3 py-1 text-white",
+                              "text-[10px] px-3 py-1 text-white",
                             )}
                             style={{ backgroundColor: project.color }}
                           >
@@ -468,7 +468,7 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                       <CardHeader className="pb-2">
                         <CardTitle
                           className={cn(
-                            "line-clamp-1"
+                            "line-clamp-1 "
                           )}
                         >
                           {project.title}
@@ -485,9 +485,9 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                               key={i}
                               variant="outline"
                               className={cn(
-                                "text-xs"
+                                "text-xs border"
                               )}
-                              style={{ border: `1px solid rgb(${rgbColor})` }}
+                              style={{ borderColor: `rgb(${rgbColor}, 0.5)`, color: project.color }}
                             >
                               {tag}
                             </Badge>
@@ -499,33 +499,33 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                           )}
                         </div>
                       </CardContent>
+                    </Link>
+                    {isActive && (
+                      <CardFooter className="flex justify-between">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="group text-sm"
+                          onClick={() => window.open(project.githubUrl, "_blank", "noopener,noreferrer")}
+                        >
+                          <Github className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
+                          GitHub
+                        </Button>
+                        <Button
+                          size="sm"
+                          className={cn(
+                            "group relative overflow-hidden text-sm"
+                          )}
+                          style={{ backgroundColor: project.color }}
+                          onClick={() => window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Live
+                        </Button>
+                      </CardFooter>
+                    )}
+                  </Card>
 
-                      {isActive && (
-                        <CardFooter className="flex justify-between">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="group"
-                            onClick={() => window.open(project.githubUrl, "_blank", "noopener,noreferrer")}
-                          >
-                            <Github className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
-                            GitHub
-                          </Button>
-                          <Button
-                            size="sm"
-                            className={cn(
-                              "group relative overflow-hidden"
-                            )}
-                            style={{ backgroundColor: project.color }}
-                            onClick={() => window.open(project.liveUrl, "_blank", "noopener,noreferrer")}
-                          >
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Live Demo
-                          </Button>
-                        </CardFooter>
-                      )}
-                    </Card>
-                  </Link>
                 </div>
               )
             })}
