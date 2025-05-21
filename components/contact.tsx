@@ -133,7 +133,7 @@ export default function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="John Doe"
+                  placeholder="Isaiah Ozadhe"
                   required
                   className="border-primary/20 focus:border-primary focus:ring-primary/20"
                 />
@@ -148,7 +148,7 @@ export default function Contact() {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="john@example.com"
+                  placeholder="isaiahozahe247@gmail.com"
                   required
                   className="border-primary/20 focus:border-primary focus:ring-primary/20"
                 />
@@ -176,7 +176,9 @@ export default function Contact() {
               disabled={isSubmitting}
             >
               {isSubmitting ? (
-                <>Processing...</>
+                <>
+                  <span className="animate-spin mr-2">⏳</span>
+                  Sending...</>
               ) : (
                 <>
                   <Send className="h-4 w-4" />
