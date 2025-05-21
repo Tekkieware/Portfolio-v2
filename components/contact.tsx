@@ -170,20 +170,20 @@ export default function Contact() {
               />
             </div>
 
-            <Button
+            <button
               type="submit"
-              className="w-full btn-gradient-primary group relative overflow-hidden"
+              className="w-full flex items-center gap-1 text-sm justify-center py-2 rounded-sm btn-gradient-primary group relative overflow-hidden"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>Processing...</>
               ) : (
                 <>
-                  <Send className="mr-2 h-4 w-4" />
+                  <Send className="h-4 w-4" />
                   Send Message
                 </>
               )}
-            </Button>
+            </button>
           </form>
         </div>
       </div>
