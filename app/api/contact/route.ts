@@ -6,21 +6,35 @@ export async function POST(req: Request) {
     try {
         const { name, email, subject, message } = await req.json();
 
-        const data = await resend.emails.send({
-            from: email,
+        const result = await resend.emails.send({
+            from: "Isaiah Ozadhe <onboarding@resend.dev>",
             to: 'isaiahozadhe247@gmail.com',
-            subject: subject,
+            subject: subject || 'New message from contact form',
             text: `
-        Name: ${name}
-        Email: ${email}
-        Subject: ${subject}
-        Message:
-        ${message}
-      `,
+            Name: ${name}
+            Email: ${email}
+            Subject: ${subject}
+            Message:
+            ${message}
+            `,
         });
 
-        return Response.json({ success: true, data });
+        if (result.error) {
+            return Response.json({
+                success: false,
+                error: result.error,
+            });
+        }
+
+        return Response.json({
+            success: true,
+            data: result,
+        });
     } catch (error) {
-        return Response.json({ success: false, error });
+        console.error('Unhandled error in /api/contact:', error);
+        return Response.json({
+            success: false,
+            error: { message: 'Unexpected server error', details: error },
+        });
     }
 }

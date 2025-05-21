@@ -22,7 +22,6 @@ export default function Contact() {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -37,7 +36,7 @@ export default function Contact() {
       const result = await res.json();
 
       if (result.success) {
-        console.log("Email sent successfully");
+        console.log("✅ Email sent successfully");
         setFormData({
           name: "",
           email: "",
@@ -45,10 +44,13 @@ export default function Contact() {
           message: "",
         });
       } else {
-        console.error("Email sending failed", result.error);
+        const errorMessage = result.error?.message || "Unknown error occurred.";
+        console.error("❌ Email sending failed:", errorMessage);
+        alert(`Failed to send message: ${errorMessage}`);
       }
     } catch (err) {
-      console.error("Something went wrong", err);
+      console.error("❌ Unexpected error:", err);
+      alert("Something went wrong while sending the message.");
     } finally {
       setIsSubmitting(false);
     }
