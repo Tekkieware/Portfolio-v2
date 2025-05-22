@@ -80,7 +80,7 @@ export default function About() {
           <div className="relative">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 animate-pulse-glow glass-card">
               <img
-                src="/placeholder.svg?height=320&width=320"
+                src="/photo.jpg?height=320&width=320"
                 alt="Isaiah Ozadhe"
                 className="w-full h-full object-cover"
               />
