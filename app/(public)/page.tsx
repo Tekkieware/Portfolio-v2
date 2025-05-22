@@ -59,11 +59,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="blog" className="bg-muted/50 py-20 relative">
+      {/* <section id="blog" className="bg-muted/50 py-20 relative">
         <div className="container mx-auto">
           <Blog />
         </div>
-      </section>
+      </section> */}
 
       <section id="contact" className="py-20">
         <Contact />
