@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Github, Linkedin, Mail, Send } from "lucide-react"
+import { SuccessNotification } from "./success-notification"
+import { ErrorNotification } from "./error-notification"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,6 +19,8 @@ export default function Contact() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -43,14 +47,15 @@ export default function Contact() {
           subject: "",
           message: "",
         });
+        setIsSuccess(true)
       } else {
         const errorMessage = result.error?.message || "Unknown error occurred.";
         console.error("❌ Email sending failed:", errorMessage);
-        alert(`Failed to send message: ${errorMessage}`);
+        setIsError(true)
       }
     } catch (err) {
       console.error("❌ Unexpected error:", err);
-      alert("Something went wrong while sending the message.");
+      setIsError(true)
     } finally {
       setIsSubmitting(false);
     }
@@ -135,12 +140,14 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="fade-in-left delay-100">
+        <div className="fade-in-left delay-100 flex flex-col gap-2">
           <h3
             className="text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header"
           >
             Send Me a Message
           </h3>
+          {isSuccess && <SuccessNotification />}
+          {isError && <ErrorNotification />}
           <form onSubmit={handleSubmit} className="space-y-6 p-6 rounded-lg border border-primary/20 bg-card/50">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">

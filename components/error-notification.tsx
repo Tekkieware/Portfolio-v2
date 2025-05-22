@@ -17,7 +17,7 @@ interface NotificationProps {
 export function ErrorNotification({
     onClose,
     className,
-    autoDismiss = false,
+    autoDismiss = true,
     dismissDuration = 5000,
 }: NotificationProps) {
     const [isVisible, setIsVisible] = useState(true)
@@ -61,7 +61,7 @@ export function ErrorNotification({
     if (!isVisible) return null
 
     return (
-        <div className="fixed top-4 right-4 max-w-md w-full z-50 perspective-notification">
+        <div className="w-full">
             <Card
                 className={cn(
                     "w-full shadow-lg overflow-hidden notification-card error-card",
@@ -111,30 +111,8 @@ export function ErrorNotification({
                                 Oops! Something went wrong. Please try again.
                             </h3>
                             <p className="text-sm text-[#721c24]/80 dark:text-[#e63946]/80 animate-slide-in-right animation-delay-100">
-                                Please send a direct email to example@mail.com
+                                Please send a direct email to isaiahozahe247@gmail.com
                             </p>
-
-                            {/* Action buttons */}
-                            <div className="mt-3 flex gap-2 animate-slide-in-right animation-delay-200">
-                                <Button
-                                    size="sm"
-                                    className="gap-2 bg-gradient-to-r from-[#721c24] to-[#a71d2a] hover:from-[#a71d2a] hover:to-[#721c24] dark:from-[#e63946] dark:to-[#d62828] dark:hover:from-[#d62828] dark:hover:to-[#e63946] text-white transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg"
-                                    onClick={() => (window.location.href = "mailto:example@mail.com")}
-                                >
-                                    <Mail className="h-4 w-4" />
-                                    Send Email
-                                    <ArrowRight className="h-3 w-3 ml-1 animate-bounce-x" />
-                                </Button>
-                                <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="gap-2 border-[#721c24] text-[#721c24] hover:bg-[#721c24]/10 dark:border-[#e63946] dark:text-[#e63946] dark:hover:bg-[#e63946]/10 transition-all duration-300 hover:translate-y-[-2px]"
-                                    onClick={() => window.location.reload()}
-                                >
-                                    <RefreshCw className="h-4 w-4 animate-spin-slow" />
-                                    Try Again
-                                </Button>
-                            </div>
                         </div>
                     </div>
                 </div>

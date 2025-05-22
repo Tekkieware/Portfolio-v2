@@ -106,7 +106,7 @@ export function SuccessNotification({
     if (!isVisible) return null
 
     return (
-        <div className="fixed top-4 right-4 max-w-md w-full z-50 perspective-notification">
+        <div className="w-full">
             <Card
                 className={cn(
                     "w-full shadow-lg overflow-hidden notification-card",
@@ -153,16 +153,13 @@ export function SuccessNotification({
                         {/* Content */}
                         <div className="grid gap-1">
                             <h3 className="text-lg font-semibold leading-none tracking-tight text-[#155724] dark:text-[#2a9d8f] animate-slide-in-right">
-                                Your message has been sent successfully!
+                                Thank you for reaching out!
                             </h3>
                             <p className="text-sm text-[#155724]/80 dark:text-[#2a9d8f]/80 animate-slide-in-right animation-delay-100">
-                                We'll get back to you soon.
+                                I'll get back to you as soon as possible.
                             </p>
                         </div>
                     </div>
-
-                    {/* Particles container */}
-                    <div ref={particlesRef} className="absolute inset-0 pointer-events-none overflow-hidden"></div>
                 </div>
             </Card>
         </div>
