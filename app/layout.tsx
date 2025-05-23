@@ -2,8 +2,6 @@ import type React from "react"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
 import { Inter } from 'next/font/google'
 import { Fira_Code } from 'next/font/google'
 
@@ -16,7 +14,7 @@ export const inter = Inter({
 export const firaCode = Fira_Code({
   subsets: ['latin'],
   variable: '--font-mono',
-  weight: ["700", "500", "600", "300",]
+  weight: ["400"]
 })
 
 
