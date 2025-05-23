@@ -13,6 +13,7 @@ const roles = [
   "JavaScript Engineer",
   "Backend Specialist",
   "Microservices Engineer",
+  "DevOps Enthusiast",
   "Full-Stack Developer",
   "API Architect",
   "Problem Solver"
@@ -74,6 +75,30 @@ export default function Hero() {
         <div className="blob blob-gold blob-2 animate-float" style={{ animationDelay: "-2s" }}></div>
       </div>
       <div className="absolute top-20 left-10 hidden lg:block fade-in-left delay-300">
+
+        <div className="terminal-header">
+          <div className="terminal-dot terminal-dot-red"></div>
+          <div className="terminal-dot terminal-dot-yellow"></div>
+          <div className="terminal-dot terminal-dot-green"></div>
+        </div>
+        <div className="terminal-body w-72">
+          <div className="terminal-line">
+            <span className="terminal-prompt">$</span>
+            <span className="terminal-text">docker run -p 3000:3000 my-app</span>
+          </div>
+          <div className="terminal-line">
+            <span className="terminal-text">[INFO] Starting server...</span>
+          </div>
+          <div className="terminal-line">
+            <span className="terminal-text">[INFO] Listening on http://0.0.0.0:3000</span>
+          </div>
+          <div className="terminal-line">
+            <span className="terminal-text">[SUCCESS] App running in production mode</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-20 right-10 hidden lg:block fade-in-right delay-300">
         <div className="terminal-header">
           <div className="terminal-dot terminal-dot-red"></div>
           <div className="terminal-dot terminal-dot-yellow"></div>
@@ -93,25 +118,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-20 right-10 hidden lg:block fade-in-right delay-300">
-        <div className="terminal-header">
-          <div className="terminal-dot terminal-dot-red"></div>
-          <div className="terminal-dot terminal-dot-yellow"></div>
-          <div className="terminal-dot terminal-dot-green"></div>
-        </div>
-        <div className="terminal-body w-64">
-          <div className="terminal-line">
-            <span className="terminal-prompt">$</span>
-            <span className="terminal-text">npm run dev</span>
-          </div>
-          <div className="terminal-line">
-            <span className="terminal-text">ready - started server on 0.0.0.0:3000</span>
-          </div>
-          <div className="terminal-line">
-            <span className="terminal-text">event - compiled successfully</span>
-          </div>
-        </div>
-      </div>
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center z-10 fade-in-up">
         <div className="mb-6 inline-block">
@@ -141,7 +147,7 @@ export default function Hero() {
         </div>
 
         <p className="text-lg md:text-xl max-w-2xl mb-10 text-muted-foreground">
-        I specialize in building reliable, easy-to-use softwares that solves real-world problems using Python, JavaScript, and TypeScript.
+          I specialize in building reliable, easy-to-use software systems that solve real-world problems using Python, JavaScript, and TypeScript.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
