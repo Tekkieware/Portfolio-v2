@@ -70,7 +70,7 @@ export default function About() {
           <span className="purple-gold-gradient">About Me</span>
         </h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100">
-          I'm a dedicated software engineer with over three years of experience designing and developing web applications, microservices, and mobile solutions.
+          I'm a dedicated software engineer with over three years of experience designing and developing web applications and microservices.
         </p>
       </div>
 
@@ -118,7 +118,7 @@ export default function About() {
 
           <div className="glass-card p-6 rounded-lg gold-border mb-6 card-hover-effect">
             <p className="text-muted-foreground">
-              I build smart, scalable solutions that help solve real-world problems. My skills cover full-stack development, microservices, and mobile apps that work across different platforms.
+              I build smart, scalable solutions that solve real-world problems. My skills span full-stack development, microservices, and DevOps practices that support reliable, efficient software delivery.
             </p>
           </div>
 
@@ -252,18 +252,20 @@ export default function About() {
         >
           <CardHeader className="pb-2">
             <div
-              className="w-12 h-12 rounded-full flex items-center justify-center mb-4 skill-icon skill-icon-teal group-hover:scale-110 transition-transform duration-500"
-              style={{ background: "hsla(var(--teal), 0.1)" }}
+              className="w-12 h-12 rounded-full flex items-center justify-center mb-4 skill-icon skill-icon-blue group-hover:scale-110 transition-transform duration-500"
+              style={{ background: "hsla(var(--blue), 0.1)" }}
             >
               <Globe className="h-6 w-6" style={{ color: "hsl(var(--teal))" }} />
+
             </div>
-            <CardTitle className="text-xl">Cross-Platform Development</CardTitle>
+            <CardTitle className="text-xl">DevOps & CI/CD</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Mobile applications with React Native that run smoothly on both iOS and Android.
+              Automating and optimizing workflows to deliver software quickly, reliably, and consistently across multiple environments.
             </p>
           </CardContent>
+
         </Card>
       </div>
 
