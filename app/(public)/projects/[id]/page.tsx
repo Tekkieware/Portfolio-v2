@@ -169,7 +169,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
       <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-sm backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed ? " w-[78px]" : "w-[188px]")}>
         <button
           onClick={handleBack}
-          className="inline-flex items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+          className="inline-flex w-full items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
         >
           <ArrowLeft size={18} />
           {!isCollapsed && <span className="ml-1 font-medium">Back</span>}

@@ -92,9 +92,6 @@ export default function Hero() {
           <div className="terminal-line">
             <span className="terminal-text">[INFO] Listening on http://0.0.0.0:3000</span>
           </div>
-          <div className="terminal-line">
-            <span className="terminal-text">[SUCCESS] App running in production mode</span>
-          </div>
         </div>
       </div>
 
@@ -113,7 +110,7 @@ export default function Hero() {
             <span className="terminal-text">* Running on http://127.0.0.1:5000</span>
           </div>
           <div className="terminal-line">
-            <span className="terminal-text">* Environment: production</span>
+            <span className="terminal-text">* Environment: development</span>
           </div>
         </div>
       </div>
@@ -121,7 +118,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center z-10 fade-in-up">
         <div className="mb-6 inline-block">
-          <span className="px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs  font-medium">
             Software Engineer
           </span>
         </div>
