@@ -313,7 +313,7 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
               <button
                 onClick={handleNext}
                 aria-label="Next project"
-                className="flex gap-2 items-center px-4 text-sm py-2 text-white rounded-full font-bold shadow-md border border-gray-200 transition-all duration-500 bg-primary hover:bg-primary/70 hover:shadow-lg disabled:opacity-50"
+                className="flex gap-2 items-center px-4 text-xs py-2 text-white rounded-full font-bold shadow-md border border-gray-200 transition-all duration-500 bg-primary hover:bg-primary/70 hover:shadow-lg disabled:opacity-50"
                 disabled={isTransitioning}
               >
                 NEXT
@@ -505,7 +505,7 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                         <Button
                           variant="outline"
                           size="sm"
-                          className="group text-sm"
+                          className="group text-xs"
                           onClick={() => window.open(project.githubUrl, "_blank", "noopener,noreferrer")}
                         >
                           <Github className="mr-2 h-4 w-4 group-hover:text-primary transition-colors" />
@@ -514,7 +514,7 @@ export default function SLiderProjetsView({ projects, isLoadingProjects }: { pro
                         <Button
                           size="sm"
                           className={cn(
-                            "group relative overflow-hidden text-sm"
+                            "group relative overflow-hidden text-xs"
                           )}
                           style={{ backgroundColor: project.color }}
                           onClick={() => window.open(project.liveUrl, "_blank", "noopener,noreferrer")}

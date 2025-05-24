@@ -60,7 +60,7 @@ export default function AdminDashboard() {
             <CardContent className="p-6 relative">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total Projects</p>
+                  <p className="text-xs font-medium text-muted-foreground">Total Projects</p>
                   {isLoadingProjects ? (
                     <div className="h-9 w-16 bg-muted animate-pulse rounded mt-1"></div>
                   ) : (
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
             <CardContent className="p-6 relative">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Published</p>
+                  <p className="text-xs font-medium text-muted-foreground">Published</p>
                   {isLoadingProjects ? (
                     <div className="h-9 w-16 bg-muted animate-pulse rounded mt-1"></div>
                   ) : (
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
             <CardContent className="p-6 relative">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Drafts</p>
+                  <p className="text-xs font-medium text-muted-foreground">Drafts</p>
                   {isLoadingProjects ? (
                     <div className="h-9 w-16 bg-muted animate-pulse rounded mt-1"></div>
                   ) : (

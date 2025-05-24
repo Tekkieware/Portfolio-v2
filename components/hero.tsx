@@ -153,7 +153,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
             size="sm"
-            className="btn-gradient-primary group relative overflow-hidden text-sm px-6"
+            className="btn-gradient-primary group relative overflow-hidden text-xs px-6"
             onClick={() => {
               const projectsSection = document.getElementById("projects")
               if (projectsSection) {
@@ -173,7 +173,7 @@ export default function Hero() {
           <Button
             size="sm"
             variant="outline"
-            className="group relative overflow-hidden border-gold hover:border-primary/60 text-sm px-6"
+            className="group relative overflow-hidden border-gold hover:border-primary/60 text-xs px-6"
             onClick={() => window.open("/resume.pdf", "_blank")}
           >
             <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />

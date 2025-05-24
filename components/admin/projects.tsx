@@ -125,7 +125,7 @@ export default function Projects({ projects, isLoadingProjects }: { projects: Pr
                         </SheetHeader>
                         <div className="py-4 space-y-4">
                             <div className="space-y-2">
-                                <h3 className="text-sm font-medium">Status</h3>
+                                <h3 className="text-xs font-medium">Status</h3>
                                 <div className="flex flex-wrap gap-2">
                                     <Badge
                                         variant="outline"
@@ -144,7 +144,7 @@ export default function Projects({ projects, isLoadingProjects }: { projects: Pr
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <h3 className="text-sm font-medium">Category</h3>
+                                <h3 className="text-xs font-medium">Category</h3>
                                 <div className="flex flex-wrap gap-2">
                                     <Badge
                                         variant="outline"
@@ -226,7 +226,7 @@ export default function Projects({ projects, isLoadingProjects }: { projects: Pr
                                         <TableCell>
                                             <div>
                                                 <p className="font-medium">{project.title}</p>
-                                                <p className="text-sm text-muted-foreground truncate max-w-[250px] md:max-w-[300px]">
+                                                <p className="text-xs text-muted-foreground truncate max-w-[250px] md:max-w-[300px]">
                                                     {project.description}
                                                 </p>
                                             </div>
@@ -291,7 +291,7 @@ export default function Projects({ projects, isLoadingProjects }: { projects: Pr
                                         <div className="flex flex-col items-center justify-center">
                                             <Search className="h-8 w-8 text-muted-foreground mb-2" />
                                             <p className="text-muted-foreground">No projects found</p>
-                                            <p className="text-sm text-muted-foreground">Try adjusting your search query</p>
+                                            <p className="text-xs text-muted-foreground">Try adjusting your search query</p>
                                         </div>
                                     </TableCell>
                                 </TableRow>

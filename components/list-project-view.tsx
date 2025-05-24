@@ -79,7 +79,7 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="group text-sm"
+                                    className="group text-xs"
                                     onClick={(e) => {
                                         e.stopPropagation()
                                         window.open(project.githubUrl, "_blank", "noopener,noreferrer")
@@ -91,7 +91,7 @@ const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[],
                                 <Button
                                     size="sm"
                                     className={cn(
-                                        "group relative overflow-hidden text-white text-sm"
+                                        "group relative overflow-hidden text-white text-xs"
                                     )}
                                     style={{ backgroundColor: project.color }}
                                     onClick={(e) => {

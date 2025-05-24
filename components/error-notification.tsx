@@ -110,7 +110,7 @@ export function ErrorNotification({
                             <h3 className="text-lg font-semibold leading-none tracking-tight text-[#721c24] dark:text-[#e63946] animate-slide-in-right">
                                 Oops! Something went wrong. Please try again.
                             </h3>
-                            <p className="text-sm text-[#721c24]/80 dark:text-[#e63946]/80 animate-slide-in-right animation-delay-100">
+                            <p className="text-xs text-[#721c24]/80 dark:text-[#e63946]/80 animate-slide-in-right animation-delay-100">
                                 Please send a direct email to isaiahozahe247@gmail.com
                             </p>
                         </div>

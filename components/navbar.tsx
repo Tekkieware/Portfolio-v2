@@ -207,7 +207,7 @@ export default function Navbar() {
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href.substring(1))}
                 className={cn(
-                  "mobile-menu-item font-medium py-4 px-4 rounded-md transition-all duration-300 text-sm",
+                  "mobile-menu-item font-medium py-4 px-4 rounded-md transition-all duration-300 text-xs",
                   "hover:bg-primary/10 hover:text-primary hover:translate-x-1 hover:scale-105",
                   "border-l-4 border-transparent",
                   activeSection === link.href.substring(1)
@@ -227,7 +227,7 @@ export default function Navbar() {
 
             <div className="mt-auto pt-6 border-t border-gray-200 dark:border-gray-800">
               <div
-                className="text-sm text-gray-600 dark:text-gray-400"
+                className="text-xs text-gray-600 dark:text-gray-400"
                 style={{
                   animationDelay: `${150 + navLinks.length * 50}ms`,
                   opacity: mobileMenuOpen ? 1 : 0,

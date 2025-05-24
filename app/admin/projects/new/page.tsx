@@ -293,7 +293,7 @@ export default function NewProjectPage() {
                   }
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
-                <span className="ml-3 text-sm font-medium">{projectData.status}</span>
+                <span className="ml-3 text-xs font-medium">{projectData.status}</span>
               </label>
             </div>
             <div className="flex items-center space-x-2">
@@ -310,7 +310,7 @@ export default function NewProjectPage() {
                   }
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                <span className="ml-3 text-sm font-medium capitalize">{projectData.publishStatus}</span>
+                <span className="ml-3 text-xs font-medium capitalize">{projectData.publishStatus}</span>
               </label>
             </div>
           </div>
@@ -337,13 +337,13 @@ export default function NewProjectPage() {
 
       <div className="flex space-x-2 border-b">
         <button
-          className={`px-4 py-2 font-medium text-sm ${activeTab === "overview" ? "text-primary border-b-2 border-primary" : "text-gray-500 hover:text-gray-700"}`}
+          className={`px-4 py-2 font-medium text-xs ${activeTab === "overview" ? "text-primary border-b-2 border-primary" : "text-gray-500 hover:text-gray-700"}`}
           onClick={() => setActiveTab("overview")}
         >
           Overview
         </button>
         <button
-          className={`px-4 py-2 font-medium text-sm ${activeTab === "features" ? "text-primary border-b-2 border-primary" : "text-gray-500 hover:text-gray-700"}`}
+          className={`px-4 py-2 font-medium text-xs ${activeTab === "features" ? "text-primary border-b-2 border-primary" : "text-gray-500 hover:text-gray-700"}`}
           onClick={() => setActiveTab("features")}
         >
           Features
@@ -356,7 +356,7 @@ export default function NewProjectPage() {
             <div className="rounded-lg border border-gray-200 shadow-sm p-6 space-y-6">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="space-y-2">
-                  <label htmlFor="title" className="flex items-center text-sm font-medium">
+                  <label htmlFor="title" className="flex items-center text-xs font-medium">
                     Project Title <span className="text-red-500 ml-1">*</span>
                   </label>
                   <input
@@ -367,11 +367,11 @@ export default function NewProjectPage() {
                     className={`w-full px-3 py-2 border ${formErrors.title ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent`}
                     required
                   />
-                  {formErrors.title && <p className="text-red-500 text-sm mt-1">{formErrors.title}</p>}
+                  {formErrors.title && <p className="text-red-500 text-xs mt-1">{formErrors.title}</p>}
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="description" className="flex items-center text-sm font-medium">
+                  <label htmlFor="description" className="flex items-center text-xs font-medium">
                     Description <span className="text-red-500 ml-1">*</span>
                   </label>
                   <textarea
@@ -383,13 +383,13 @@ export default function NewProjectPage() {
                     className={`w-full bg-transparent px-3 py-2 border ${formErrors.description ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     required
                   />
-                  {formErrors.description && <p className="text-red-500 text-sm mt-1">{formErrors.description}</p>}
+                  {formErrors.description && <p className="text-red-500 text-xs mt-1">{formErrors.description}</p>}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                   <div className="space-y-2">
-                    <label htmlFor="startDate" className="flex items-center text-sm font-medium">
+                    <label htmlFor="startDate" className="flex items-center text-xs font-medium">
                       Start Date <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -400,10 +400,10 @@ export default function NewProjectPage() {
                       className={`w-full bg-transparent px-3 py-2 border ${formErrors.startDate ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
-                    {formErrors.startDate && <p className="text-red-500 text-sm mt-1">{formErrors.startDate}</p>}
+                    {formErrors.startDate && <p className="text-red-500 text-xs mt-1">{formErrors.startDate}</p>}
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="color" className="flex items-center text-sm font-medium">
+                    <label htmlFor="color" className="flex items-center text-xs font-medium">
                       Color Theme <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -414,12 +414,12 @@ export default function NewProjectPage() {
                       className={`w-full bg-transparent px-3 py-2 border ${formErrors.color ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
-                    {formErrors.color && <p className="text-red-500 text-sm mt-1">{formErrors.color}</p>}
+                    {formErrors.color && <p className="text-red-500 text-xs mt-1">{formErrors.color}</p>}
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="githubUrl" className="flex items-center text-sm font-medium">
+                    <label htmlFor="githubUrl" className="flex items-center text-xs font-medium">
                       GitHub URL <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -430,11 +430,11 @@ export default function NewProjectPage() {
                       className={`w-full bg-transparent px-3 py-2 border ${formErrors.githubUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
-                    {formErrors.githubUrl && <p className="text-red-500 text-sm mt-1">{formErrors.githubUrl}</p>}
+                    {formErrors.githubUrl && <p className="text-red-500 text-xs mt-1">{formErrors.githubUrl}</p>}
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="liveUrl" className="flex items-center text-sm font-medium">
+                    <label htmlFor="liveUrl" className="flex items-center text-xs font-medium">
                       Live URL <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -445,12 +445,12 @@ export default function NewProjectPage() {
                       className={`w-full bg-transparent px-3 py-2 border ${formErrors.liveUrl ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       required
                     />
-                    {formErrors.liveUrl && <p className="text-red-500 text-sm mt-1">{formErrors.liveUrl}</p>}
+                    {formErrors.liveUrl && <p className="text-red-500 text-xs mt-1">{formErrors.liveUrl}</p>}
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="overview" className="flex items-center text-sm font-medium">
+                  <label htmlFor="overview" className="flex items-center text-xs font-medium">
                     Overview <span className="text-red-500 ml-1">*</span>
                   </label>
                   <textarea
@@ -462,11 +462,11 @@ export default function NewProjectPage() {
                     className={`w-full bg-transparent px-3 py-2 border ${formErrors.overview ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     required
                   />
-                  {formErrors.overview && <p className="text-red-500 text-sm mt-1">{formErrors.overview}</p>}
+                  {formErrors.overview && <p className="text-red-500 text-xs mt-1">{formErrors.overview}</p>}
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="technologies" className="flex items-center text-sm font-medium">
+                  <label htmlFor="technologies" className="flex items-center text-xs font-medium">
                     Technologies <span className="text-red-500 ml-1">*</span>
                   </label>
                   <div className="flex items-center space-x-2">
@@ -503,11 +503,11 @@ export default function NewProjectPage() {
                       </span>
                     ))}
                   </div>
-                  {formErrors.technologies && <p className="text-red-500 text-sm mt-1">{formErrors.technologies}</p>}
+                  {formErrors.technologies && <p className="text-red-500 text-xs mt-1">{formErrors.technologies}</p>}
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="categories" className="flex items-center text-sm font-medium">
+                  <label htmlFor="categories" className="flex items-center text-xs font-medium">
                     Categories <span className="text-red-500 ml-1">*</span>
                   </label>
                   <div className="flex items-center space-x-2">
@@ -544,7 +544,7 @@ export default function NewProjectPage() {
                       </span>
                     ))}
                   </div>
-                  {formErrors.categories && <p className="text-red-500 text-sm mt-1">{formErrors.categories}</p>}
+                  {formErrors.categories && <p className="text-red-500 text-xs mt-1">{formErrors.categories}</p>}
                 </div>
               </form>
             </div>
@@ -557,7 +557,7 @@ export default function NewProjectPage() {
                 <button
                   type="button"
                   onClick={handleAddFeature}
-                  className="flex items-center px-3 py-1.5 text-sm bg-primary text-white rounded-md hover:bg-primary transition-colors"
+                  className="flex items-center px-3 py-1.5 text-xs bg-primary text-white rounded-md hover:bg-primary transition-colors"
                 >
                   <Plus className="h-4 w-4 mr-1" />
                   Add Feature
@@ -565,7 +565,7 @@ export default function NewProjectPage() {
               </div>
 
               {formErrors.features && (
-                <p className="text-red-500 text-sm mt-1 p-2 bg-red-50 rounded-md">{formErrors.features}</p>
+                <p className="text-red-500 text-xs mt-1 p-2 bg-red-50 rounded-md">{formErrors.features}</p>
               )}
 
               {projectData.features.length === 0 ? (
@@ -580,7 +580,7 @@ export default function NewProjectPage() {
                         key={index}
                         type="button"
                         onClick={() => setSelectedFeatureIndex(index)}
-                        className={`px-3 py-1.5 text-sm rounded-md transition-colors ${selectedFeatureIndex === index
+                        className={`px-3 py-1.5 text-xs rounded-md transition-colors ${selectedFeatureIndex === index
                           ? "bg-primary text-white"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                           }`}
@@ -601,7 +601,7 @@ export default function NewProjectPage() {
                       </button>
                       <div className="space-y-4">
                         <div>
-                          <label htmlFor="feature-title" className="flex items-center text-sm font-medium mb-1">
+                          <label htmlFor="feature-title" className="flex items-center text-xs font-medium mb-1">
                             Feature Title <span className="text-red-500 ml-1">*</span>
                           </label>
                           <input
@@ -614,13 +614,13 @@ export default function NewProjectPage() {
                             required
                           />
                           {formErrors[`feature-${selectedFeatureIndex}-title`] && (
-                            <p className="text-red-500 text-sm mt-1">
+                            <p className="text-red-500 text-xs mt-1">
                               {formErrors[`feature-${selectedFeatureIndex}-title`]}
                             </p>
                           )}
                         </div>
                         <div>
-                          <label htmlFor="feature-desc" className="flex items-center text-sm font-medium mb-1">
+                          <label htmlFor="feature-desc" className="flex items-center text-xs font-medium mb-1">
                             Feature Description <span className="text-red-500 ml-1">*</span>
                           </label>
                           <textarea
@@ -636,7 +636,7 @@ export default function NewProjectPage() {
                             required
                           />
                           {formErrors[`feature-${selectedFeatureIndex}-description`] && (
-                            <p className="text-red-500 text-sm mt-1">
+                            <p className="text-red-500 text-xs mt-1">
                               {formErrors[`feature-${selectedFeatureIndex}-description`]}
                             </p>
                           )}
@@ -655,7 +655,7 @@ export default function NewProjectPage() {
             <>
               <div className="rounded-lg border border-gray-200 shadow-sm p-6">
                 <div className="space-y-4">
-                  <label className="block text-sm font-medium">
+                  <label className="block text-xs font-medium">
                     Featured Image <span className="text-red-500">*</span>
                   </label>
                   <div className="relative rounded-lg overflow-hidden">
@@ -674,7 +674,7 @@ export default function NewProjectPage() {
                       />
                       <label
                         htmlFor="main-image-upload"
-                        className="bg-primary text-white hover:bg-primary px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
+                        className="bg-primary text-white hover:bg-primary px-4 py-2 rounded-md text-xs cursor-pointer transition-colors"
                       >
                         Change Image
                       </label>
@@ -712,7 +712,7 @@ export default function NewProjectPage() {
                             </span>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-500 line-clamp-2">
+                        <p className="text-xs text-gray-500 line-clamp-2">
                           {projectData.description || "Project description will appear here"}
                         </p>
                         <div className="mt-3 flex flex-wrap gap-1">
@@ -739,7 +739,7 @@ export default function NewProjectPage() {
             <>
               <div className=" rounded-lg border border-gray-200 shadow-sm p-6">
                 <div className="space-y-4">
-                  <label className="block text-sm font-medium">
+                  <label className="block text-xs font-medium">
                     Feature Image <span className="text-red-500">*</span>
                   </label>
                   <div className="relative rounded-lg overflow-hidden">
@@ -758,7 +758,7 @@ export default function NewProjectPage() {
                       />
                       <label
                         htmlFor={`feature-image-upload-${selectedFeatureIndex}`}
-                        className="bg-primary text-white hover:bg-primary px-4 py-2 rounded-md text-sm cursor-pointer transition-colors"
+                        className="bg-primary text-white hover:bg-primary px-4 py-2 rounded-md text-xs cursor-pointer transition-colors"
                       >
                         Change Image
                       </label>
@@ -783,7 +783,7 @@ export default function NewProjectPage() {
                         <h3 className="font-bold text-lg">
                           {projectData.features[selectedFeatureIndex].title || "Feature Title"}
                         </h3>
-                        <p className="text-sm text-gray-500 mt-2">
+                        <p className="text-xs text-gray-500 mt-2">
                           {projectData.features[selectedFeatureIndex].description ||
                             "Feature description will appear here"}
                         </p>

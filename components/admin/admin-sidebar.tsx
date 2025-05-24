@@ -98,7 +98,7 @@ export default function AdminSidebar() {
           variant="ghost"
           onClick={logoutHandler}
           className={cn(
-            "w-full justify-start flex gap-1 items-center text-muted-foreground hover:text-foreground text-sm hover:cursor-pointer",
+            "w-full justify-start flex gap-1 items-center text-muted-foreground hover:text-foreground text-xs hover:cursor-pointer",
             collapsed && "justify-center",
           )}
           asChild

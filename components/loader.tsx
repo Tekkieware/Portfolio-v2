@@ -10,7 +10,7 @@ const Loader = ({text}: {text?: string}) => {
                 <div className="absolute inset-6 border-4 border-b-emerald-500 border-t-transparent border-r-transparent border-l-transparent rounded-full animate-spin-slower"></div>
                 <div className="absolute inset-8 border-4 border-l-rose-500 border-t-transparent border-r-transparent border-b-transparent rounded-full animate-spin"></div>
             </div>
-            <div className="mt-4 text-purple-500 font-mono text-sm tracking-wider">{text}</div>
+            <div className="mt-4 text-purple-500 font-mono text-xs tracking-wider">{text}</div>
         </div>
     )
 }

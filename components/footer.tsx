@@ -42,7 +42,7 @@ export default function Footer() {
             >
               <Logo />
             </a>
-            <p className="text-muted-foreground text-sm max-w-md">
+            <p className="text-muted-foreground text-xs max-w-md">
               Building Solutions!
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-sm text-muted-foreground mb-4 md:mb-0">
+          <div className="text-xs text-muted-foreground mb-4 md:mb-0">
             © {new Date().getFullYear()} Isaiah Ozadhe. All rights reserved.
           </div>
 
@@ -90,7 +90,7 @@ export default function Footer() {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={(e) => scrollToSection(e, item.toLowerCase())}
-                  className={`text-sm text-muted-foreground hover:${index % 4 === 0
+                  className={`text-xs text-muted-foreground hover:${index % 4 === 0
                     ? "text-primary"
                     : index % 4 === 1
                       ? "text-gold"

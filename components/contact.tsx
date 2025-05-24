@@ -151,7 +151,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-6 p-6 rounded-lg border border-primary/20 bg-card/50">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium">
+                <label htmlFor="name" className="text-xs font-medium">
                   Your Name
                 </label>
                 <Input
@@ -165,7 +165,7 @@ export default function Contact() {
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
+                <label htmlFor="email" className="text-xs font-medium">
                   Your Email
                 </label>
                 <Input
@@ -181,7 +181,7 @@ export default function Contact() {
               </div>
             </div>
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium">
+              <label htmlFor="message" className="text-xs font-medium">
                 Message
               </label>
               <Textarea
@@ -198,7 +198,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="w-full flex items-center gap-1 text-sm justify-center py-2 rounded-sm btn-gradient-primary group relative overflow-hidden"
+              className="w-full flex items-center gap-1 text-xs justify-center py-2 rounded-sm btn-gradient-primary group relative overflow-hidden"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

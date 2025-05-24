@@ -24,14 +24,14 @@ const Projects = ({ related, id }: { related?: string, id?: string }) => {
       <div className="flex w-full justify-center space-x-2 fade-in-up delay-200 mb-5">
         <button
           onClick={() => setViewMode("slide")}
-          className={`px-4 py-2 rounded-md text-sm transition-all duration-300 ${viewMode === "slide" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+          className={`px-4 py-2 rounded-md text-xs transition-all duration-300 ${viewMode === "slide" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
             }`}
         >
           Slide View
         </button>
         <button
           onClick={() => setViewMode("list")}
-          className={`px-4 py-2 rounded-md text-sm transition-all duration-300 ${viewMode === "list" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+          className={`px-4 py-2 rounded-md text-xs transition-all duration-300 ${viewMode === "list" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
             }`}
         >
           List View

@@ -42,7 +42,7 @@ function SideNavigator({
               <li key={section.id}>
                 <button
                   onClick={() => scrollToSection(section.id)}
-                  className={` w-full flex gap-1 px-3 py-2 rounded-md text-sm ${
+                  className={` w-full flex gap-1 px-3 py-2 rounded-md text-xs ${
                     activeSection === section.id ? "bg-primary text-primary-foreground" : "hover:bg-muted"
                   }`}
                 >

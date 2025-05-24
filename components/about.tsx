@@ -111,7 +111,7 @@ const careerSteps = [
               />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-background rounded-full p-3 shadow-lg glass-card">
-              <Badge className="text-sm px-3 py-1 bg-primary hover:bg-primary">3+ Years</Badge>
+              <Badge className="text-xs px-3 py-1 bg-primary hover:bg-primary">3+ Years</Badge>
             </div>
 
             {/* Decorative elements */}
@@ -333,7 +333,7 @@ const careerSteps = [
                     {step.period}
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">{step.company}</p>
+                <p className="text-xs text-muted-foreground mb-2">{step.company}</p>
                 <p className="text-muted-foreground">{step.description}</p>
               </div>
             </div>

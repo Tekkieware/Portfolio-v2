@@ -166,7 +166,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
       <SideNavigator activeSection={activeSection} isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       <MobileNav activeSection={activeSection} />
       {/* Back Button */}
-      <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-sm backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed ? " w-[78px]" : "w-[188px]")}>
+      <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-xs backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed ? " w-[78px]" : "w-[188px]")}>
         <button
           onClick={handleBack}
           className="inline-flex w-full items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
@@ -243,7 +243,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
                     {project.technologies.map((tech: string, index: number) => (
                       <span
                         key={index}
-                        className="px-3 py-1 text-sm rounded-md bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                        className="px-3 py-1 text-xs rounded-md bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                       >
                         {tech}
                       </span>
@@ -260,8 +260,8 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
                     <div className="flex items-center gap-3">
                       <Calendar className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Start Date</p>
-                        <p className="text-gray-900 dark:text-white text-sm">
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Start Date</p>
+                        <p className="text-gray-900 dark:text-white text-xs">
                           {new Date(project.startDate).toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "long",
@@ -274,8 +274,8 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
                     <div className="flex items-center gap-3">
                       <RefreshCcw className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Status</p>
-                        <p className="text-gray-900 dark:text-white text-sm">{project.status}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Status</p>
+                        <p className="text-gray-900 dark:text-white text-xs">{project.status}</p>
                       </div>
                     </div>
                   </div>

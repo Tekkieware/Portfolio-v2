@@ -148,14 +148,14 @@ export default function Skills() {
         <div className="flex space-x-2 fade-in-up delay-200">
           <button
             onClick={() => setViewMode("bars")}
-            className={`px-4 py-2 rounded-md text-sm transition-all duration-300 ${viewMode === "bars" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+            className={`px-4 py-2 rounded-md text-xs transition-all duration-300 ${viewMode === "bars" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
               }`}
           >
             Progress Bars
           </button>
           <button
             onClick={() => setViewMode("icons")}
-            className={`px-4 py-2 rounded-md text-sm transition-all duration-300 ${viewMode === "icons" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+            className={`px-4 py-2 rounded-md text-xs transition-all duration-300 ${viewMode === "icons" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
               }`}
           >
             Icons View
@@ -260,7 +260,7 @@ export default function Skills() {
                         >
                           {skill.icon}
                         </div>
-                        <span className="text-sm font-medium">{skill.name}</span>
+                        <span className="text-xs font-medium">{skill.name}</span>
                         <div className="w-full bg-muted/50 h-1.5 rounded-full mt-2">
                           <div
                             className={`h-full rounded-full ${index % 4 === 0

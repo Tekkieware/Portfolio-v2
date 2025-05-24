@@ -155,7 +155,7 @@ export function SuccessNotification({
                             <h3 className="text-lg font-semibold leading-none tracking-tight text-[#155724] dark:text-[#2a9d8f] animate-slide-in-right">
                                 Thank you for reaching out!
                             </h3>
-                            <p className="text-sm text-[#155724]/80 dark:text-[#2a9d8f]/80 animate-slide-in-right animation-delay-100">
+                            <p className="text-xs text-[#155724]/80 dark:text-[#2a9d8f]/80 animate-slide-in-right animation-delay-100">
                                 I'll get back to you as soon as possible.
                             </p>
                         </div>
