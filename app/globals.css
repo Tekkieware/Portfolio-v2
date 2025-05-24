@@ -854,7 +854,7 @@ button:active .hamburger-line {
 
 /* Enhanced progress bars */
 .animated-progress {
-  height: 0.5rem;
+  height: 0.3rem;
   background-color: hsl(var(--secondary));
   border-radius: 0.25rem;
   overflow: hidden;

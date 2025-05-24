@@ -201,7 +201,7 @@ export default function Skills() {
                     >
                       <div className="flex justify-between">
                         <span className=" text-sm">{skill.name}</span>
-                        <span className="text-muted-foreground">{skill.level}%</span>
+                        <span className="text-muted-foreground text-sm">{skill.level}%</span>
                       </div>
                       <div className="animated-progress">
                         <div
