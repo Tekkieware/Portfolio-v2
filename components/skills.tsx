@@ -169,7 +169,7 @@ export default function Skills() {
             <button
               key={category.id}
               onClick={() => setActiveTab(category.id)}
-              className={`flex items-center justify-center gap-2 transition-all duration-300 py-2 px-3 rounded-md ${activeTab === category.id
+              className={`flex items-center text-md justify-center gap-2 transition-all duration-300 py-2 px-3 rounded-md ${activeTab === category.id
                 ? `${index % 4 === 0
                   ? "tab-gradient-active"
                   : index % 4 === 1
@@ -200,7 +200,7 @@ export default function Skills() {
                       }}
                     >
                       <div className="flex justify-between">
-                        <span className="font-medium">{skill.name}</span>
+                        <span className=" text-sm">{skill.name}</span>
                         <span className="text-muted-foreground">{skill.level}%</span>
                       </div>
                       <div className="animated-progress">
@@ -260,7 +260,7 @@ export default function Skills() {
                         >
                           {skill.icon}
                         </div>
-                        <span className="text-xs font-medium">{skill.name}</span>
+                        <span className="text-sm font-medium">{skill.name}</span>
                         <div className="w-full bg-muted/50 h-1.5 rounded-full mt-2">
                           <div
                             className={`h-full rounded-full ${index % 4 === 0

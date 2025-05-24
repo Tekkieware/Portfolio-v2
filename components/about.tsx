@@ -35,50 +35,43 @@ export default function About() {
   }, [])
 
   // Career timeline data
-const careerSteps = [
-  {
-    title: "Full Stack Developer",
-    company: "Luday SE",
-    period: "Mar 2024 – Present",
-    description:
-      "Leading and Collaborating on projects across frontend, backend, and DevOps. Mentoring developers and improving internal tools.",
-  },
-  {
-    title: "Frontend Developer (Part-Time)",
-    company: "Knight Corporate Services",
-    period: "Apr 2023 – Feb 2024",
-    description:
-      "Developed and maintained the company's website, focusing on performance, design, and user experience.",
-  },
-  {
-    title: "IT Officer (NYSC)",
-    company: "Spaceview Scientific Nigeria Ltd.",
-    period: "Sep 2022 – Mar 2023",
-    description:
-      "Managed company IT infrastructure, website updates, and provided hardware/software support.",
-  },
-  {
-    title: "Backend Intern",
-    company: "Hotels.ng (HNG)",
-    period: "Oct 2022 – Dec 2022",
-    description:
-      "Built APIs with FastAPI, led backend tasks, and supported integration efforts during a competitive internship.",
-  },
-  {
-    title: "Web Development Intern",
-    company: "Oasis Infobyte",
-    period: "Feb 2022 – Mar 2022",
-    description:
-      "Created a full-stack pizza ordering app using React and Django, including payment integration.",
-  },
-  {
-    title: "Web Development Trainee",
-    company: "Hallmarkit Business Solutions",
-    period: "Feb 2019 – Aug 2019",
-    description:
-      "Trained in HTML, CSS, JavaScript, ASP.NET, and SQL. Assisted peers and supported basic development tasks.",
-  },
-];
+  const careerSteps = [
+    {
+      title: "Full Stack Developer",
+      company: "Luday SE",
+      period: "Mar 2024 – Present",
+      description:
+        "Leading and Collaborating on projects across frontend, backend, and DevOps. Mentoring developers and improving internal tools.",
+    },
+    {
+      title: "Frontend Developer (Part-Time)",
+      company: "Knight Corporate Services",
+      period: "Apr 2023 – Feb 2024",
+      description:
+        "Developed and maintained the company's website, focusing on performance, design, and user experience.",
+    },
+    {
+      title: "IT Officer (NYSC)",
+      company: "Spaceview Scientific Nigeria Ltd.",
+      period: "Sep 2022 – Mar 2023",
+      description:
+        "Managed company IT infrastructure, website updates, and provided hardware/software support.",
+    },
+    {
+      title: "Backend Intern",
+      company: "Hotels.ng (HNG)",
+      period: "Oct 2022 – Dec 2022",
+      description:
+        "Built APIs with FastAPI, led backend tasks, and supported integration efforts during a competitive internship.",
+    },
+    {
+      title: "Web Development Intern",
+      company: "Oasis Infobyte",
+      period: "Feb 2022 – Mar 2022",
+      description:
+        "Created a full-stack pizza ordering app using React and Django, including payment integration.",
+    }
+  ];
 
 
   return (
@@ -94,7 +87,7 @@ const careerSteps = [
         <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up">
           <span className="purple-gold-gradient">About Me</span>
         </h2>
-        <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100">
+        <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100 text-md">
           I'm a dedicated software engineer with over three years of experience designing and developing web applications and microservices.
         </p>
       </div>
@@ -133,7 +126,7 @@ const careerSteps = [
         <div className="fade-in-left delay-200">
           <h3
             className={cn(
-              "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
+              "text-xl font-bold mb-8 teal-accent-gradient inline-block section-header",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
               "transition-all duration-1000 delay-700",
             )}
@@ -142,7 +135,7 @@ const careerSteps = [
           </h3>
 
           <div className="glass-card p-6 rounded-lg gold-border mb-6 card-hover-effect">
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               I build smart, scalable solutions that solve real-world problems. My skills span full-stack development, microservices, and DevOps practices that support reliable, efficient software delivery.
             </p>
           </div>
@@ -150,7 +143,7 @@ const careerSteps = [
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-6">
             <Button
               variant="outline"
-              className="group relative overflow-hidden border-primary/30 hover:border-primary/60 flex-1"
+              className="group relative overflow-hidden border-primary/30 hover:border-primary/60 flex-1 text-sm"
               onClick={() => window.open("/resume.pdf", "_blank")}
             >
               <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
@@ -159,7 +152,7 @@ const careerSteps = [
             </Button>
 
             <Button
-              className="bg-primary hover:bg-primary/90 group relative overflow-hidden flex-1"
+              className="bg-primary hover:bg-primary/90 group relative overflow-hidden flex-1 text-sm"
               onClick={() => {
                 const contactSection = document.getElementById("contact")
                 if (contactSection) {
@@ -212,7 +205,7 @@ const careerSteps = [
 
       <h3
         className={cn(
-          "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
+          "text-xl font-bold mb-8 teal-accent-gradient inline-block section-header",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           "transition-all duration-1000 delay-700",
         )}
@@ -231,13 +224,13 @@ const careerSteps = [
           )}
         >
           <CardHeader className="pb-2">
-            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
-              <Code className="h-6 w-6 text-primary" />
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
+              <Code className="h-5 w-5 text-primary" />
             </div>
-            <CardTitle className="text-xl">Full-Stack Development</CardTitle>
+            <CardTitle className="text-lg">Full-Stack Development</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               I'm skilled in Python (Flask, Django) and JavaScript/TypeScript (React, Next.js, React Native), and use them to build complete, end-to-end solutions.
             </p>
           </CardContent>
@@ -252,16 +245,13 @@ const careerSteps = [
           )}
         >
           <CardHeader className="pb-2">
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center mb-4 skill-icon skill-icon-gold group-hover:scale-110 transition-transform duration-500"
-              style={{ background: "hsla(var(--gold), 0.1)" }}
-            >
-              <Server className="h-6 w-6" style={{ color: "hsl(var(--gold))" }} />
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
+              <Server className="h-5 w-5" style={{ color: "hsl(var(--gold))" }} />
             </div>
-            <CardTitle className="text-xl">Microservices Architecture</CardTitle>
+            <CardTitle className="text-lg">Microservices Architecture</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               I design and build microservices using Docker, with a growing understanding of Kubernetes and DevOps practices.
             </p>
           </CardContent>
@@ -276,17 +266,14 @@ const careerSteps = [
           )}
         >
           <CardHeader className="pb-2">
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center mb-4 skill-icon skill-icon-blue group-hover:scale-110 transition-transform duration-500"
-              style={{ background: "hsla(var(--blue), 0.1)" }}
-            >
-              <Globe className="h-6 w-6" style={{ color: "hsl(var(--teal))" }} />
+                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
+              <Globe className="h-5 w-5" style={{ color: "hsl(var(--teal))" }} />
 
             </div>
-            <CardTitle className="text-xl">DevOps & CI/CD</CardTitle>
+            <CardTitle className="text-lg">DevOps & CI/CD</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Automating and optimizing workflows to deliver software quickly, reliably, and consistently across multiple environments.
             </p>
           </CardContent>
@@ -296,7 +283,7 @@ const careerSteps = [
 
       <h3
         className={cn(
-          "text-2xl font-bold mb-8 teal-accent-gradient inline-block section-header",
+          "text-xl font-bold mb-8 teal-accent-gradient inline-block section-header",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           "transition-all duration-1000 delay-700",
         )}
@@ -307,7 +294,7 @@ const careerSteps = [
       {/* Timeline */}
       <div className="relative mb-16">
         {/* Timeline line */}
-        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-gold/50 to-teal/50"></div>
+        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-gold/50 to-primary/30"></div>
 
         {/* Timeline steps */}
         {careerSteps.map((step, index) => (
@@ -322,19 +309,19 @@ const careerSteps = [
             style={{ transitionDelay: `${1200 + index * 100}ms` }}
           >
             {/* Timeline dot */}
-            <div className="absolute left-0 -top-1 md:top-2 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10"></div>
+            <div className="absolute left-0 -top-1 md:top-2 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-background border border-primary/30 z-10"></div>
 
             {/* Content */}
             <div className={cn("ml-6 md:ml-0 md:w-[calc(50%-20px)]", index % 2 === 0 ? "md:mr-10" : "md:ml-10")}>
               <div className="glass-card p-6 rounded-lg border border-primary/20 backdrop-blur-sm bg-background/30 dark:bg-gray-900/30 hover:border-primary/40 transition-colors duration-300">
                 <div className="flex justify-between items-center mb-2">
-                  <h4 className="font-bold text-lg">{step.title}</h4>
+                  <h4 className="font-bold text-md">{step.title}</h4>
                   <Badge variant="secondary" className="bg-primary/10 text-primary">
                     {step.period}
                   </Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mb-2">{step.company}</p>
-                <p className="text-muted-foreground">{step.description}</p>
+                <p className="text-muted-foreground text-sm">{step.description}</p>
               </div>
             </div>
           </div>

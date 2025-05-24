@@ -146,7 +146,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <p className="text-lg max-w-2xl mb-10 text-muted-foreground">
+        <p className="text-md max-w-2xl mb-10 text-muted-foreground">
           I specialize in building reliable, easy-to-use software systems that solve real-world problems using Python, JavaScript, and TypeScript.
         </p>
 
