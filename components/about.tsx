@@ -35,26 +35,51 @@ export default function About() {
   }, [])
 
   // Career timeline data
-  const careerSteps = [
-    {
-      title: "Senior Developer",
-      company: "TechFusion Inc.",
-      period: "2023 - Present",
-      description: "Leading development of microservices architecture and mentoring junior developers.",
-    },
-    {
-      title: "Full-Stack Engineer",
-      company: "InnovateSoft",
-      period: "2020 - 2023",
-      description: "Developed and maintained full-stack applications using React, Node.js, and Python.",
-    },
-    {
-      title: "Backend Developer",
-      company: "DataCore Systems",
-      period: "2018 - 2020",
-      description: "Built RESTful APIs and database solutions for web and mobile applications.",
-    },
-  ]
+const careerSteps = [
+  {
+    title: "Full Stack Developer",
+    company: "Luday SE",
+    period: "Mar 2024 – Present",
+    description:
+      "Leading projects across frontend, backend, and DevOps. Mentoring developers and improving internal tools.",
+  },
+  {
+    title: "Frontend Developer (Part-Time)",
+    company: "Knight Corporate Services",
+    period: "Apr 2023 – Feb 2024",
+    description:
+      "Developed and maintained the company's website, focusing on performance, design, and user experience.",
+  },
+  {
+    title: "IT Officer (NYSC)",
+    company: "Spaceview Scientific Nigeria Ltd.",
+    period: "Sep 2022 – Mar 2023",
+    description:
+      "Managed company IT infrastructure, website updates, and provided hardware/software support.",
+  },
+  {
+    title: "Backend Intern",
+    company: "Hotels.ng (HNG)",
+    period: "Oct 2022 – Dec 2022",
+    description:
+      "Built APIs with FastAPI, led backend tasks, and supported integration efforts during a competitive internship.",
+  },
+  {
+    title: "Web Development Intern",
+    company: "Oasis Infobyte",
+    period: "Feb 2022 – Mar 2022",
+    description:
+      "Created a full-stack pizza ordering app using React and Django, including payment integration.",
+  },
+  {
+    title: "Web Development Trainee",
+    company: "Hallmarkit Business Solutions",
+    period: "Feb 2019 – Aug 2019",
+    description:
+      "Trained in HTML, CSS, JavaScript, ASP.NET, and SQL. Assisted peers and supported basic development tasks.",
+  },
+];
+
 
   return (
     <div ref={sectionRef} className="container mx-auto px-4 relative overflow-hidden">
