@@ -263,7 +263,7 @@ export default function Skills() {
                         <span className="text-sm font-medium">{skill.name}</span>
                         <div className="w-full bg-muted/50 h-1.5 rounded-full mt-2">
                           <div
-                            className={`h-full rounded-full ${index % 4 === 0
+                            className={`h-1 rounded-full ${index % 4 === 0
                               ? "progress-gradient-primary"
                               : index % 4 === 1
                                 ? "progress-gradient-gold"
