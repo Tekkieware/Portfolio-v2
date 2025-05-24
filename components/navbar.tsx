@@ -126,7 +126,7 @@ export default function Navbar() {
                   href={link.href}
                   onClick={(e) => scrollToSection(e, link.href.substring(1))}
                   className={cn(
-                    "text-sm font-medium transition-colors relative py-2",
+                    "text-xs font-medium transition-colors relative py-2",
                     activeSection === link.href.substring(1) ? "text-primary" : "hover:text-primary",
                   )}
                 >
@@ -207,7 +207,7 @@ export default function Navbar() {
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href.substring(1))}
                 className={cn(
-                  "mobile-menu-item text-xl font-medium py-4 px-4 rounded-md transition-all duration-300",
+                  "mobile-menu-item font-medium py-4 px-4 rounded-md transition-all duration-300 text-sm",
                   "hover:bg-primary/10 hover:text-primary hover:translate-x-1 hover:scale-105",
                   "border-l-4 border-transparent",
                   activeSection === link.href.substring(1)

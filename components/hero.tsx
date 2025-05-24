@@ -84,13 +84,16 @@ export default function Hero() {
         <div className="terminal-body w-72">
           <div className="terminal-line">
             <span className="terminal-prompt">$</span>
-            <span className="terminal-text">docker run -p 3000:3000 my-app</span>
+            <span className="terminal-text">docker run -p 5001:5001 my-app</span>
           </div>
           <div className="terminal-line">
             <span className="terminal-text">[INFO] Starting server...</span>
           </div>
           <div className="terminal-line">
-            <span className="terminal-text">[INFO] Listening on http://0.0.0.0:3000</span>
+            <span className="terminal-text">[SUCCESS] Database connected</span>
+          </div>
+          <div className="terminal-line">
+            <span className="terminal-text">[INFO] Listening on http://0.0.0.0:5001</span>
           </div>
         </div>
       </div>
@@ -117,20 +120,20 @@ export default function Hero() {
 
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center z-10 fade-in-up">
-        <div className="mb-6 inline-block">
-          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs  font-medium">
+        <div className="mb-4 inline-block">
+          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px]  font-medium">
             Software Engineer
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 relative">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 relative">
           Hi, I'm <span className="purple-gold-gradient animate-pulse-glow px-3 rounded-sm">Isaiah Ozadhe</span>
         </h1>
 
-        <h2 className="text-2xl md:text-4xl font-bold mb-6 code-bracket">Building modern solutions</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 code-bracket">Building modern solutions</h2>
 
-        <div className="h-8 mb-8 font-mono">
-          <p className="text-xl md:text-2xl">
+        <div className="h-8 mb-5 font-mono">
+          <p className="text-xl">
             <span className="text-gradient-gold-purple">&gt; </span>
             <span>{displayText}</span>
             <span
@@ -143,14 +146,14 @@ export default function Hero() {
           </p>
         </div>
 
-        <p className="text-lg md:text-xl max-w-2xl mb-10 text-muted-foreground">
+        <p className="text-lg max-w-2xl mb-10 text-muted-foreground">
           I specialize in building reliable, easy-to-use software systems that solve real-world problems using Python, JavaScript, and TypeScript.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
-            size="lg"
-            className="btn-gradient-primary group relative overflow-hidden text-sm"
+            size="sm"
+            className="btn-gradient-primary group relative overflow-hidden text-sm px-6"
             onClick={() => {
               const projectsSection = document.getElementById("projects")
               if (projectsSection) {
@@ -168,9 +171,9 @@ export default function Hero() {
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button
-            size="lg"
+            size="sm"
             variant="outline"
-            className="group relative overflow-hidden border-gold hover:border-primary/60 text-sm"
+            className="group relative overflow-hidden border-gold hover:border-primary/60 text-sm px-6"
             onClick={() => window.open("/resume.pdf", "_blank")}
           >
             <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />

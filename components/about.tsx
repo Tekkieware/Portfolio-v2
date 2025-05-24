@@ -41,7 +41,7 @@ const careerSteps = [
     company: "Luday SE",
     period: "Mar 2024 – Present",
     description:
-      "Leading projects across frontend, backend, and DevOps. Mentoring developers and improving internal tools.",
+      "Leading and Collaborating on projects across frontend, backend, and DevOps. Mentoring developers and improving internal tools.",
   },
   {
     title: "Frontend Developer (Part-Time)",
