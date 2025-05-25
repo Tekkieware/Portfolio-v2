@@ -33,7 +33,9 @@ interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
   variant?: Variant
   size?: Size
   asChild?: boolean
+  disabled: boolean
   children: React.ReactNode
+  type:"button" | "submit" | "reset" | undefined
 }
 
 const Button = React.forwardRef<HTMLElement, ButtonProps>(
