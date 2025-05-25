@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const accessKey = body.accessKey;
-  const expectedKey = process.env.ACCESS_KEY;
+  const expectedKey = process.env.ADMIN_ACCESS_KEY;
 
   if (accessKey !== expectedKey) {
     return NextResponse.json(
