@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { Inter } from 'next/font/google'
 import { Fira_Code } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next';
 
 
 export const inter = Inter({
@@ -31,7 +32,6 @@ export const metadata = {
 
   robots: "index, follow",
 
-  // Open Graph (for social media previews)
   openGraph: {
     title: "Isaiah Ozadhe | Software Engineer",
     description: "Explore Isaiah Ozadhe's portfolio showcasing skills in Python, JavaScript/TypeScript, microservices, Docker, and modern tech.",
@@ -68,6 +68,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <Analytics />;
       </body>
     </html>
   )
