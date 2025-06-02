@@ -34,6 +34,8 @@ const skillCategories = [
       { name: "React", level: 90, icon: <Globe className="h-5 w-5 text-primary" /> },
       { name: "Next.js", level: 90, icon: <Globe className="h-5 w-5 text-primary" /> },
       { name: "React Native", level: 60, icon: <Globe className="h-5 w-5 text-primary" /> },
+      { name: "Zustand", level: 80, icon: <Globe className="h-5 w-5 text-primary" /> },
+      { name: "Redux", level: 80, icon: <Globe className="h-5 w-5 text-primary" /> },
       { name: "Tailwind CSS", level: 100, icon: <Globe className="h-5 w-5 text-primary" /> },
     ],
   },
