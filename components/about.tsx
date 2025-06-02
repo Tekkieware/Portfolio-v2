@@ -144,7 +144,7 @@ export default function About() {
             <Button
               variant="outline"
               className="group relative overflow-hidden border-primary/30 hover:border-primary/60 flex-1 text-sm"
-              onClick={() => window.open("/resume.pdf", "_blank")}
+              onClick={() => window.open("https://drive.google.com/file/d/1qUgFSNV1FtlGJDHHRMEGAnLgn0dNiYE-/view?usp=sharing", "_blank")}
             >
               <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
               Download Resume
@@ -266,7 +266,7 @@ export default function About() {
           )}
         >
           <CardHeader className="pb-2">
-                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
               <Globe className="h-5 w-5" style={{ color: "hsl(var(--teal))" }} />
 
             </div>

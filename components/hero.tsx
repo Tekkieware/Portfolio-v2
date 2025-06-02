@@ -174,7 +174,7 @@ export default function Hero() {
             size="sm"
             variant="outline"
             className="group relative overflow-hidden border-gold hover:border-primary/60 text-xs px-6"
-            onClick={() => window.open("/resume.pdf", "_blank")}
+            onClick={() => window.open("https://drive.google.com/file/d/1qUgFSNV1FtlGJDHHRMEGAnLgn0dNiYE-/view?usp=sharing", "_blank")}
           >
             <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
             Download Resume
