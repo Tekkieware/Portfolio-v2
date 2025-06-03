@@ -57,25 +57,17 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
   // Find the project data based on the ID
   useEffect(() => {
     fetchProjects()
-    try {
-      const projectId = id
-      if (projects && projects.length > 1) {
-        const foundProject = projects.find((p) => p._id === projectId)
-        console.log(foundProject)
-        if (foundProject) {
-          setProject(foundProject)
-        } else {
-          setProject(null)
-        }
-      }
-      setLoading(false)
-    } catch (error) {
-      setProject(null)
+  }, [fetchProjects])
+
+  useEffect(() => {
+    if (projects?.length && id) {
+      const foundProject = projects.find((p) => p._id === id)
+      setProject(foundProject || null)
       setLoading(false)
     }
-    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [projects, id])
 
-  }, [params, router, projects])
+
 
   // Check if mobile on initial load and when window resizes
   useEffect(() => {
@@ -166,7 +158,7 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
       <SideNavigator activeSection={activeSection} isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       <MobileNav activeSection={activeSection} />
       {/* Back Button */}
-      <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-xs backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed ? " w-[78px]" : "w-[188px]")}>
+      <div className={cn("fixed top-20 left-4 z-50 dark:bg-gray-900 bg-background/80 hover:bg-muted text-xs backdrop-blur-sm shadow-lg  py-1 border border-border border-gray-200 dark:border-gray-800 rounded-lg px-6", isCollapsed ? " w-[78px]" : "w-[172px]")}>
         <button
           onClick={handleBack}
           className="inline-flex w-full items-center dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
