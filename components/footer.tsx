@@ -85,29 +85,53 @@ export default function Footer() {
 
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {!pathname.includes("project") &&
-              ["Home", "About", "Projects", "Skills", "Blog", "Contact"].map((item, index) => (
-                <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={(e) => scrollToSection(e, item.toLowerCase())}
-                  className={`text-xs text-muted-foreground hover:${index % 4 === 0
-                    ? "text-primary"
-                    : index % 4 === 1
-                      ? "text-gold"
-                      : index % 4 === 2
-                        ? "text-teal"
-                        : "text-coral"
-                    } transition-colors ${index % 4 === 0
-                      ? "animated-border"
+              ["Home", "About", "Projects", "Skills", "Blog", "Contact", "v1"].map((item, index) => (
+                item === "v1" ?
+                  <a
+                    href="https://portfolio-v1.isaiahozadhe.tech"
+                    target="_blank"
+                    className={`text-xs text-muted-foreground hover:${index % 4 === 0
+                      ? "text-primary"
                       : index % 4 === 1
-                        ? "animated-border-gold"
+                        ? "text-gold"
                         : index % 4 === 2
-                          ? "animated-border-teal"
-                          : "animated-border-coral"
-                    }`}
-                >
-                  {item}
-                </Link>
+                          ? "text-teal"
+                          : "text-coral"
+                      } transition-colors ${index % 4 === 0
+                        ? "animated-border"
+                        : index % 4 === 1
+                          ? "animated-border-gold"
+                          : index % 4 === 2
+                            ? "animated-border-teal"
+                            : "animated-border-coral"
+                      }`}
+                  >
+                    {item}
+                  </a>
+                  :
+
+                  <Link
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    onClick={(e) => scrollToSection(e, item.toLowerCase())}
+                    className={`text-xs text-muted-foreground hover:${index % 4 === 0
+                      ? "text-primary"
+                      : index % 4 === 1
+                        ? "text-gold"
+                        : index % 4 === 2
+                          ? "text-teal"
+                          : "text-coral"
+                      } transition-colors ${index % 4 === 0
+                        ? "animated-border"
+                        : index % 4 === 1
+                          ? "animated-border-gold"
+                          : index % 4 === 2
+                            ? "animated-border-teal"
+                            : "animated-border-coral"
+                      }`}
+                  >
+                    {item}
+                  </Link>
               ))
             }
           </div>
@@ -123,6 +147,7 @@ export default function Footer() {
       >
         <ArrowUp className="h-5 w-5 text-primary" />
       </Button>
+
     </footer>
   )
 }
