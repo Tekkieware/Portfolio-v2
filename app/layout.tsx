@@ -46,8 +46,16 @@ export const metadata = {
         alt: "Isaiah Ozadhe | Software Engineer Portfolio",
       },
     ],
-  }
-}
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Isaiah Ozadhe | Software Engineer",
+    description: "Explore Isaiah Ozadhe's portfolio showcasing skills in Python, JavaScript/TypeScript, microservices, Docker, and modern tech.",
+    images: ["https://isaiahozadhe.tech/photo.jpg"],
+  },
+};
+
 
 
 
