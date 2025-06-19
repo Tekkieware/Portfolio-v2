@@ -57,7 +57,8 @@ const skillCategories = [
     skills: [
       { name: "Docker", level: 80, icon: <Laptop className="h-5 w-5 text-primary" /> },
       { name: "Docker Compose", level: 80, icon: <Laptop className="h-5 w-5 text-primary" /> },
-      { name: "Kubernetes", level: 50, icon: <Laptop className="h-5 w-5 text-primary" /> },
+      { name: "Kubernetes", level: 30, icon: <Laptop className="h-5 w-5 text-primary" /> },
+      { name: "Github Actions", level: 50, icon: <Laptop className="h-5 w-5 text-primary" /> },
       { name: "Bitbucket Pipelines", level: 80, icon: <Laptop className="h-5 w-5 text-primary" /> },
       { name: "CI/CD", level: 70, icon: <Laptop className="h-5 w-5 text-primary" /> },
       {
