@@ -21,9 +21,9 @@ const skillCategories = [
     name: "Backend",
     icon: <Server className="h-5 w-5" />,
     skills: [
-      { name: "Django", level: 90, icon: <Server className="h-5 w-5 text-primary" /> },
-      { name: "Flask", level: 90, icon: <Server className="h-5 w-5 text-primary" /> },
-      { name: "FastAPI", level: 70, icon: <Server className="h-5 w-5 text-primary" /> },
+      { name: "Django", level: 90, icon: <Image src="/icons/django.png" height={100} width={100} alt="django" /> },
+      { name: "Flask", level: 90, icon: <Image src="/icons/flask.png" height={100} width={100} alt="flask" /> },
+      { name: "FastAPI", level: 70, icon: <Image src="/icons/fastapi.png" height={35} width={35} alt="fastapi" /> },
     ],
   },
   {
