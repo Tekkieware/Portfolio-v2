@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -224,8 +225,8 @@ export default function About() {
           )}
         >
           <CardHeader className="pb-2">
-            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
-              <Code className="h-5 w-5 text-primary" />
+            <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
+              <Image src="/icons/python.png" height={100} width={100} alt="python" />
             </div>
             <CardTitle className="text-lg">Full-Stack Development</CardTitle>
           </CardHeader>
@@ -245,8 +246,8 @@ export default function About() {
           )}
         >
           <CardHeader className="pb-2">
-            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
-              <Server className="h-5 w-5" style={{ color: "hsl(var(--gold))" }} />
+            <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
+              <Image src="/icons/microservices.png" height={100} width={100} alt="microservices" />
             </div>
             <CardTitle className="text-lg">Microservices Architecture</CardTitle>
           </CardHeader>
@@ -266,8 +267,8 @@ export default function About() {
           )}
         >
           <CardHeader className="pb-2">
-            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
-              <Globe className="h-5 w-5" style={{ color: "hsl(var(--teal))" }} />
+            <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
+              <Image src="/icons/cicd.png" height={100} width={100} alt="cicd" />
 
             </div>
             <CardTitle className="text-lg">DevOps & CI/CD</CardTitle>
