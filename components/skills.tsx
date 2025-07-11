@@ -44,10 +44,10 @@ const skillCategories = [
     name: "Database",
     icon: <Database className="h-5 w-5" />,
     skills: [
-      { name: "PostgreSQL", level: 60, icon: <Database className="h-5 w-5 text-primary" /> },
-      { name: "MongoDB", level: 90, icon: <Database className="h-5 w-5 text-primary" /> },
-      { name: "MySQL", level: 80, icon: <Database className="h-5 w-5 text-primary" /> },
-      { name: "SQLite", level: 100, icon: <Database className="h-5 w-5 text-primary" /> },
+      { name: "PostgreSQL", level: 60, icon: <Image src="/icons/postgresql.png" height={40} width={40} alt="postgresql" /> },
+      { name: "MongoDB", level: 90, icon: <Image src="/icons/mongodb.png" height={40} width={40} alt="mongodb" /> },
+      { name: "MySQL", level: 80, icon: <Image src="/icons/mysql.png" height={100} width={100} alt="mysql" /> },
+      { name: "SQLite", level: 100, icon: <Image src="/icons/sqlite.png" height={40} width={40} alt="sqlite" /> },
     ],
   },
   {
