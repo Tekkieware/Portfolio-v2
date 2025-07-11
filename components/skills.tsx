@@ -90,8 +90,8 @@ const skillCategories = [
 ]
 
 export default function Skills() {
-  const [viewMode, setViewMode] = useState("bars")
-  const [activeTab, setActiveTab] = useState("languages")
+  const [viewMode, setViewMode] = useState("icons")
+  const [activeTab, setActiveTab] = useState("architecture")
   const [animationKey, setAnimationKey] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
