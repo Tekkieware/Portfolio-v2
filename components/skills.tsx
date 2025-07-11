@@ -13,8 +13,7 @@ const skillCategories = [
     skills: [
       { name: "Python", level: 90, icon: <Image src="/icons/python.png" height={100} width={100} alt="python" /> },
       { name: "JavaScript", level: 90, icon: <Image src="/icons/javascript.png" height={35} width={35} alt="javascript" /> },
-      { name: "TypeScript", level: 85, icon: <Image src="/icons/typescript.png" height={35} width={35} alt="typescript" /> },
-      { name: "HTML/CSS", level: 100, icon: <Image src="/icons/html.png" height={40} width={40} alt="html" /> },
+      { name: "TypeScript", level: 85, icon: <Image src="/icons/typescript.png" height={35} width={35} alt="typescript" /> }
     ],
   },
   {
@@ -254,19 +253,6 @@ export default function Skills() {
                           {skill.icon}
                         </div>
                         <span className="text-sm font-medium">{skill.name}</span>
-                        <div className="w-full bg-muted/50 h-1.5 rounded-full mt-2">
-                          <div
-                            className={`h-1 rounded-full ${index % 4 === 0
-                              ? "progress-gradient-primary"
-                              : index % 4 === 1
-                                ? "progress-gradient-gold"
-                                : index % 4 === 2
-                                  ? "progress-gradient-teal"
-                                  : "progress-gradient-coral"
-                              }`}
-                            style={{ width: `${skill.level}%` }}
-                          ></div>
-                        </div>
                       </CardContent>
                     </Card>
                   ))}
