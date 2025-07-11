@@ -76,13 +76,13 @@ const skillCategories = [
     name: "Architecture",
     icon: <Layers className="h-5 w-5" />,
     skills: [
-      { name: "Microservices", level: 80, icon: <Layers className="h-5 w-5 text-primary" /> },
-      { name: "RESTful APIs", level: 90, icon: <Layers className="h-5 w-5 text-primary" /> },
-      { name: "Event-Driven Architecture", level: 75, icon: <Layers className="h-5 w-5 text-primary" /> },
-      { name: "Monolithic Architecture", level: 90, icon: <Layers className="h-5 w-5 text-primary" /> },
-      { name: "Message Queues", level: 75, icon: <Layers className="h-5 w-5 text-primary" /> },
-      { name: "API Gateway", level: 80, icon: <Layers className="h-5 w-5 text-primary" /> },
-      { name: "Technical Documentation & Design", level: 75, icon: <Book className="h-5 w-5 text-primary" /> }
+      { name: "Microservices", level: 80, icon: <Image src="/icons/microservices.png" height={100} width={100} alt="microservices" /> },
+      { name: "RESTful APIs", level: 90, icon: <Image src="/icons/api.png" height={100} width={100} alt="api" /> },
+      { name: "Event-Driven Architecture", level: 75, icon: <Image src="/icons/event.png" height={100} width={100} alt="event" /> },
+      { name: "Monolithic Architecture", level: 90, icon: <Image src="/icons/mono.png" height={40} width={40} alt="mono" /> },
+      { name: "Message Queues", level: 75, icon: <Image src="/icons/queue.png" height={40} width={40} alt="queue" /> },
+      { name: "API Gateway", level: 80, icon: <Image src="/icons/gateway.png" height={40} width={40} alt="gateway" /> },
+      { name: "Technical Documentation & Design", level: 75, icon: <Image src="/icons/documentation.png" height={40} width={40} alt="documentation" /> }
     ]
 
 
