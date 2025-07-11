@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Code, Server, Database, Globe, Laptop, Layers, Book } from "lucide-react"
+import Image from "next/image"
 
 const skillCategories = [
   {
@@ -10,10 +11,10 @@ const skillCategories = [
     name: "Languages",
     icon: <Code className="h-5 w-5" />,
     skills: [
-      { name: "Python", level: 90, icon: <Code className="h-5 w-5 text-primary" /> },
-      { name: "JavaScript", level: 90, icon: <Code className="h-5 w-5 text-primary" /> },
-      { name: "TypeScript", level: 85, icon: <Code className="h-5 w-5 text-primary" /> },
-      { name: "HTML/CSS", level: 100, icon: <Code className="h-5 w-5 text-primary" /> },
+      { name: "Python", level: 90, icon: <Image src="/icons/python.png" height={100} width={100} alt="python" /> },
+      { name: "JavaScript", level: 90, icon: <Image src="/icons/javascript.png" height={35} width={35} alt="javascript" /> },
+      { name: "TypeScript", level: 85, icon: <Image src="/icons/typescript.png" height={35} width={35} alt="typescript" /> },
+      { name: "HTML/CSS", level: 100, icon: <Image src="/icons/html.png" height={40} width={40} alt="html" /> },
     ],
   },
   {
@@ -141,7 +142,6 @@ export default function Skills() {
     <div className="container mx-auto px-4 relative">
       {/* Background decorative elements */}
       <div className="blob blob-primary blob-3 opacity-20"></div>
-
       <div className="flex flex-col items-center mb-16">
         <h2 className="text-3xl font-bold text-center mb-6 relative inline-block section-header fade-in-up purple-gold-gradient">Skills</h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100">
@@ -250,16 +250,6 @@ export default function Skills() {
                                 ? "skill-icon-teal"
                                 : "skill-icon-coral"
                             }`}
-                          style={{
-                            background:
-                              index % 4 === 0
-                                ? "rgba(91, 33, 182, 0.1)"
-                                : index % 4 === 1
-                                  ? "hsla(var(--gold), 0.1)"
-                                  : index % 4 === 2
-                                    ? "hsla(var(--teal), 0.1)"
-                                    : "hsla(var(--coral), 0.1)",
-                          }}
                         >
                           {skill.icon}
                         </div>

@@ -88,6 +88,7 @@ export default function Footer() {
               ["Home", "About", "Projects", "Skills", "Blog", "Contact", "v1"].map((item, index) => (
                 item === "v1" ?
                   <a
+                    key={item}
                     href="https://portfolio-v1.isaiahozadhe.tech"
                     target="_blank"
                     className={`text-xs text-muted-foreground hover:${index % 4 === 0
