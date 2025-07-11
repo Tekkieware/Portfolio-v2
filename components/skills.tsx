@@ -55,18 +55,18 @@ const skillCategories = [
     name: "DevOps",
     icon: <Laptop className="h-5 w-5" />,
     skills: [
-      { name: "Docker", level: 80, icon: <Laptop className="h-5 w-5 text-primary" /> },
-      { name: "Docker Compose", level: 80, icon: <Laptop className="h-5 w-5 text-primary" /> },
-      { name: "Kubernetes", level: 30, icon: <Laptop className="h-5 w-5 text-primary" /> },
-      { name: "Github Actions", level: 50, icon: <Laptop className="h-5 w-5 text-primary" /> },
-      { name: "Bitbucket Pipelines", level: 80, icon: <Laptop className="h-5 w-5 text-primary" /> },
-      { name: "CI/CD", level: 70, icon: <Laptop className="h-5 w-5 text-primary" /> },
+      { name: "Docker", level: 80, icon: <Image src="/icons/docker.png" height={100} width={100} alt="docker" /> },
+      { name: "Docker Compose", level: 80, icon: <Image src="/icons/compose.png" height={40} width={40} alt="compose" /> },
+      { name: "Kubernetes", level: 30, icon: <Image src="/icons/kubernetes.png" height={40} width={40} alt="kubernetes" /> },
+      { name: "Github Actions", level: 50, icon: <Image src="/icons/actions.png" height={100} width={100} alt="actions" /> },
+      { name: "Bitbucket Pipelines", level: 80, icon: <Image src="/icons/bitbucket.png" height={100} width={100} alt="bitbucket" /> },
+      { name: "CI/CD", level: 70, icon: <Image src="/icons/cicd.png" height={100} width={100} alt="cicd" /> },
       {
         name: "Monitoring & Observability",
         level: 70,
-        icon: <Laptop className="h-5 w-5 text-primary" />
+        icon: <Laptop className="h-10 w-10 text-primary" />
       },
-      { name: "Coolify", level: 80, icon: <Laptop className="h-5 w-5 text-primary" /> },
+      { name: "Coolify", level: 80, icon: <Image src="/icons/coolify.png" height={100} width={100} alt="coolify" /> },
 
 
     ],
