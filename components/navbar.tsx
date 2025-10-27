@@ -13,7 +13,6 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  // { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" }
 ]
 
@@ -137,6 +136,9 @@ export default function Navbar() {
                 </a>
               ))
             }
+            <Link href="https://blog.isaiahozadhe.tech/" target="_blank" rel="noopener noreferrer" className="text-xs font-medium transition-colors relative py-2 hover:text-primary">
+              Blog
+            </Link>
             <ModeToggle />
           </nav>
           <div className="flex items-center md:hidden">
