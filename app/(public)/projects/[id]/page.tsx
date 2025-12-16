@@ -19,7 +19,7 @@ import Projects from "@/components/projects"
 import SideNavigator from "@/components/project-side-bar"
 import MobileNav from "@/components/mobile-project-sidebar"
 import { cn } from "@/lib/utils"
-import Loader from "@/components/loader"
+import { Skeleton } from "@/components/ui/skeleton"
 import { Project } from "@/lib/types"
 import { useProjectsStore } from "@/lib/store/useProjectsStore"
 
@@ -128,7 +128,12 @@ export default function ProjectDetails({ params }: { params: Promise<Params> }) 
   if (isLoadingProjects || loading) {
     return (
       <div className="fixed min-h-screen min-w-screen top-0 inset-0 bg-gray-50 dark:bg-gray-950 flex items-center justify-center z-50">
-        <Loader text="Loading project details..." />
+        <div className="w-full max-w-2xl space-y-8">
+          <Skeleton className="h-10 w-1/2 mb-4 bg-muted-foreground/10 dark:bg-muted/20" />
+          <Skeleton className="h-96 w-full rounded-xl bg-muted-foreground/10 dark:bg-muted/20" />
+          <Skeleton className="h-6 w-1/3 bg-muted-foreground/10 dark:bg-muted/20" />
+          <Skeleton className="h-24 w-full rounded bg-muted-foreground/10 dark:bg-muted/20" />
+        </div>
       </div>
     )
   }

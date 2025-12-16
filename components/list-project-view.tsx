@@ -7,15 +7,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from './ui/badge'
 import { useRouter } from 'next/navigation'
 import { Project } from '@/lib/types'
-import Loader from './loader'
+import { Skeleton } from './ui/skeleton'
 
 
 const ListProjectView = ({ projects, isLoadingProjects }: { projects: Project[], isLoadingProjects: boolean }) => {
     const router = useRouter()
     if (isLoadingProjects) {
-        return <div className="container mx-auto px-4 min-h-80 top-0 inset-0 bg-black/80 flex items-center justify-center z-50">
-            <Loader text="LOADING PROJECTS" />
-        </div>
+        return (
+            <div className="container mx-auto px-4 min-h-80 top-0 inset-0 flex items-center justify-center z-50">
+                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {[...Array(3)].map((_, i) => (
+                        <Skeleton key={i} className="h-72 w-full rounded-xl bg-muted-foreground/10 dark:bg-muted/20" />
+                    ))}
+                </div>
+            </div>
+        )
     }
 
 
