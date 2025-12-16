@@ -182,18 +182,23 @@ export default function Navbar() {
         ></div>
 
         {mobileMenuOpen && (
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            aria-label="Close menu"
-            className="absolute top-4 right-4 z-50 w-10 h-10 flex items-center justify-center focus:outline-none group"
-          >
-            <div className="relative flex flex-col justify-center items-center w-6 h-6">
-              <span className="hamburger-line w-7 translate-y-1.5 rotate-45 bg-primary origin-center transition-all duration-500 ease-in-out"></span>
-              <span className="hamburger-line my-1 w-0 opacity-0 scale-0 transition-all duration-300 ease-in-out"></span>
-              <span className="hamburger-line w-7 -translate-y-1.5 -rotate-45 bg-primary origin-center transition-all duration-500 ease-in-out"></span>
+          <div className="flex justify-between items-center pl-7 pr-4 py-3">
+            <div className="-translate-x-1/2 z-50 flex items-center justify-center">
+              <Logo />
             </div>
-            <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300 scale-0 group-hover:scale-100"></div>
-          </button>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
+              className=" z-50 w-10 h-10 flex items-center justify-center focus:outline-none group"
+            >
+              <div className="relative flex flex-col justify-center items-center w-6 h-6">
+                <span className="hamburger-line w-7 translate-y-1.5 rotate-45 bg-primary origin-center transition-all duration-500 ease-in-out"></span>
+                <span className="hamburger-line my-1 w-0 opacity-0 scale-0 transition-all duration-300 ease-in-out"></span>
+                <span className="hamburger-line w-7 -translate-y-1.5 -rotate-45 bg-primary origin-center transition-all duration-500 ease-in-out"></span>
+              </div>
+              <div className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors duration-300 scale-0 group-hover:scale-100"></div>
+            </button>
+          </div>
         )}
 
         <nav
