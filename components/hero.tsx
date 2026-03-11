@@ -6,17 +6,12 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Download, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useScrollToSection } from "@/hooks/useScrollToSection"
 
 const roles = [
-  "Python Expert",
-  "TypeScript Developer",
-  "JavaScript Engineer",
-  "Backend Specialist",
-  "Microservices Engineer",
-  "DevOps Enthusiast",
-  "Full-Stack Developer",
-  "API Architect",
-  "Problem Solver"
+  "React & Next.js Developer",
+  "Python Backend Engineer",
+  "Full-Stack Engineer"
 ];
 
 
@@ -50,21 +45,7 @@ export default function Hero() {
     return () => clearTimeout(timer)
   }, [displayText, isDeleting, roleIndex, delta])
 
-  const scrollToAbout = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    const aboutSection = document.getElementById("about")
-
-    if (aboutSection) {
-      const navbarHeight = document.querySelector("header")?.offsetHeight || 0
-      const sectionTop = aboutSection.offsetTop - navbarHeight
-
-      window.scrollTo({
-        top: sectionTop,
-        behavior: "smooth",
-      })
-      window.history.pushState(null, "", "#about")
-    }
-  }
+  const scrollToSection = useScrollToSection()
 
   return (
     <div className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden">
@@ -130,7 +111,7 @@ export default function Hero() {
           Hi, I'm <span className="purple-gold-gradient animate-pulse-glow px-3 rounded-sm">Isaiah Ozadhe</span>
         </h1>
 
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 code-bracket">Building modern solutions</h2>
+        <h2 className="text-sm md:text-xl font-medium mb-4 code-bracket">From pixel-perfect UIs to scalable APIs</h2>
 
         <div className="h-8 mb-5 font-mono">
           <p className="text-xl">
@@ -147,25 +128,14 @@ export default function Hero() {
         </div>
 
         <p className="text-md max-w-2xl mb-10 text-muted-foreground">
-          I specialize in building reliable, easy-to-use software systems that solve real-world problems using Python, JavaScript, and TypeScript.
+          I build polished React & Next.js frontends and robust Python backends — or wire them together end-to-end as a full-stack engineer.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
             size="sm"
             className="btn-gradient-primary group relative overflow-hidden text-xs px-6"
-            onClick={() => {
-              const projectsSection = document.getElementById("projects")
-              if (projectsSection) {
-                const navbarHeight = document.querySelector("header")?.offsetHeight || 0
-                const sectionTop = projectsSection.offsetTop - navbarHeight
-                window.scrollTo({
-                  top: sectionTop,
-                  behavior: "smooth",
-                })
-                window.history.pushState(null, "", "#projects")
-              }
-            }}
+            onClick={(e) => scrollToSection(e, "projects")}
           >
             View Projects
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -174,7 +144,7 @@ export default function Hero() {
             size="sm"
             variant="outline"
             className="group relative overflow-hidden border-gold hover:border-primary/60 text-xs px-6"
-            onClick={() => window.open("https://drive.google.com/file/d/1qUgFSNV1FtlGJDHHRMEGAnLgn0dNiYE-/view?usp=sharing", "_blank")}
+            onClick={() => window.open("/resume.pdf", "_blank")}
           >
             <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
             Download Resume
@@ -183,7 +153,7 @@ export default function Hero() {
         </div>
         <div
           className="mt-16 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={scrollToAbout}
+          onClick={(e) => scrollToSection(e, "about")}
           aria-label="Scroll to About section"
         >
           <div className="w-8 h-8 rounded-full border-2 border-gold flex items-center justify-center animate-bounce">
