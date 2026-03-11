@@ -11,9 +11,9 @@ const skillCategories = [
     name: "Languages",
     icon: <Code className="h-5 w-5" />,
     skills: [
-      { name: "Python", level: 90, icon: <Image src="/icons/python.png" height={100} width={100} alt="python" /> },
-      { name: "JavaScript", level: 90, icon: <Image src="/icons/javascript.png" height={35} width={35} alt="javascript" /> },
-      { name: "TypeScript", level: 85, icon: <Image src="/icons/typescript.png" height={35} width={35} alt="typescript" /> }
+      { name: "Python", level: 85, icon: <Image src="/icons/python.png" height={100} width={100} alt="python" /> },
+      { name: "JavaScript", level: 85, icon: <Image src="/icons/javascript.png" height={35} width={35} alt="javascript" /> },
+      { name: "TypeScript", level: 80, icon: <Image src="/icons/typescript.png" height={35} width={35} alt="typescript" /> }
     ],
   },
   {
@@ -21,8 +21,8 @@ const skillCategories = [
     name: "Backend",
     icon: <Server className="h-5 w-5" />,
     skills: [
-      { name: "Django", level: 90, icon: <Image src="/icons/django.png" height={100} width={100} alt="django" /> },
-      { name: "Flask", level: 90, icon: <Image src="/icons/flask.png" height={100} width={100} alt="flask" /> },
+      { name: "Django", level: 85, icon: <Image src="/icons/django.png" height={100} width={100} alt="django" /> },
+      { name: "Flask", level: 85, icon: <Image src="/icons/flask.png" height={100} width={100} alt="flask" /> },
       { name: "FastAPI", level: 70, icon: <Image src="/icons/fastapi.png" height={35} width={35} alt="fastapi" /> },
     ],
   },
@@ -31,12 +31,12 @@ const skillCategories = [
     name: "Frontend",
     icon: <Globe className="h-5 w-5" />,
     skills: [
-      { name: "React", level: 90, icon: <Image src="/icons/react.png" height={40} width={40} alt="react" /> },
-      { name: "Next.js", level: 90, icon: <Image src="/icons/nextjs.png" height={40} width={40} alt="nextjs" /> },
-      { name: "React Native", level: 60, icon: <Image src="/icons/native.png" height={40} width={40} alt="native" /> },
-      { name: "Zustand", level: 80, icon: <Globe className="h-10 w-10 text-primary" /> },
-      { name: "Redux", level: 80, icon: <Image src="/icons/redux.png" height={40} width={40} alt="redux" /> },
-      { name: "Tailwind CSS", level: 100, icon: <Image src="/icons/tailwind.png" height={100} width={100} alt="tailwind" /> },
+      { name: "React", level: 85, icon: <Image src="/icons/react.png" height={40} width={40} alt="react" /> },
+      { name: "Next.js", level: 80, icon: <Image src="/icons/nextjs.png" height={40} width={40} alt="nextjs" /> },
+      { name: "React Native", level: 55, icon: <Image src="/icons/native.png" height={40} width={40} alt="native" /> },
+      { name: "Zustand", level: 75, icon: <Globe className="h-10 w-10 text-primary" /> },
+      { name: "Redux", level: 75, icon: <Image src="/icons/redux.png" height={40} width={40} alt="redux" /> },
+      { name: "Tailwind CSS", level: 85, icon: <Image src="/icons/tailwind.png" height={100} width={100} alt="tailwind" /> },
     ],
   },
   {
@@ -45,9 +45,9 @@ const skillCategories = [
     icon: <Database className="h-5 w-5" />,
     skills: [
       { name: "PostgreSQL", level: 60, icon: <Image src="/icons/postgresql.png" height={40} width={40} alt="postgresql" /> },
-      { name: "MongoDB", level: 90, icon: <Image src="/icons/mongodb.png" height={40} width={40} alt="mongodb" /> },
-      { name: "MySQL", level: 80, icon: <Image src="/icons/mysql.png" height={100} width={100} alt="mysql" /> },
-      { name: "SQLite", level: 100, icon: <Image src="/icons/sqlite.png" height={40} width={40} alt="sqlite" /> },
+      { name: "MongoDB", level: 80, icon: <Image src="/icons/mongodb.png" height={40} width={40} alt="mongodb" /> },
+      { name: "MySQL", level: 75, icon: <Image src="/icons/mysql.png" height={100} width={100} alt="mysql" /> },
+      { name: "SQLite", level: 80, icon: <Image src="/icons/sqlite.png" height={40} width={40} alt="sqlite" /> },
     ],
   },
   {
@@ -76,13 +76,13 @@ const skillCategories = [
     name: "Architecture",
     icon: <Layers className="h-5 w-5" />,
     skills: [
-      { name: "Microservices", level: 80, icon: <Image src="/icons/microservices.png" height={100} width={100} alt="microservices" /> },
-      { name: "RESTful APIs", level: 90, icon: <Image src="/icons/api.png" height={100} width={100} alt="api" /> },
-      { name: "Event-Driven Architecture", level: 75, icon: <Image src="/icons/event.png" height={100} width={100} alt="event" /> },
-      { name: "Monolithic Architecture", level: 90, icon: <Image src="/icons/mono.png" height={40} width={40} alt="mono" /> },
-      { name: "Message Queues", level: 75, icon: <Image src="/icons/queue.png" height={40} width={40} alt="queue" /> },
-      { name: "API Gateway", level: 80, icon: <Image src="/icons/gateway.png" height={40} width={40} alt="gateway" /> },
-      { name: "Technical Documentation & Design", level: 75, icon: <Image src="/icons/documentation.png" height={40} width={40} alt="documentation" /> }
+      { name: "Microservices", level: 75, icon: <Image src="/icons/microservices.png" height={100} width={100} alt="microservices" /> },
+      { name: "RESTful APIs", level: 85, icon: <Image src="/icons/api.png" height={100} width={100} alt="api" /> },
+      { name: "Event-Driven Architecture", level: 70, icon: <Image src="/icons/event.png" height={100} width={100} alt="event" /> },
+      { name: "Monolithic Architecture", level: 80, icon: <Image src="/icons/mono.png" height={40} width={40} alt="mono" /> },
+      { name: "Message Queues", level: 70, icon: <Image src="/icons/queue.png" height={40} width={40} alt="queue" /> },
+      { name: "API Gateway", level: 75, icon: <Image src="/icons/gateway.png" height={40} width={40} alt="gateway" /> },
+      { name: "Technical Documentation & Design", level: 70, icon: <Image src="/icons/documentation.png" height={40} width={40} alt="documentation" /> }
     ]
 
 
@@ -91,7 +91,7 @@ const skillCategories = [
 
 export default function Skills() {
   const [viewMode, setViewMode] = useState("icons")
-  const [activeTab, setActiveTab] = useState("architecture")
+  const [activeTab, setActiveTab] = useState("languages")
   const [animationKey, setAnimationKey] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -222,7 +222,7 @@ export default function Skills() {
                   ))}
                 </div>
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className={`grid grid-cols-2 ${category.skills.length <= 3 ? "sm:grid-cols-3" : "sm:grid-cols-4"} gap-4`}>
                   {category.skills.map((skill, index) => (
                     <Card
                       key={`${skill.name}-${animationKey}`}
@@ -233,7 +233,7 @@ export default function Skills() {
                           : index % 4 === 2
                             ? "teal-border"
                             : "coral-border"
-                        } transition-colors card-hover-effect zoom-in ${hasScrolled || animationKey > 0 ? "appear" : ""}`}
+                        } transition-colors card-hover-effect shadow-md zoom-in ${hasScrolled || animationKey > 0 ? "appear" : ""}`}
                       style={{
                         transitionDelay: `${100 + index * 50}ms`,
                         animationDelay: `${100 + index * 50}ms`,
