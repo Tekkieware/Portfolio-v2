@@ -88,7 +88,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium">Email</h4>
                   <a href="mailto:isaiahozadhe247@gmail.com" className="text-gradient-gold-purple hover:underline">
-                    gmail &gt; isaiahozadhe
+                    isaiahozadhe247@gmail.com
                   </a>
                 </div>
               </CardContent>
@@ -110,7 +110,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="text-gradient-gold-purple hover:underline"
                   >
-                    linkedin.com &gt; isaiahozadhe
+                    linkedin.com/in/isaiah-ozadhe
                   </a>
                 </div>
               </CardContent>
@@ -132,7 +132,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="text-gradient-teal-purple hover:underline"
                   >
-                    github.com &gt; isaiahozadhe
+                    github.com/Tekkieware
                   </a>
                 </div>
               </CardContent>
@@ -179,6 +179,20 @@ export default function Contact() {
                   className="border-primary/20 focus:border-primary focus:ring-primary/20"
                 />
               </div>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="subject" className="text-xs font-medium">
+                Subject
+              </label>
+              <Input
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="What's this about?"
+                required
+                className="border-primary/20 focus:border-primary focus:ring-primary/20"
+              />
             </div>
             <div className="space-y-2">
               <label htmlFor="message" className="text-xs font-medium">
