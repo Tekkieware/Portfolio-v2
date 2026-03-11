@@ -7,24 +7,11 @@ import { ArrowUp, Github, Linkedin, Mail } from "lucide-react"
 import Logo from "./logo"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useScrollToSection } from "@/hooks/useScrollToSection"
 
 export default function Footer() {
   const pathname = usePathname()
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault()
-    const section = document.getElementById(sectionId)
-
-    if (section) {
-      const navbarHeight = document.querySelector("header")?.offsetHeight || 0
-      const sectionTop = section.offsetTop - navbarHeight
-
-      window.scrollTo({
-        top: sectionTop,
-        behavior: "smooth",
-      })
-      window.history.pushState(null, "", `#${sectionId}`)
-    }
-  }
+  const scrollToSection = useScrollToSection()
 
   return (
     <footer className="py-12 mt-20 relative overflow-hidden">
@@ -85,12 +72,13 @@ export default function Footer() {
 
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {!pathname.includes("project") &&
-              ["Home", "About", "Projects", "Skills", "Blog", "Contact", "v1"].map((item, index) => (
-                item === "v1" ?
+              ["Home", "About", "Projects", "Skills", "Contact"].map((item, index) => (
+                item === "Blog" ?
                   <a
                     key={item}
-                    href="https://portfolio-v1.isaiahozadhe.tech"
+                    href="https://blog.isaiahozadhe.tech/"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className={`text-xs text-muted-foreground hover:${index % 4 === 0
                       ? "text-primary"
                       : index % 4 === 1
