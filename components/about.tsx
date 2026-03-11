@@ -89,7 +89,7 @@ export default function About() {
           <span className="purple-gold-gradient">About Me</span>
         </h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl fade-in-up delay-100 text-md">
-          I'm a dedicated software engineer with over three years of experience designing and developing web applications and microservices.
+          Software engineer with 3+ years of experience shipping production React/Next.js frontends, Python backends, and full-stack applications.
         </p>
       </div>
 
@@ -98,10 +98,13 @@ export default function About() {
         <div className="flex justify-center fade-in-right delay-100">
           <div className="relative">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 animate-pulse-glow glass-card">
-              <img
-                src="/photo.jpg?height=320&width=320"
+              <Image
+                src="/photo.jpg"
                 alt="Isaiah Ozadhe"
+                width={320}
+                height={320}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-background rounded-full p-3 shadow-lg glass-card">
@@ -137,7 +140,7 @@ export default function About() {
 
           <div className="glass-card p-6 rounded-lg gold-border mb-6 card-hover-effect">
             <p className="text-muted-foreground text-sm">
-              I build smart, scalable solutions that solve real-world problems. My skills span full-stack development, microservices, and DevOps practices that support reliable, efficient software delivery.
+              I build polished, responsive UIs with React and Next.js on the frontend, and reliable services with Python (Flask, Django, FastAPI) on the backend — or both, end-to-end.
             </p>
           </div>
 
@@ -145,7 +148,7 @@ export default function About() {
             <Button
               variant="outline"
               className="group relative overflow-hidden border-primary/30 hover:border-primary/60 flex-1 text-sm"
-              onClick={() => window.open("https://drive.google.com/file/d/1qUgFSNV1FtlGJDHHRMEGAnLgn0dNiYE-/view?usp=sharing", "_blank")}
+              onClick={() => window.open("/resume.pdf", "_blank")}
             >
               <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
               Download Resume
@@ -228,11 +231,11 @@ export default function About() {
             <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
               <Image src="/icons/python.png" height={100} width={100} alt="python" />
             </div>
-            <CardTitle className="text-lg">Full-Stack Development</CardTitle>
+            <CardTitle className="text-lg">Frontend Development</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground text-sm">
-              I'm skilled in Python (Flask, Django) and JavaScript/TypeScript (React, Next.js, React Native), and use them to build complete, end-to-end solutions.
+              I build interactive, performant UIs with React, Next.js, and TypeScript — and bring them to life with modern styling and state management.
             </p>
           </CardContent>
         </Card>
@@ -249,11 +252,11 @@ export default function About() {
             <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 skill-icon group-hover:scale-110 transition-transform duration-500">
               <Image src="/icons/microservices.png" height={100} width={100} alt="microservices" />
             </div>
-            <CardTitle className="text-lg">Microservices Architecture</CardTitle>
+            <CardTitle className="text-lg">Backend & API Development</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground text-sm">
-              I design and build microservices using Docker, with a growing understanding of Kubernetes and DevOps practices.
+              I design scalable backend services and APIs using Python frameworks, containerised with Docker for consistent deployments.
             </p>
           </CardContent>
         </Card>
