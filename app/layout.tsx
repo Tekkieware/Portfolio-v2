@@ -22,11 +22,11 @@ export const firaCode = Fira_Code({
 
 
 export const metadata = {
-  title: "Isaiah Ozadhe | Software Engineer | Python & JavaScript/TypeScript Developer | Microservices & Docker Expert",
+  title: "Isaiah Ozadhe — Software Engineer",
   description:
-    "Portfolio of Isaiah Ozadhe, a software engineer skilled in Python, JavaScript, TypeScript, microservices, Docker, and modern development technologies.",
+    "Portfolio of Isaiah Ozadhe — a software engineer building polished React & Next.js frontends, scalable Python backends, and full-stack applications.",
 
-  keywords: "Isaiah Ozadhe, Software Engineer, Python Developer, JavaScript Developer, TypeScript Developer, Microservices, Docker, Full-stack Developer, React, Next.js, Flask, Django, FastAPI",
+  keywords: "Isaiah Ozadhe, Software Engineer, React Developer, Next.js Developer, Python Developer, Full-Stack Developer, TypeScript, Flask, Django, FastAPI, Frontend Engineer, Backend Engineer",
 
   author: "Isaiah Ozadhe",
 
@@ -34,7 +34,7 @@ export const metadata = {
 
   openGraph: {
     title: "Isaiah Ozadhe | Software Engineer",
-    description: "Explore Isaiah Ozadhe's portfolio showcasing skills in Python, JavaScript/TypeScript, microservices, Docker, and modern tech.",
+    description: "React & Next.js frontend, Python backend, and full-stack engineering — explore Isaiah Ozadhe's portfolio and recent work.",
     url: "https://isaiahozadhe.tech",
     site_name: "Isaiah Ozadhe | Software Engineer Portfolio",
     type: "website",
@@ -51,7 +51,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Isaiah Ozadhe | Software Engineer",
-    description: "Explore Isaiah Ozadhe's portfolio showcasing skills in Python, JavaScript/TypeScript, microservices, Docker, and modern tech.",
+    description: "React & Next.js frontend, Python backend, and full-stack engineering — explore Isaiah Ozadhe's portfolio and recent work.",
     images: ["https://isaiahozadhe.tech/photo.jpg"],
   },
 };
@@ -76,7 +76,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
-        <Analytics />;
+        <Analytics />
       </body>
     </html>
   )
