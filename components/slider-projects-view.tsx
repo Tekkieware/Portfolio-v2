@@ -13,7 +13,7 @@ import { Project } from "@/lib/types"
 import { Skeleton } from "./ui/skeleton"
 
 
-export default function SLiderProjetsView({ projects, isLoadingProjects }: { projects: Project[], isLoadingProjects: boolean }) {
+export default function SliderProjectsView({ projects, isLoadingProjects }: { projects: Project[], isLoadingProjects: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
