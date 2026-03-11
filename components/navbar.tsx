@@ -1,12 +1,13 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { ModeToggle } from "./mode-toggle"
 import { cn } from "@/lib/utils"
 import Logo from "./logo"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
+import { useScrollToSection } from "@/hooks/useScrollToSection"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -22,23 +23,13 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home")
   const pathname = usePathname()
 
-  const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, sectionId: string) => {
-    e.preventDefault()
-    const section = document.getElementById(sectionId)
+  const scrollToSection = useScrollToSection()
 
-    if (section) {
-      const navbarHeight = document.querySelector("header")?.offsetHeight || 0
-      const sectionTop = section.offsetTop - navbarHeight
-
-      window.scrollTo({
-        top: sectionTop,
-        behavior: "smooth",
-      })
-      setMobileMenuOpen(false)
-      window.history.pushState(null, "", `#${sectionId}`)
-      setActiveSection(sectionId)
-    }
-  }, [])
+  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, sectionId: string) => {
+    scrollToSection(e, sectionId)
+    setMobileMenuOpen(false)
+    setActiveSection(sectionId)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,7 +114,7 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href.substring(1))}
+                  onClick={(e) => handleScrollToSection(e, link.href.substring(1))}
                   className={cn(
                     "text-xs font-medium transition-colors relative py-2",
                     activeSection === link.href.substring(1) ? "text-primary" : "hover:text-primary",
@@ -212,7 +203,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href.substring(1))}
+                onClick={(e) => handleScrollToSection(e, link.href.substring(1))}
                 className={cn(
                   "mobile-menu-item font-medium py-4 px-4 rounded-md transition-all duration-300 text-xs",
                   "hover:bg-primary/10 hover:text-primary hover:translate-x-1 hover:scale-105",
