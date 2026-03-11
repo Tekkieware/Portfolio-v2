@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import SLiderProjetsView from './slider-projects-view'
+import SliderProjectsView from './slider-projects-view'
 import ListProjectView from './list-project-view'
 import { useProjectsStore } from '@/lib/store/useProjectsStore'
 
@@ -19,7 +19,7 @@ const Projects = ({ related, id }: { related?: string, id?: string }) => {
       </div>
 
       <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto fade-in-up delay-100">
-        Here are some of my recent hobby projects:
+        A selection of my recent work, showcasing modern web technologies.
       </p>
       <div className="flex w-full justify-center space-x-2 fade-in-up delay-200 mb-5">
         <button
@@ -38,7 +38,7 @@ const Projects = ({ related, id }: { related?: string, id?: string }) => {
         </button>
       </div>
       {
-        viewMode === "slide" ? <SLiderProjetsView projects={projects!} isLoadingProjects={isLoadingProjects} /> : <ListProjectView projects={projects!} isLoadingProjects={isLoadingProjects} />
+        viewMode === "slide" ? <SliderProjectsView projects={projects!} isLoadingProjects={isLoadingProjects} /> : <ListProjectView projects={projects!} isLoadingProjects={isLoadingProjects} />
       }
     </div>
   )
